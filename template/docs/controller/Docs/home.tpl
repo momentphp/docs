@@ -24,10 +24,17 @@
 <script src="//cdn.rawgit.com/rstacruz/flatdoc/v0.9.0/flatdoc.js"></script>
 <script src="//cdn.rawgit.com/rstacruz/jquery-stuff/master/anchorjump/jquery.anchorjump.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.js"></script>
 <script>
 
-    Flatdoc.run({
-      fetcher: Flatdoc.file('/bundle/docs/README.md')
+    $(document).ready(function() {
+
+        $('.page-heading h1 a').lettering();
+
+        Flatdoc.run({
+            fetcher: Flatdoc.file('/bundle/docs/README.md')
+        });
+
     });
 
     $(document).on('flatdoc:ready', function() {
@@ -58,5 +65,6 @@
     });
 
 </script>
+
 {/block}
 

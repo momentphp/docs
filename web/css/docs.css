@@ -73,6 +73,7 @@ div[role="flatdoc-content"] pre {
 }
 div[role="flatdoc-content"] code {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  padding: 0.2em;
+  padding: 0.2em 0.4em;
   background: #eeeeee;
+  border-radius: 3px;
 }

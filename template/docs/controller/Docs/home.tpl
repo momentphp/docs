@@ -11,6 +11,9 @@
         <div role="flatdoc-menu"></div>
     </div>
     <div class="docs-content">
+        {if $this->app->bundle->has('welcome')}
+            {include file='welcome/element/logo.tpl'}
+        {/if}
         <div role="flatdoc-content"></div>
     </div>
 </div>

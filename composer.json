@@ -1,0 +1,9 @@
+{
+    "name": "momentphp/docs",
+    "description": "Moment framework documentation bundle",
+    "autoload": {
+        "psr-4": {
+            "moment\\bundle\\docs\\": "."
+        }
+    }
+}

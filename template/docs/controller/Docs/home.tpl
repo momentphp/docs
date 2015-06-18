@@ -11,6 +11,9 @@
         <div role="flatdoc-menu"></div>
     </div>
     <div class="docs-content">
+        {if $this->app->bundle->has('welcome')}
+            {include file='welcome/element/logo.tpl'}
+        {/if}
         <div role="flatdoc-content"></div>
     </div>
 </div>
@@ -21,10 +24,17 @@
 <script src="//cdn.rawgit.com/rstacruz/flatdoc/v0.9.0/flatdoc.js"></script>
 <script src="//cdn.rawgit.com/rstacruz/jquery-stuff/master/anchorjump/jquery.anchorjump.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.js"></script>
 <script>
 
-    Flatdoc.run({
-      fetcher: Flatdoc.file('/bundle/docs/README.md')
+    $(document).ready(function() {
+
+        $('.page-heading h1 a').lettering();
+
+        Flatdoc.run({
+            fetcher: Flatdoc.file('/bundle/docs/README.md')
+        });
+
     });
 
     $(document).on('flatdoc:ready', function() {
@@ -41,19 +51,9 @@
             hljs.highlightBlock(block);
         });
 
-        $('a').each(function() {
-            var a = new RegExp('/' + window.location.host + '/');
-            if (!a.test(this.href)) {
-               $(this).click(function(event) {
-                   event.preventDefault();
-                   event.stopPropagation();
-                   window.open(this.href, '_blank');
-               });
-            }
-        });
-
     });
 
 </script>
+
 {/block}
 

@@ -58,6 +58,9 @@ div[role="flatdoc-content"] table td {
   border-right: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
 }
+div[role="flatdoc-content"] table th {
+  text-align: left;
+}
 div[role="flatdoc-content"] table code {
   white-space: nowrap;
 }

@@ -11,10 +11,16 @@
         <div role="flatdoc-menu"></div>
     </div>
     <div class="docs-content">
+        <div style="text-align: right">
+            <a href="/" class="button-action">Home page &raquo;</a>
+        </div>
         {if $this->app->bundle->has('welcome')}
             {include file='welcome/element/logo.tpl'}
         {/if}
         <div role="flatdoc-content"></div>
+        <div style="text-align: right">
+            <a href="{$this->app->config->get('bundle.docs.url.improve')}" class="button-action">Improve this doc &raquo;</a>
+        </div>
     </div>
 </div>
 {/block}

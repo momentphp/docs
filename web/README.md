@@ -321,7 +321,7 @@ Following table shows a list of all supported options:
         <td><code>store</code></td>
         <td><code>string</code></td>
         <td>not set</td>
-        <td>the name of [cache store][Caching] to use (will use default store if not set)</td>
+        <td>the name of cache store to use (will use default store if not set)</td>
     </tr>
     <tr>
         <td><code>enabled</code></td>
@@ -345,13 +345,13 @@ Following table shows a list of all supported options:
         <td><code>cacheMethods</code></td>
         <td><code>array</code></td>
         <td><code>[]</code></td>
-        <td>list of methods to cache (if `enabled` is set to `false`)</td>
+        <td>list of methods to cache (if <code>enabled</code> is set to <code>false</code>)</td>
     </tr>
     <tr>
         <td><code>nonCacheMethods</code></td>
         <td><code>array</code></td>
         <td><code>[]</code></td>
-        <td>list of methods to no-cache (if `enabled` is set to `true`)</td>
+        <td>list of methods to no-cache (if <code>enabled</code> is set to <code>true</code>)</td>
     </tr>
 </table>
 

@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class moment\Config | MOMENT FRAMEWORK</title>
+
+	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-moment.html">
+						moment<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-moment.middleware.html">
+						middleware					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-moment.App.html">App</a></li>
+				<li><a href="class-moment.Bundle.html">Bundle</a></li>
+				<li><a href="class-moment.BundleRegistry.html">BundleRegistry</a></li>
+				<li><a href="class-moment.Cache.html">Cache</a></li>
+				<li><a href="class-moment.CallableResolver.html">CallableResolver</a></li>
+				<li class="active"><a href="class-moment.Config.html">Config</a></li>
+				<li><a href="class-moment.Controller.html">Controller</a></li>
+				<li><a href="class-moment.Database.html">Database</a></li>
+				<li><a href="class-moment.Error.html">Error</a></li>
+				<li><a href="class-moment.ExceptionRenderer.html">ExceptionRenderer</a></li>
+				<li><a href="class-moment.Helper.html">Helper</a></li>
+				<li><a href="class-moment.Log.html">Log</a></li>
+				<li><a href="class-moment.Middleware.html">Middleware</a></li>
+				<li><a href="class-moment.Model.html">Model</a></li>
+				<li><a href="class-moment.ModelRegistry.html">ModelRegistry</a></li>
+				<li><a href="class-moment.MomentBundle.html">MomentBundle</a></li>
+				<li><a href="class-moment.ObjectCache.html">ObjectCache</a></li>
+				<li><a href="class-moment.Service.html">Service</a></li>
+				<li><a href="class-moment.View.html">View</a></li>
+				<li><a href="class-moment.ViewEngine.html">ViewEngine</a></li>
+			</ul>
+
+
+			<h3>Traits</h3>
+			<ul>
+				<li><a href="class-moment.EventDispatcherTrait.html">EventDispatcherTrait</a></li>
+				<li><a href="class-moment.MethodCacheTrait.html">MethodCacheTrait</a></li>
+				<li><a href="class-moment.OptionsTrait.html">OptionsTrait</a></li>
+				<li><a href="class-moment.RegistryTrait.html">RegistryTrait</a></li>
+			</ul>
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-moment.FatalErrorException.html">FatalErrorException</a></li>
+				<li><a href="class-moment.NotFoundException.html">NotFoundException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-moment.html" title="Summary of moment"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Config</h1>
+
+
+	<div class="description">
+	<p>Config</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>moment\Config</span></b>			
+			 implements 
+<span>ArrayAccess</span>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-moment.html">moment</a><br>
+		
+
+			<b>Located at</b> Config.php		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span> )</code>
+
+		<div class="description short">
+			<p>Constructor</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Constructor</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd>$c</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code>get( <span>string <var>$key</var></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Get the specified configuration value</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the specified configuration value</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+					<dt><var>$default</var></dt>
+					<dd>Default value if key not present</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="set" id="_set">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_set">#</a>
+		<code>set( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			<p>Set a given configuration value</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set a given configuration value</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+					<dt><var>$value</var></dt>
+					<dd>Value</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="has" id="_has">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_has">#</a>
+		<code>has( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Determine if the given configuration value exists</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if the given configuration value exists</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasGroup" id="_hasGroup">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasGroup">#</a>
+		<code>hasGroup( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Determine if a configuration group exists</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if a configuration group exists</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getItems" id="_getItems">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getItems">#</a>
+		<code>getItems( )</code>
+
+		<div class="description short">
+			<p>Get all of the configuration items</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get all of the configuration items</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getConfigDirs" id="_getConfigDirs">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getConfigDirs">#</a>
+		<code>getConfigDirs( )</code>
+
+		<div class="description short">
+			<p>Get directories to search config files for</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get directories to search config files for</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEnvironment" id="_getEnvironment">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEnvironment">#</a>
+		<code>getEnvironment( )</code>
+
+		<div class="description short">
+			<p>Get current configuration environment</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get current configuration environment</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseKey" id="_parseKey">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseKey">#</a>
+		<code>parseKey( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Parse a key into group and item</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Parse a key into group and item</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseBasicSegments" id="_parseBasicSegments">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseBasicSegments">#</a>
+		<code>parseBasicSegments( <span>array <var>$segments</var></span> )</code>
+
+		<div class="description short">
+			<p>Parse an array of basic segments</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Parse an array of basic segments</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$segments</var></dt>
+					<dd>Configuration key segments</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="load" id="_load">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_load">#</a>
+		<code>load( <span>string <var>$group</var></span> )</code>
+
+		<div class="description short">
+			<p>Load the configuration group for the key</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Load the configuration group for the key</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group</var></dt>
+					<dd>Configuration group</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadItems" id="_loadItems">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadItems">#</a>
+		<code>loadItems( <span>string <var>$environment</var></span>, <span>string <var>$group</var></span> )</code>
+
+		<div class="description short">
+			<p>Load the given configuration group</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Load the given configuration group</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$environment</var></dt>
+					<dd>Current environment</dd>
+					<dt><var>$group</var></dt>
+					<dd>Configuration group</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="exists" id="_exists">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_exists">#</a>
+		<code>exists( <span>string <var>$group</var></span> )</code>
+
+		<div class="description short">
+			<p>Determine if the given group exists</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if the given group exists</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group</var></dt>
+					<dd>Configuration group</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeEnvironment" id="_mergeEnvironment">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeEnvironment">#</a>
+		<code>mergeEnvironment( <span>array <var>$items</var></span>, <span>string <var>$file</var></span> )</code>
+
+		<div class="description short">
+			<p>Merge the items in the given file into the items</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Merge the items in the given file into the items</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd>Source items</dd>
+					<dt><var>$file</var></dt>
+					<dd>File to load items from</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRequire" id="_getRequire">
+
+		<td class="attributes"><code>
+			 protected 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRequire">#</a>
+		<code>getRequire( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Get the returned value of a file</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the returned value of a file</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>File path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetExists" id="_offsetExists">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetExists">#</a>
+		<code>offsetExists( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Determine if the given configuration option exists</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if the given configuration option exists</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code>ArrayAccess::offsetExists()</code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetGet" id="_offsetGet">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetGet">#</a>
+		<code>offsetGet( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Get a configuration option</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get a configuration option</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code>ArrayAccess::offsetGet()</code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetSet" id="_offsetSet">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetSet">#</a>
+		<code>offsetSet( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			<p>Set a configuration option</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set a configuration option</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+					<dt><var>$value</var></dt>
+					<dd>Configuration value</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code>ArrayAccess::offsetSet()</code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetUnset" id="_offsetUnset">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetUnset">#</a>
+		<code>offsetUnset( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Unset a configuration option</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Unset a configuration option</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>Configuration key</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code>ArrayAccess::offsetUnset()</code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="files" id="_files">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_files">#</a>
+		<code>files( )</code>
+
+		<div class="description short">
+			<p>Returns unique config file names across all config dirs</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns unique config file names across all config dirs</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="environment" id="$environment">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$environment</var>
+			<div class="description short">
+				<p>Current configuration environment</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Current configuration environment</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$environment" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="configDirs" id="$configDirs">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$configDirs</var>
+			<div class="description short">
+				<p>Directories to search config files for</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Directories to search config files for</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$configDirs" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="parsed" id="$parsed">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$parsed</var>
+			<div class="description short">
+				<p>Parsed configuration keys cache</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Parsed configuration keys cache</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$parsed" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="exists" id="$exists">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$exists</var>
+			<div class="description short">
+				<p>Existing groups cache</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Existing groups cache</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$exists" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="items" id="$items">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$items</var>
+			<div class="description short">
+				<p>All of the configuration items</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>All of the configuration items</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$items" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		MOMENT FRAMEWORK API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

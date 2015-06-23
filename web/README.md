@@ -97,6 +97,40 @@ $app->service('someService', function ($name) {
 
 ## Service providers
 
+Service providers are classes responsible for registering services and are located inside `/service` folder
+within bundle. Service provider class should extend `\moment\Service` and implement `register()` method:
+
+```php
+namespace app\bundle\welcome\service;
+
+class TestService extends \moment\Service
+{
+    public function register()
+    {
+        $this->app->service('test', function() {
+            return 'Test Service';
+        });
+    }
+}
+```
+
+Service providers are loaded via configuration. In order to load above service you must put
+following line in `/config/app.php`:
+
+```php
+'services' => [
+    'Test' => true
+]
+```
+
+You can also unload service provider loaded by previous bundle:
+
+```php
+'services' => [
+    'Other' => false
+]
+```
+
 ## Core framework services
 
 All framework features are buit as services. Their names and short descriptions are presented in the following table:
@@ -169,11 +203,17 @@ All framework features are buit as services. Their names and short descriptions 
         <td><code>$app->viewEngine</td>
         <td>returns templating engine object</td>
     </tr>
+    <tr>
+        <td><code>$app->error</td>
+        <td>returns object that manages error handling &amp; error logging</td>
+    </tr>
 </table>
 
 # Bundles
 
 # Configuration
+
+# Instance options
 
 # Models
 
@@ -357,6 +397,38 @@ Following table shows a list of all supported options:
 
 # Routes
 
+Routes are a way to map URLs to the code that gets executed only when a certain request is
+received at the server. Routes are defined in `/route.php` file inside bundle. Each route
+consists of three elements:
+
+- HTTP method
+- URL pattern
+- route handler
+
+Here is sample route definition:
+
+```php
+$app->any('/docs', 'Docs@index');
+```
+
+With above definition, any HTTP request (`GET`, `POST`, `...`) to `/docs` URL will invoke handler - that is
+`DocsController::index()` method. Handler can also be defined as anonymous function, which takes
+`$request`, `$response` and `$args` params:
+
+```php
+$app->any('/docs', function ($request, $response, $args) use ($app) {
+    $debugFlag = $app->debug; // accessing services
+    return $response->write('Hello world');
+});
+```
+
+Note that you can optionally pass `$app` to anonymous function using `use` statement to
+access services if needed.
+
+You can find more information about routes in Slim's documentation:
+
+- [http://docs-new.slimframework.com/objects/router/][routes]
+
 # Controllers
 
 # Templates
@@ -384,6 +456,7 @@ Following table shows a list of all supported options:
 
 [database]: http://laravel.com/docs/5.0/database
 [queries]: http://laravel.com/docs/5.0/queries
+[routes]: http://docs-new.slimframework.com/objects/router/
 
 [Caching]: /docs/#caching
 

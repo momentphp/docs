@@ -1,6 +1,6 @@
 {
     "name": "momentphp/docs",
-    "description": "Moment framework documentation bundle",
+    "description": "MomentPHP documentation",
     "homepage": "http://momentphp.com",
     "autoload": {
         "psr-4": {

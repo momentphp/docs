@@ -412,7 +412,7 @@ $app->any('/docs', 'Docs@index');
 ```
 
 With above definition, any HTTP request (`GET`, `POST`, `...`) to `/docs` URL will invoke handler - that is
-`DocsController::index()` method. Handler can also be defined as anonymous function, which takes
+`DocsController::index()` method. Handler can also be defined as anonymous function which takes
 `$request`, `$response` and `$args` params:
 
 ```php

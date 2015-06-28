@@ -211,9 +211,17 @@ All framework features are buit as services. Their names and short descriptions 
 
 # Bundles
 
-# Configuration
+Moment enables modular design via **bundles**. Bundles are mini-apps offering certain
+functionality. Have a great user management module, simple blog, or web services module in one of
+your applications? Package it as bundle so you can reuse it in other applications and share with the community.
+Your main application can use multiple bundles.
 
-# Instance options
+## Creating new bundle
+
+Bundles are placed inside `/bundle` folder (assuming you are using [app skeleton]).
+Each bundle should have its own unique **name** in [camelCase][camelCase] format.
+If we were to create `helloWorld` bundle we should create class file `/bundle/helloWorld/HelloWorldBundle.php`
+with following contents:
 
 # Models
 
@@ -450,6 +458,8 @@ You can find more information about routes in Slim's documentation:
 [Front Controller]: https://en.wikipedia.org/wiki/Front_Controller_pattern
 [DI]: https://en.wikipedia.org/wiki/Dependency_injection
 [camelCase]: https://en.wikipedia.org/wiki/CamelCase
+
+[app skeleton]: https://github.com/momentphp/app
 
 [mbstring]: http://php.net/manual/en/book.mbstring.php
 [intl]: http://php.net/manual/en/book.intl.php

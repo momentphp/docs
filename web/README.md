@@ -5,7 +5,7 @@ web applications. Most importantly it gives "structure" to your code, leaving
 free choice about inclusion of additional tools. It is built on top of well-known amongst the PHP community
 libraries and solutions:
 
-- [Slim 3][Slim] micro-framework
+- [Slim][Slim] micro-framework
 - [Smarty][Smarty] templating engine
 - components responsible for database access, configuration and caching from [Laravel][Laravel] framework
 - [Composer][Composer] dependency manager
@@ -68,13 +68,20 @@ $this->app->config // inside controller, model or helper
 {$this->app->config} // inside template
 ```
 
+You can also retrieve services directly via container:
+
+```php
+$config = $app->getContainer()->get('config');
+```
+
 ## Registering services
 
 In order to register a new service, it must be given a **name**. Service name should be unique and in [camelCase][camelCase]
 format. To register a service which returns the same shared instance of the object for all calls:
 
 ```php
-$app->service('someService', function () {
+$app->service('someService', function ($container) {
+    $otherService = $container->get('otherService'); // you may access other services in the container
     return new Object;
 });
 ```
@@ -82,7 +89,7 @@ $app->service('someService', function () {
 If you want a different instance to be returned for all calls:
 
 ```php
-$app->service('someService', function () {
+$app->service('someService', function ($container) {
     return new Object;
 }, 'factory');
 ```
@@ -93,6 +100,15 @@ You can also register anonymous function as a service. The function will be retu
 $app->service('someService', function ($name) {
     return 'Hello ' . $name;
 }, 'protect');
+```
+
+In some cases you may want to modify a service after it has been defined:
+
+```php
+$app->service('someService', function ($service, $container) {
+    $service->setParam();
+    return $service;
+}, 'extend');
 ```
 
 ## Service providers
@@ -131,7 +147,7 @@ You can also unload service provider loaded by previous bundle:
 ]
 ```
 
-## Core framework services
+## Important core framework services
 
 All framework features are buit as services. Their names and short descriptions are presented in the following table:
 
@@ -139,6 +155,11 @@ All framework features are buit as services. Their names and short descriptions 
     <tr>
         <th>name</th>
         <th>description</th>
+    </tr>
+    <tr>
+        <td><code>$app->app</code></td>
+        <td>returns application object</td>
+    </tr>
     <tr>
         <td><code>$app->bundle</code></td>
         <td>returns object that manages loaded bundles (e.g retrieves components instances)</td>
@@ -218,10 +239,23 @@ Your main application can use multiple bundles.
 
 ## Creating new bundle
 
-Bundles are placed inside `/bundle` folder (assuming you are using [app skeleton]).
+By default bundles are placed inside `/bundle` folder (assuming you are using [app skeleton]).
 Each bundle should have its own unique **name** in [camelCase][camelCase] format.
 If we were to create `helloWorld` bundle we should create class file `/bundle/helloWorld/HelloWorldBundle.php`
 with following contents:
+
+```php
+namespace moment\bundle\helloWorld;
+
+class HelloWorldBundle extends \moment\Bundle
+{
+}
+```
+
+Bundle class name is derived from bundle name. The location of bundle class file determines bundle
+root folder. Within that folder you can place various bundle components like configuration, models, controllers etc.
+Theoretically bundle can be placed in any folder as long as Composer's autoloader is able to locate
+bundle class file.
 
 # Models
 

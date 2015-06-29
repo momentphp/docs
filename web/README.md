@@ -334,8 +334,8 @@ Use `$app->bundle->addNamespace($namespace)` method to add more namespaces to se
 
 ## Bundle inheritance
 
-Application can use multiple bundles. The order in in which bundles are loaded matters. Components from
-previous bundle can be overriden in next bundle in chain. To illustrate this process let's assume
+Application can use multiple bundles. The order in which bundles are loaded matters. Components from
+previous bundle can be overriden by next bundle in chain. To illustrate this process let's assume
 that application loads two bundles:
 
 ```php
@@ -345,8 +345,62 @@ $app = new moment\App(['a', 'b']);
 In order to override configuration from bundle `a` you need to create config file with the same name in bundle `b`
 but only with options you wish to override.
 
+In order to override route from bundle `a` you need to create a route in bundle `b` with the same URL path but different
+handler.
+
+In order to override specific template from bundle `a` e.g:
+
+```html
+/bundle/a/template/a/element/post.tpl
+```
+
+create the same file in bundle `b`:
+
+
+```html
+/bundle/b/template/a/element/post.tpl
+```
+
+In order to override class-based components (controllers, models, helpers, services or middlewares) create
+corresponding class file with the same name and extend class from previous bundle:
+
+```php
+namespace app\bundle\b\model;
+
+class PostModel extends \app\bundle\a\model\PostModel
+{
+    public function index()
+    {
+        return parent::index();
+    }
+}
+```
 
 # Configuration
+
+Configuration is stored in plain PHP files inside `/config` folder. Each file should return an array
+of options. It is advisable to create separate file for each category of configuration options. If we
+would like to store API keys for our application we could create `/config/api.php` file with following
+contents:
+
+```php
+return [
+    'Google' => [
+        'Recaptcha' => [
+            'publicKey' => 'fc2baa1a20b4d5190b122b383d7449fd',
+            'privateKey' => '4f14fbe4af13860085e563210782da88'
+        ]
+    ],
+    'Twitter' => 'f561aaf6ef0bf14d4208bb46a4ccb3ad'
+];
+```
+
+Config service allows you to access above configuration values anywhere:
+
+```php
+$app->config->get('api.Google.Recaptcha.publicKey'); // returns single key
+$app->config->get('api'); // returns whole array
+```
 
 ## Environment specific configuration
 
@@ -443,6 +497,24 @@ $this->Post->index();
 ```
 
 ## Configuration
+
+Configuration is stored in plain PHP files inside `/config` folder. Each file should return an
+array of options. If we wolud like to store API keys we could create `/config/api.php` file
+with following contents:
+
+```php
+return [
+    'Google' => [
+        'Recaptcha' => [
+            'publicKey' => 'fc2baa1a20b4d5190b122b383d7449fd',
+            'privateKey' => '4f14fbe4af13860085e563210782da88'
+        ]
+    ],
+    'Twitter' => 'f561aaf6ef0bf14d4208bb46a4ccb3ad'
+];
+```
+
+## Instance configuration
 
 You can hard code default model configuration inside `$options` property within model class:
 

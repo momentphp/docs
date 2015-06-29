@@ -147,7 +147,7 @@ You can also unload service provider loaded by previous bundle:
 ]
 ```
 
-## Important core framework services
+## Important framework services
 
 All framework features are buit as services. Their names and short descriptions are presented in the following table:
 
@@ -256,6 +256,99 @@ Bundle class name is derived from bundle name. The location of bundle class file
 root folder. Within that folder you can place various bundle components like configuration, models, controllers etc.
 Theoretically bundle can be placed in any folder as long as Composer's autoloader is able to locate
 bundle class file.
+
+## Bundle folder structure
+
+<table>
+    <tr>
+        <th>folder or file</td>
+        <th>description</th>
+    </tr>
+    <tr>
+        <td><code>/config</code></td>
+        <td>bundle configuration</td>
+    </tr>
+    <tr>
+        <td><code>/controller</code></td>
+        <td>bundle controllers</td>
+    </tr>
+    <tr>
+        <td><code>/helper</code></td>
+        <td>bundle helpers</td>
+    </tr>
+    <tr>
+        <td><code>/middleware</code></td>
+        <td>bundle middleware</td>
+    </tr>
+    <tr>
+        <td><code>/service</code></td>
+        <td>bundle services</td>
+    </tr>
+    <tr>
+        <td><code>/model</code></td>
+        <td>bundle models</td>
+    </tr>
+    <tr>
+        <td><code>/template/helloWorld</code></td>
+        <td>bundle templates</td>
+    </tr>
+    <tr>
+        <td><code>route.php</code></td>
+        <td>bundle routes</td>
+    </tr>
+    <tr>
+        <td><code>HelloWorldBundle.php</code></td>
+        <td>bundle class file</td>
+    </tr>
+</table>
+
+## Loading bundles
+
+Appliation loads bundles in main `index.php` file which serves as a front controller responding for all incoming
+requests:
+
+```php
+$app = new moment\App([
+    new app\bundle\helloWorld\HelloWorldBundle,
+    ...
+]);
+
+// or
+
+$app = new moment\App;
+$app->bundle->load(new app\bundle\helloWorld\HelloWorldBundle);
+$app->bundle->load(...);
+```
+
+Instead of instance, you can also pass bundle name:
+
+```php
+$app = new moment\App([
+    'helloWorld'
+    ...
+]);
+```
+
+Application will search default bundle namespaces (`\app\bundle`, `\moment\bundle`) and load correct bundle.
+Use `$app->bundle->addNamespace($namespace)` method to add more namespaces to search.
+
+## Bundle inheritance
+
+Application can use multiple bundles. The order in in which bundles are loaded matters. Components from
+previous bundle can be overriden in next bundle in chain. To illustrate this process let's assume
+that application loads two bundles:
+
+```php
+$app = new moment\App(['a', 'b']);
+```
+
+In order to override configuration from bundle `a` you need to create config file with the same name in bundle `b`
+but only with options you wish to override.
+
+
+# Configuration
+
+## Environment specific configuration
 
 # Models
 
@@ -473,6 +566,60 @@ You can find more information about routes in Slim's documentation:
 
 # Controllers
 
+Controllers classes are located under `/controller` folder inside a bundle. In a typical scenario
+controller is responsible for interpreting the request data, making sure the correct models are called, and the
+right response or template is rendered. Commonly, a controller is used to manage the logic around a single model.
+
+## Controller actions
+
+Methods inside controller class are called **actions**. You map incoming URL to given controller action by creating
+corresponding [route][Routes]. Let's create simple route:
+
+```php
+$app->get('/hello/{name}', 'Hello@say');
+```
+
+and corresponding controller class:
+
+```php
+namespace app\bundle\helloWorld\controller;
+
+class HelloController extends \moment\Controller
+{
+    public function say($name)
+    {
+        return 'Hello ' . $name;
+    }
+}
+```
+
+Controller action can return:
+
+- a string (sent to browser as `text/html`)
+- a response object
+- nothing
+
+In case nothing is returned from action default action template will be rendered: `/template/helloWorld/controller/Hello/say.tpl`.
+You can specify which template should be rendered by setting `$template` property inside action body:
+
+```php
+$this->template = 'say2'; // will render: /template/helloWorld/controller/Hello/say2.tpl
+// or
+$this->template = '/say2'; // will render: /template/say2.tpl
+```
+
+The `Controller::set()` method is the main way to send data from your controller to your template:
+
+```php
+// inside controller action:
+$this->set('color', 'pink');
+
+// inside template
+You have choosen {$color} color.
+```
+
+The `Controller::set()` method also takes an associative array as its first parameter.
+
 # Templates
 
 # Caching
@@ -500,7 +647,9 @@ You can find more information about routes in Slim's documentation:
 
 [database]: http://laravel.com/docs/5.0/database
 [queries]: http://laravel.com/docs/5.0/queries
-[routes]: http://docs-new.slimframework.com/objects/router/
+[routes]: http://www.slimframework.com/docs/objects/router.html
+[response]: http://www.slimframework.com/docs/objects/response.html
 
 [Caching]: /docs/#caching
+[Routes]: /docs/#routes
 

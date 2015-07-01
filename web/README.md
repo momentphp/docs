@@ -64,7 +64,7 @@ which is an instance of `moment\App` class.
 To retrieve a service from container:
 
 ```php
-$this->app->config // inside controller, model or helper
+$this->app->config // inside controller, model etc.
 {$this->app->config} // inside template
 ```
 
@@ -139,7 +139,7 @@ following line in `/config/app.php`:
 ]
 ```
 
-You can also unload service provider loaded by previous bundle:
+You can also unload service provider loaded by previous bundle (see [Bundle inheritance][BUNDLES-BUNDLE-INHERITANCE]):
 
 ```php
 'services' => [
@@ -149,7 +149,8 @@ You can also unload service provider loaded by previous bundle:
 
 ## Important framework services
 
-All framework features are buit as services. Their names and short descriptions are presented in the following table:
+All framework features are buit as services. Most important ones with their names and short descriptions are presented
+in the following table:
 
 <table>
     <tr>
@@ -206,7 +207,7 @@ All framework features are buit as services. Their names and short descriptions 
     </tr>
     <tr>
         <td><code>$app->cache</code></td>
-        <td>returns object that manages cache adapters</td>
+        <td>returns object that manages cache stores</td>
     </tr>
     <tr>
         <td><code>$app->log</code></td>
@@ -242,10 +243,10 @@ Your main application can use multiple bundles.
 By default bundles are placed inside `/bundle` folder (assuming you are using [app skeleton]).
 Each bundle should have its own unique **name** in [camelCase][camelCase] format.
 If we were to create `helloWorld` bundle we should create class file `/bundle/helloWorld/HelloWorldBundle.php`
-with following contents:
+with following content:
 
 ```php
-namespace moment\bundle\helloWorld;
+namespace app\bundle\helloWorld;
 
 class HelloWorldBundle extends \moment\Bundle
 {
@@ -254,7 +255,7 @@ class HelloWorldBundle extends \moment\Bundle
 
 Bundle class name is derived from bundle name. The location of bundle class file determines bundle
 root folder. Within that folder you can place various bundle components like configuration, models, controllers etc.
-Theoretically bundle can be placed in any folder as long as Composer's autoloader is able to locate
+Theoretically bundle can be placed anywhere as long as Composer's autoloader is able to locate
 bundle class file.
 
 ## Bundle folder structure
@@ -278,11 +279,11 @@ bundle class file.
     </tr>
     <tr>
         <td><code>/middleware</code></td>
-        <td>bundle middleware</td>
+        <td>bundle middlewares</td>
     </tr>
     <tr>
         <td><code>/service</code></td>
-        <td>bundle services</td>
+        <td>bundle service providers</td>
     </tr>
     <tr>
         <td><code>/model</code></td>
@@ -320,7 +321,7 @@ $app->bundle->load(new app\bundle\helloWorld\HelloWorldBundle);
 $app->bundle->load(...);
 ```
 
-Instead of instance, you can also pass bundle name:
+Instead of bundle instance, you can also pass bundle name:
 
 ```php
 $app = new moment\App([
@@ -334,8 +335,8 @@ Use `$app->bundle->addNamespace($namespace)` method to add more namespaces to se
 
 ## Bundle inheritance
 
-Application can use multiple bundles. The order in which bundles are loaded matters. Components from
-previous bundle can be overriden by next bundle in chain. To illustrate this process let's assume
+As stated earlier application can use multiple bundles. The order in which bundles are loaded matters. Components from
+previous bundle can be overriden in next bundle in chain. To illustrate this process let's assume
 that application loads two bundles:
 
 ```php
@@ -361,8 +362,9 @@ create the same file in bundle `b`:
 /bundle/b/template/a/element/post.tpl
 ```
 
-In order to override class-based components (controllers, models, helpers, services or middlewares) create
-corresponding class file with the same name and extend class from previous bundle:
+In order to override class-based components ([controllers][CONTROLLERS], [models][MODELS], [helpers][HELPERS],
+[middlewares][MIDDLEWARES] or [service providers][SERVICES-SERVICE-PROVIDERS]) create corresponding class file with
+the same name and extend class from previous bundle:
 
 ```php
 namespace app\bundle\b\model;
@@ -381,7 +383,7 @@ class PostModel extends \app\bundle\a\model\PostModel
 Configuration is stored in plain PHP files inside `/config` folder. Each file should return an array
 of options. It is advisable to create separate file for each category of configuration options. If we
 would like to store API keys for our application we could create `/config/api.php` file with following
-contents:
+content:
 
 ```php
 return [
@@ -402,7 +404,130 @@ $app->config->get('api.Google.Recaptcha.publicKey'); // returns single key
 $app->config->get('api'); // returns whole array
 ```
 
+You may also specify a default value to return if the configuration option does not exist:
+
+```php
+$app->config->get('api.Instagram', 'bf083d4ab960620b645557217dd59a49');
+```
+
+Configuration values can also be set at run-time:
+
+```php
+$app->config->set('api.Yahoo', '241fe8af1e038118cd817048a65f803e');
+```
+
+There is also a handy method for checking existence of given configuration key:
+
+```php
+$app->config->has('api.Github'); // false
+```
+
 ## Environment specific configuration
+
+It is often helpful to have different configuration values based on the environment the application is running in.
+Application environment is set inside main `index.php` file:
+
+```php
+$app->service('env', 'development');
+```
+
+To override configuration for development environment (set above) simply create a folder within the `/config` directory
+that matches environment name. Next, create the configuration files you wish to override and specify the options for
+that environment. For example, to override the debug flag for the development environment, you would create a
+`/config/development/app.php` file with the following content:
+
+```php
+return [
+    'debug' => true
+]
+```
+
+## Default configuration file names
+
+Framework stores its configuration in following files:
+
+<table>
+    <tr>
+        <th>file name</td>
+        <th>description</th>
+    </tr>
+    <tr>
+        <td>`app.php`</td>
+        <td>application configuration</td>
+    </tr>
+    <tr>
+        <td>`bundle.php`</td>
+        <td>bundles configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+    </tr>
+    <tr>
+        <td>`cache.php`</td>
+        <td>cache stores configuration</td>
+    </tr>
+    <tr>
+        <td>`database.php`</td>
+        <td>database connections configuration</td>
+    </tr>
+    <tr>
+        <td>`helper.php`</td>
+        <td>helpers configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+    </tr>
+    <tr>
+        <td>`log.php`</td>
+        <td>loggers configuration</td>
+    </tr>
+    <tr>
+        <td>`middleware.php`</td>
+        <td>middleware providers configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+    </tr>
+    <tr>
+        <td>`model.php`</td>
+        <td>models configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+    </tr>
+    <tr>
+        <td>`service.php`</td>
+        <td>services configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+    </tr>
+</table>
+
+# Instance configuration
+
+Many framework classes are using configuration capabilities provided by `\moment\OptionsTrait`. It provides clean
+solution for configuring instances without the need to create unnecessary class properties. Firstly you can
+hard code configuration inside a class:
+
+```php
+class PostModel extends Model
+{
+    protected $options = [
+        'listing' => [
+            'perPage' => 10
+        ]
+    ];
+}
+```
+
+Hard-coded options are merged with options passed to constructor function during object initialization.
+For [bundles][Bundles], [models][MODELS], [helpers][Helpers], [service providers][Services] and
+[middleware providers][Middlewares] you can define configuration options passed to constructor by creating
+appropriate configuration file. For `PostModel` above we could create `/config/model.php` file with following content:
+
+```php
+return [
+    'Post' => [
+        'listing' => [
+            'perPage' => 20,
+            'more' => true,
+        ]
+    ]
+];
+```
+
+You can get and set model configuration after instance creation via `options()` method:
+
+```php
+$this->Post->options('listing.perPage'); // get
+$this->Post->options('listing.perPage', 5); // set
+```
 
 # Models
 
@@ -445,10 +570,9 @@ may define all of your database connections, as well as specify which connection
 You may tell model class to use different connection by specifying `$connection` property:
 
 ```php
-class PostModel extends Model {
-
+class PostModel extends Model
+{
     protected $connection = 'connection2';
-
 }
 ```
 
@@ -494,50 +618,6 @@ Inside controller and model classes you can access models with more concise synt
 
 ```php
 $this->Post->index();
-```
-
-## Configuration
-
-Configuration is stored in plain PHP files inside `/config` folder. Each file should return an
-array of options. If we wolud like to store API keys we could create `/config/api.php` file
-with following contents:
-
-```php
-return [
-    'Google' => [
-        'Recaptcha' => [
-            'publicKey' => 'fc2baa1a20b4d5190b122b383d7449fd',
-            'privateKey' => '4f14fbe4af13860085e563210782da88'
-        ]
-    ],
-    'Twitter' => 'f561aaf6ef0bf14d4208bb46a4ccb3ad'
-];
-```
-
-## Instance configuration
-
-You can hard code default model configuration inside `$options` property within model class:
-
-```
-class PostModel extends Model {
-
-    protected $options = [
-        'index' => [
-            'perPage' => 10
-        ]
-    ];
-
-}
-```
-
-Hard coded options will be merged with options from `/config/model.php` for global models or passed options when
-using `factory()` method.
-
-You can get and set model configuration after model creation via `options()` method:
-
-```php
-$this->Post->options('index.perPage'); // get
-$this->Post->options('index.perPage', 5); // set
 ```
 
 ## Caching model methods
@@ -636,6 +716,8 @@ You can find more information about routes in Slim's documentation:
 
 - [http://docs-new.slimframework.com/objects/router/][routes]
 
+# Middlewares
+
 # Controllers
 
 Controllers classes are located under `/controller` folder inside a bundle. In a typical scenario
@@ -712,8 +794,6 @@ The `Controller::set()` method also takes an associative array as its first para
 [DI]: https://en.wikipedia.org/wiki/Dependency_injection
 [camelCase]: https://en.wikipedia.org/wiki/CamelCase
 
-[app skeleton]: https://github.com/momentphp/app
-
 [mbstring]: http://php.net/manual/en/book.mbstring.php
 [intl]: http://php.net/manual/en/book.intl.php
 
@@ -722,6 +802,15 @@ The `Controller::set()` method also takes an associative array as its first para
 [routes]: http://www.slimframework.com/docs/objects/router.html
 [response]: http://www.slimframework.com/docs/objects/response.html
 
-[Caching]: /docs/#caching
-[Routes]: /docs/#routes
+[app skeleton]: https://github.com/momentphp/app
+
+[INSTALLATION]: #installation
+[SERVICES]: #services
+[SERVICES-SERVICE-PROVIDERS]: #services-service-providers
+[MODELS]: #models
+[BUNDLES]: #bundles
+[HELPERS]: #helpers
+[MIDDLEWARES]: #middlewares
+[BUNDLES-BUNDLE-INHERITANCE]: #bundles-bundle-inheritance
+[CONTROLLERS]: #controllers
 

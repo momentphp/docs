@@ -36,13 +36,15 @@
   color: #18171b;
   padding: 40px;
 }
-div[role="flatdoc-content"] h1,
+div[role="flatdoc-content"] h1 {
+  letter-spacing: -2px;
+}
 div[role="flatdoc-content"] h2,
 div[role="flatdoc-content"] h3,
 div[role="flatdoc-content"] h4,
 div[role="flatdoc-content"] h5,
 div[role="flatdoc-content"] h6 {
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 }
 div[role="flatdoc-content"] ul {
   list-style-type: square;

@@ -130,11 +130,11 @@ class TestService extends \moment\Service
 }
 ```
 
-Service providers are loaded via configuration. In order to load above service you must put
+Service providers may be loaded via configuration. In order to load above service you must put
 following line in `/config/app.php`:
 
 ```php
-'services' => [
+'service' => [
     'Test' => true
 ]
 ```
@@ -142,9 +142,15 @@ following line in `/config/app.php`:
 You can also unload service provider loaded by previous bundle (see [Bundle inheritance][BUNDLES-BUNDLE-INHERITANCE]):
 
 ```php
-'services' => [
+'service' => [
     'Other' => false
 ]
+```
+
+You can also load service provider manually (e.g. inside `run()` callback within bundle):
+
+```php
+$app->register('Test');
 ```
 
 ## Important framework services
@@ -257,6 +263,21 @@ Bundle class name is derived from bundle name. The location of bundle class file
 root folder. Within that folder you can place various bundle components like configuration, models, controllers etc.
 Theoretically bundle can be placed anywhere as long as Composer's autoloader is able to locate
 bundle class file.
+
+Bundle `run()` callback is invoked just before response is sent to the client. It takes `$app` as an argument.
+It can be used to set some global PHP settings or manually register service providers or middlewares:
+
+```php
+class HelloWorldBundle extends \moment\Bundle
+{
+    public function run($app)
+    {
+        $app->register('Test'); // register service provider
+        $app->add('Test'); // register app middleware
+        ini_set('memory_limit', '2048M'); // set global PHP settings
+    }
+}
+```
 
 ## Bundle folder structure
 
@@ -422,6 +443,15 @@ There is also a handy method for checking existence of given configuration key:
 $app->config->has('api.Github'); // false
 ```
 
+Also there is an `app()` global function which allows accessing services inside configuration files and
+other parts of the framework:
+
+```php
+return [
+    template' => app('bundle')->location('template'),
+]
+```
+
 ## Environment specific configuration
 
 It is often helpful to have different configuration values based on the environment the application is running in.
@@ -477,7 +507,7 @@ Framework stores its configuration in following files:
     </tr>
     <tr>
         <td>`middleware.php`</td>
-        <td>middleware providers configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+        <td>middlewares configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
     </tr>
     <tr>
         <td>`model.php`</td>
@@ -492,7 +522,7 @@ Framework stores its configuration in following files:
 # Instance configuration
 
 Many framework classes are using configuration capabilities provided by `\moment\OptionsTrait`. It provides clean
-solution for configuring instances without the need to create unnecessary class properties. Firstly you can
+solution for configuring instances without the need to create unnecessary class properties. Firstly you may
 hard code configuration inside a class:
 
 ```php
@@ -508,7 +538,7 @@ class PostModel extends Model
 
 Hard-coded options are merged with options passed to constructor function during object initialization.
 For [bundles][Bundles], [models][MODELS], [helpers][Helpers], [service providers][Services] and
-[middleware providers][Middlewares] you can define configuration options passed to constructor by creating
+[middlewares][Middlewares] you can define configuration options passed to constructor by creating
 appropriate configuration file. For `PostModel` above we could create `/config/model.php` file with following content:
 
 ```php
@@ -556,8 +586,8 @@ class PostModel extends \moment\Model
 Within model methods, you can access database connection object via `$this->db()` method. Please refer to Laravel's
 documentation on how to create simple and advanced queries using this object:
 
-- [http://laravel.com/docs/5.0/database][database]
-- [http://laravel.com/docs/5.0/queries][queries]
+- [Database][database]
+- [Queries][queries]
 
 Note that connections are lazily loaded when they are needed so your model may not use database at all - and
 can talk to web service for instance.
@@ -618,6 +648,20 @@ Inside controller and model classes you can access models with more concise synt
 
 ```php
 $this->Post->index();
+```
+
+## Model callbacks
+
+`initialize()` callback lets you perform some logic just after model creation:
+
+```php
+class PostModel extends \moment\Model
+{
+    public function initialize()
+    {
+        // extecuted after model creation
+    }
+}
 ```
 
 ## Caching model methods
@@ -712,9 +756,9 @@ $app->any('/docs', function ($request, $response, $args) use ($app) {
 Note that you can optionally pass `$app` to anonymous function using `use` statement to
 access services if needed.
 
-You can find more information about routes in Slim's documentation:
+You can find more information about router and routes in Slim's documentation:
 
-- [http://docs-new.slimframework.com/objects/router/][routes]
+- [Router][router]
 
 # Middlewares
 
@@ -774,7 +818,165 @@ You have choosen {$color} color.
 
 The `Controller::set()` method also takes an associative array as its first parameter.
 
+## Controller callbacks
+
+If you need to perform some logic before or after controller action is invoked, you can use following
+callbacks:
+
+```php
+class HelloController extends \moment\Controller
+{
+    public function beforeAction($action)
+    {
+        if ($action === 'say') {
+            // extecuted before say() action
+        }
+    }
+
+    public function afterAction($action)
+    {
+        if ($action === 'say') {
+            // extecuted after say() action
+        }
+    }
+
+    public function say($name)
+    {
+        return 'Hello ' . $name;
+    }
+}
+
+```
+
+## Request object
+
+You can access current request object inside actions using `$this->request` property.
+You may fetch an associative array of query string parameters with `getQueryParams()` method.
+This method returns an empty array if no query string is present:
+
+```php
+$queryParams = $this->request->getQueryParams();
+```
+
+To fetch request parameter value from body OR query string (in that order):
+
+```php
+$foo = $this->request->getParam('foo'); // $_POST['foo'] or $_GET['foo']
+$bar = $this->request->getParam('bar', 'default'); // setting default value if param not set
+```
+
+You can find more information about request object in Slim’s documentation:
+
+- [Request object][request]
+
+## Response object
+
+You can access current request object inside actions using `$this->response` property. Response object
+can be returned from action. To return redirect response:
+
+```php
+namespace app\bundle\helloWorld\controller;
+
+class HelloController extends \moment\Controller
+{
+    public function say($name)
+    {
+        return $this->response->withRedirect('http://www.google.com');
+    }
+}
+```
+
+To return [JSON][JSON] response:
+
+```php
+namespace app\bundle\helloWorld\controller;
+
+class HelloController extends \moment\Controller
+{
+    public function say($name)
+    {
+        return $this->response->withJson(['name' => $name]);
+    }
+}
+```
+
+You can find more information about response object in Slim’s documentation:
+
+- [Response object][response]
+
 # Templates
+
+By default framework uses [Smarty][Smarty] templating engine. Template files should be placed inside
+`/template/{bundleName}` folder so for `helloWorld` bundle the path will look like following:
+
+```html
+/app/bundle/helloWorld/template/helloWorld
+```
+
+Templates fall into 3 default folders presented below:
+
+<table>
+    <tr>
+        <th>folder</td>
+        <th>description</th>
+    </tr>
+    <tr>
+        <td><code>/template/{bundleName}/controller</code></td>
+        <td>templates for controllers actions</td>
+    </tr>
+    <tr>
+        <td><code>/template/{bundleName}/element</code></td>
+        <td>sub-templates - templates that are included by other templates via <code>{include}</code></td>
+    </tr>
+    <tr>
+        <td><code>/template/{bundleName}/layout</code></td>
+        <td>layout templates</td>
+    </tr>
+</table>
+
+You can access various objects inside template file:
+
+```
+{$this->app} // app object
+{$this->request} // request object
+{$this->response} // response object
+{$this->Html} // HtmlHelper object
+```
+
+## Helpers
+
+Helpers are classes for the presentation layer of your application. They contain presentational logic that is shared
+between many templates, elements, or layouts. Helpers may assist in creating well-formed markup, aid in formatting text,
+times and numbers etc. Helper classes are placed under `/helper` folder within bundle. Let's create sample `TextHelper`.
+Create class file under `/app/bundle/helloWorld/helper/TextHelper.php` with following content:
+
+```php
+namespace app\bundle\helloWorld\helper;
+
+class TextHelper extends \moment\Helper
+{
+    public function uppercase($text)
+    {
+        return strtoupper($text);
+    }
+}
+```
+
+Now, the helper is ready to be used inside templates:
+
+```
+Here is uppercase post title: {$this->Text->uppercase($post.title)}
+```
+
+Inside helper methods you may access:
+
+```php
+$this->app // app object
+$this->view // view object
+$this->view->request // request object
+$this->view->vars // template variables
+$this->options() // helper configuration set in /config/helper.php
+```
 
 # Caching
 
@@ -788,6 +990,7 @@ The `Controller::set()` method also takes an associative array as its first para
 [Composer]: https://getcomposer.org/
 [XAMPP]: https://www.apachefriends.org/
 [ionCube Loader]: https://www.ioncube.com/loaders.php
+[JSON]: https://en.wikipedia.org/wiki/JSON
 
 [MVC]: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 [Front Controller]: https://en.wikipedia.org/wiki/Front_Controller_pattern
@@ -799,8 +1002,9 @@ The `Controller::set()` method also takes an associative array as its first para
 
 [database]: http://laravel.com/docs/5.0/database
 [queries]: http://laravel.com/docs/5.0/queries
-[routes]: http://www.slimframework.com/docs/objects/router.html
+[router]: http://www.slimframework.com/docs/objects/router.html
 [response]: http://www.slimframework.com/docs/objects/response.html
+[request]: http://www.slimframework.com/docs/objects/request.html
 
 [app skeleton]: https://github.com/momentphp/app
 

@@ -762,6 +762,50 @@ You can find more information about router and routes in Slim's documentation:
 
 # Middlewares
 
+Middleware is a callable which is invoked during application request/response lifecycle.
+Please find more detailed information about middleware in Slim's documentation:
+
+- [Middleware][middleware]
+
+In order to create simple `Auth` middleware
+create class file `/middleware/AuthMiddleware.php` with content:
+
+```php
+namespace app\bundle\helloWorld\middleware;
+
+class AuthMiddleware extends \moment\Middleware
+{
+    public function run($request, $response, $next)
+    {
+        $cookies = $request->getCookieParams();
+        if (!isset($cookies['auth'])) {
+            return $response->withRedirect('http://onet.pl');
+        }
+        return $next($request, $response);
+    }
+}
+```
+
+Middleware can be attached at application level manually:
+
+```php
+$app->add('Auth');
+```
+
+or via configuration inside `/config/app.php`:
+
+```php
+'middleware' => [
+    'Auth' => true
+]
+```
+
+Also you can attach middleware only to certain routes:
+
+```php
+$app->any('/pages/{page:.+}', 'Pages@display')->add('Auth');
+```
+
 # Controllers
 
 Controllers classes are located under `/controller` folder inside a bundle. In a typical scenario
@@ -980,6 +1024,52 @@ $this->options() // helper configuration set in /config/helper.php
 
 # Caching
 
+Moment uses caching component from Laravel framework. Cache manager instance is available
+as `cache` service. The cache configuration is located at `/config/cache.php`. In this file you
+may specify which cache driver you would like used by default throughout your application.
+By default, framework is configured to use the file cache driver, which stores the serialized,
+cached objects in the filesystem.
+
+Storing an item in the cache:
+
+```php
+$app->cache->put('key', 'value', $minutes);
+```
+
+Retrieving an item from the cache:
+
+```php
+$app->cache->get('key', 'default'); // retrieving an item or returning a default value
+```
+
+Checking for existence in cache:
+
+```php
+if ($app->cache->has('key'))
+{
+    //
+}
+```
+
+Sometimes you may wish to retrieve an item from the cache, but also store a default value if the
+requested item doesn't exist. You may do this using the `remember()` method:
+
+```php
+$value = $app->cache->remember('users', $minutes, function() use ($app) {
+    return $app->model->Users->all();
+});
+```
+
+When using multiple cache stores, you may access them via the `store()` method:
+
+```php
+$value = $app->cache->store('foo')->get('key');
+```
+
+Please refer to Laravel’s documentation for more information about cache manager features:
+
+- [Cache][cache]
+
 # Logging
 
 # Error handling
@@ -1002,9 +1092,11 @@ $this->options() // helper configuration set in /config/helper.php
 
 [database]: http://laravel.com/docs/5.0/database
 [queries]: http://laravel.com/docs/5.0/queries
+[cache]: http://laravel.com/docs/5.0/cache
 [router]: http://www.slimframework.com/docs/objects/router.html
 [response]: http://www.slimframework.com/docs/objects/response.html
 [request]: http://www.slimframework.com/docs/objects/request.html
+[middleware]: http://www.slimframework.com/docs/concepts/middleware.html
 
 [app skeleton]: https://github.com/momentphp/app
 

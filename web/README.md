@@ -925,7 +925,7 @@ class HelloController extends \moment\Controller
 {
     public function say($name)
     {
-        return $this->response->withRedirect('http://www.google.com');
+        return $this->response->withRedirect('/login');
     }
 }
 ```

@@ -1072,12 +1072,59 @@ Please refer to Laravel’s documentation for more information about cache manag
 
 # Logging
 
+By default `log` service will use default logger. In `/config/log.php` file within bundle
+you may define all of your loggers, as well as specify which logger should be used by default.
+Framework uses popular [Monolog][Monolog] library so under the hood each logger is
+an instance of `Monolog\Logger` class.
+
+Adding records to the log:
+
+```php
+$app->log->addDebug('Foo', ['some' => 'data']);
+// or
+$app->log->log(\Psr\Log\LogLevel::DEBUG, 'Foo', ['some' => 'data']);
+```
+
+You man access any configured logger via the `logger()` method:
+
+```php
+$app->log->logger('error')->addDebug('Foo', ['some' => 'data']);
+```
+
+## Error logging
+
+You may want to log PHP errors. In order to do so please set appropriate
+logger name in `/config/app.php`:
+
+```php
+'error' => [
+    'log' => 'error'
+]
+```
+
 # Error handling
+
+Updating `/config/app.php`, specifically the value of `debug` is extremely important.
+Turning `debug = false` disables a number of development features that should never be exposed
+to the Internet at large. Disabling `debug` changes the following types of things:
+
+- PHP errors are not displayed
+- uncaught exceptions and fatal errors will render default internal server error page
+- uncaught `moment\NotFoundException` will render default not found page
+
+You can set PHP error reporting level by setting following value in `/config/app.php`:
+
+```php
+'error' => [
+    'level' => -1 // report all errors
+]
+```
 
 [Slim]: http://www.slimframework.com/
 [Smarty]: http://www.smarty.net/
 [Laravel]: http://http://laravel.com/
 [Composer]: https://getcomposer.org/
+[Monolog]: https://github.com/Seldaek/monolog
 [XAMPP]: https://www.apachefriends.org/
 [ionCube Loader]: https://www.ioncube.com/loaders.php
 [JSON]: https://en.wikipedia.org/wiki/JSON

@@ -21,9 +21,14 @@ Moment (as well as its building blocks) embraces popular web software design pat
 Moment requires following software stack in order to run:
 
 - Apache web server with `mod_rewrite` module enabled
-- PHP 5.4 or above with [mbstring][mbstring] and [intl][intl] modules enabled
+- PHP 5.4 or above
 - [ionCube Loader][ionCube Loader] to be installed on the web server and made available to PHP
 - [Composer][Composer] dependency manager
+
+It is also recommended (but not required) to enable following PHP modules:
+
+- [mbstring][mbstring]
+- [intl][intl]
 
 Here is step-by-step guide on how to install framework locally using [XAMPP][XAMPP] on Windows:
 
@@ -58,8 +63,8 @@ some debug information.
 
 Put simply, a **service** is usually a PHP object that performs some sort of task such as sending emails or persisting information
 into a database. A **service container** (or dependency injection container) is a PHP object that manages the
-instantiation of services (with their dependencies). You can register and retrieve services via `$app` object,
-which is an instance of `moment\App` class.
+instantiation of services (with their dependencies). You can register and retrieve services via `$app` object (passed
+around to various framework components), which is an instance of `moment\App` class.
 
 To retrieve a service from container:
 
@@ -114,7 +119,7 @@ $app->service('someService', function ($service, $container) {
 ## Service providers
 
 Service providers are classes responsible for registering services and are located inside `/service` folder
-within bundle. Service provider class should extend `\moment\Service` and implement `register()` method:
+within bundle. Moment service provider class should extend `\moment\Service` and implement `register()` method:
 
 ```php
 namespace app\bundle\welcome\service;
@@ -139,6 +144,18 @@ following line in `/config/app.php`:
 ]
 ```
 
+Note that you may also easily load service providers designed for [Slim][Slim] framework:
+
+```php
+'service' => [
+    new \Slim\HttpCache\CacheProvider
+]
+// or
+'service' => [
+    '\Slim\HttpCache\CacheProvider' => true
+]
+```
+
 You can also unload service provider loaded by previous bundle (see [Bundle inheritance][BUNDLES-BUNDLE-INHERITANCE]):
 
 ```php
@@ -147,10 +164,14 @@ You can also unload service provider loaded by previous bundle (see [Bundle inhe
 ]
 ```
 
-You can also load service provider manually (e.g. inside `run()` callback within bundle):
+You can also load service provider manually via `register()` method (e.g. inside `run()` callback within bundle):
 
 ```php
 $app->register('Test');
+// or
+$app->register(new \Slim\HttpCache\CacheProvider);
+// or
+$app->register('\Slim\HttpCache\CacheProvider');
 ```
 
 ## Important framework services
@@ -354,6 +375,17 @@ $app = new moment\App([
 Application will search default bundle namespaces (`\app\bundle`, `\moment\bundle`) and load correct bundle.
 Use `$app->bundle->addNamespace($namespace)` method to add more namespaces to search.
 
+When loading bundle you may choose to disable loading of certain bundle components:
+
+```php
+/**
+ * Do not load configuration and routes from helloWorld bundle
+ */
+$app->bundle->load(new app\bundle\helloWorld\HelloWorldBundle(['route' => false, 'config' => false]));
+// or
+$app->bundle->load('helloWorld' => ['route' => false, 'config' => false]);
+```
+
 ## Bundle inheritance
 
 As stated earlier application can use multiple bundles. The order in which bundles are loaded matters. Components from
@@ -516,6 +548,10 @@ Framework stores its configuration in following files:
     <tr>
         <td>`service.php`</td>
         <td>services configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+    </tr>
+    <tr>
+        <td>`template.php`</td>
+        <td>templating engine configuration</td>
     </tr>
 </table>
 
@@ -747,23 +783,22 @@ With above definition, any HTTP request (`GET`, `POST`, `...`) to `/docs` URL wi
 `$request`, `$response` and `$args` params:
 
 ```php
-$app->any('/docs', function ($request, $response, $args) use ($app) {
-    $debugFlag = $app->debug; // accessing services
+$app->any('/docs', function ($request, $response, $args) {
+    $debugFlag = $this->debug; // accessing $app->debug service
     return $response->write('Hello world');
 });
 ```
 
-Note that you can optionally pass `$app` to anonymous function using `use` statement to
-access services if needed.
+Note that you will have access to the `$app` instance inside of the Closure via the `$this` keyword.
 
-You can find more information about router and routes in Slim's documentation:
+You can find more information about router and routes in [Slim's][Slim] documentation:
 
 - [Router][router]
 
 # Middlewares
 
 Middleware is a callable which is invoked during application request/response lifecycle.
-Please find more detailed information about middleware in Slim's documentation:
+Please find more detailed information about middleware in [Slim's][Slim] documentation:
 
 - [Middleware][middleware]
 
@@ -797,6 +832,18 @@ or via configuration inside `/config/app.php`:
 ```php
 'middleware' => [
     'Auth' => true
+]
+```
+
+Note that you may also easily load middlewares designed for [Slim][Slim] framework:
+
+```php
+'middleware' => [
+    new \Slim\HttpCache\Cache('public', 86400)
+]
+// or
+'middleware' => [
+    '\Slim\HttpCache\Cache' => true
 ]
 ```
 
@@ -909,7 +956,7 @@ $foo = $this->request->getParam('foo'); // $_POST['foo'] or $_GET['foo']
 $bar = $this->request->getParam('bar', 'default'); // setting default value if param not set
 ```
 
-You can find more information about request object in Slim’s documentation:
+You can find more information about request object in [Slim’s][Slim] documentation:
 
 - [Request object][request]
 
@@ -944,7 +991,7 @@ class HelloController extends \moment\Controller
 }
 ```
 
-You can find more information about response object in Slim’s documentation:
+You can find more information about response object in [Slim’s][Slim] documentation:
 
 - [Response object][response]
 

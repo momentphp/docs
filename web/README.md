@@ -6,7 +6,7 @@ free choice about inclusion of additional tools. It is built on top of well-know
 libraries and solutions:
 
 - [Slim][Slim] micro-framework
-- [Smarty][Smarty] templating engine
+- [Twig][Twig]/[Smarty][Smarty] templating engine
 - components responsible for database access, configuration and caching from [Laravel][Laravel] framework
 - [Composer][Composer] dependency manager
 
@@ -249,8 +249,8 @@ in the following table:
         <td>returns view object that controller uses</td>
     </tr>
     <tr>
-        <td><code>$app->viewEngine</td>
-        <td>returns templating engine object</td>
+        <td><code>$app->viewRenderer</td>
+        <td>returns configured templating engine object</td>
     </tr>
     <tr>
         <td><code>$app->error</td>
@@ -997,8 +997,19 @@ You can find more information about response object in [Slim’s][Slim] document
 
 # Templates
 
-By default framework uses [Smarty][Smarty] templating engine. Template files should be placed inside
-`/template/{bundleName}` folder so for `helloWorld` bundle the path will look like following:
+Out of the box framework supports [Smarty][Smarty] and [Twig][Twig] templating engines.
+Templating engines are exposed as services (named `smartyView` and `twigView` respectively) and are
+configured inside `/config/service.php`. You pick which service should be used by default by setting
+appropriate value inside `/config/app.php`:
+
+```php
+[
+    'viewService' => 'smartyView'
+]
+```
+
+Template files should be placed inside `/template/{bundleName}` folder so for `helloWorld` bundle the path will look
+like following:
 
 ```html
 /app/bundle/helloWorld/template/helloWorld
@@ -1008,7 +1019,7 @@ Templates fall into 3 default folders presented below:
 
 <table>
     <tr>
-        <th>folder</td>
+        <th>folder</th>
         <th>description</th>
     </tr>
     <tr>
@@ -1027,12 +1038,28 @@ Templates fall into 3 default folders presented below:
 
 You can access various objects inside template file:
 
-```
-{$this->app} // app object
-{$this->request} // request object
-{$this->response} // response object
-{$this->Html} // HtmlHelper object
-```
+<table>
+    <tr>
+        <th>Smarty</th>
+        <th>Twig</th>
+        <th>description</th>
+    </tr>
+    <tr>
+        <td><code>{$this->app}</code></td>
+        <td><code>{{ this.app }}</code></td>
+        <td>app object</td>
+    </tr>
+    <tr>
+        <td><code>{$this->request}</code></td>
+        <td><code>{{ this.request }}</code></td>
+        <td>request object</td>
+    </tr>
+    <tr>
+        <td><code>{$this->Html}</code></td>
+        <td><code>{{ this.Html }}</code></td>
+        <td>HtmlHelper object</td>
+    </tr>
+</table>
 
 ## Helpers
 
@@ -1055,8 +1082,9 @@ class TextHelper extends \moment\Helper
 
 Now, the helper is ready to be used inside templates:
 
-```
-Here is uppercase post title: {$this->Text->uppercase($post.title)}
+```html
+Here is uppercase post title: {$this->Text->uppercase($post.title)} // Smarty
+Here is uppercase post title: {{ this.Text.uppercase(post.title) }} // Twig
 ```
 
 Inside helper methods you may access:
@@ -1169,6 +1197,7 @@ You can set PHP error reporting level by setting following value in `/config/app
 
 [Slim]: http://www.slimframework.com/
 [Smarty]: http://www.smarty.net/
+[Twig]: http://twig.sensiolabs.org/
 [Laravel]: http://http://laravel.com/
 [Composer]: https://getcomposer.org/
 [Monolog]: https://github.com/Seldaek/monolog

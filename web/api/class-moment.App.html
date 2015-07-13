@@ -29,6 +29,11 @@
 						middleware					</a>
 
 						</li>
+				<li>
+					<a href="namespace-moment.service.html">
+						service					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-None.html">
@@ -63,10 +68,16 @@
 				<li><a href="class-moment.MomentBundle.html">MomentBundle</a></li>
 				<li><a href="class-moment.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-moment.Service.html">Service</a></li>
+				<li><a href="class-moment.SmartyView.html">SmartyView</a></li>
+				<li><a href="class-moment.TwigView.html">TwigView</a></li>
 				<li><a href="class-moment.View.html">View</a></li>
-				<li><a href="class-moment.ViewEngine.html">ViewEngine</a></li>
+				<li><a href="class-moment.ViewRenderer.html">ViewRenderer</a></li>
 			</ul>
 
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-moment.RenderableInterface.html">RenderableInterface</a></li>
+			</ul>
 
 			<h3>Traits</h3>
 			<ul>
@@ -377,47 +388,6 @@ Slim\App
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="cell" id="_cell">
-
-		<td class="attributes"><code>
-			 public 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_cell">#</a>
-		<code>cell( <span>string <var>$path</var></span>, <span>array <var>$params</var> = []</span> )</code>
-
-		<div class="description short">
-			<p>Render cell (route output as string)</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Render cell (route output as string)</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$path</var></dt>
-					<dd></dd>
-					<dt><var>$params</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="loadRoute" id="_loadRoute">
 
 		<td class="attributes"><code>
@@ -433,11 +403,11 @@ Slim\App
 		<code>loadRoute( )</code>
 
 		<div class="description short">
-			<p>Load routes</p>
+			<p>Load routes defined in each bundle</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Load routes</p>
+			<p>Load routes defined in each bundle</p>
 
 
 
@@ -463,11 +433,11 @@ Slim\App
 		<code>loadService( )</code>
 
 		<div class="description short">
-			<p>Load services</p>
+			<p>Load services from configuration file</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Load services</p>
+			<p>Load services from configuration file</p>
 
 
 
@@ -493,11 +463,11 @@ Slim\App
 		<code>loadMiddleware( )</code>
 
 		<div class="description short">
-			<p>Load middlewares</p>
+			<p>Load application middlewares from configuration file</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Load middlewares</p>
+			<p>Load application middlewares from configuration file</p>
 
 
 
@@ -523,11 +493,11 @@ Slim\App
 		<code>run( )</code>
 
 		<div class="description short">
-			<p>Send response to the client</p>
+			<p>Invoke <code>run()</code> callback in each bundle and send response to the client</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Send response to the client</p>
+			<p>Invoke <code>run()</code> callback in each bundle and send response to the client</p>
 
 
 

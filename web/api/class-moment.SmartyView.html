@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class moment\Bundle | MomentPHP</title>
+	<title>Class moment\SmartyView | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -50,7 +50,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-moment.App.html">App</a></li>
-				<li class="active"><a href="class-moment.Bundle.html">Bundle</a></li>
+				<li><a href="class-moment.Bundle.html">Bundle</a></li>
 				<li><a href="class-moment.BundleRegistry.html">BundleRegistry</a></li>
 				<li><a href="class-moment.Cache.html">Cache</a></li>
 				<li><a href="class-moment.CallableResolver.html">CallableResolver</a></li>
@@ -68,7 +68,7 @@
 				<li><a href="class-moment.MomentBundle.html">MomentBundle</a></li>
 				<li><a href="class-moment.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-moment.Service.html">Service</a></li>
-				<li><a href="class-moment.SmartyView.html">SmartyView</a></li>
+				<li class="active"><a href="class-moment.SmartyView.html">SmartyView</a></li>
 				<li><a href="class-moment.TwigView.html">TwigView</a></li>
 				<li><a href="class-moment.View.html">View</a></li>
 				<li><a href="class-moment.ViewRenderer.html">ViewRenderer</a></li>
@@ -126,30 +126,24 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Bundle</h1>
+	<h1>Class SmartyView</h1>
 
 
 	<div class="description">
-	<p>Bundle</p>
+	<p>SmartyView</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-<b><span>moment\Bundle</span></b>			
+<b><span>moment\SmartyView</span></b>			
+			 implements 
+				<a href="class-moment.RenderableInterface.html"><span>moment\RenderableInterface</span></a>
 			
-			 uses 
-					<a href="class-moment.OptionsTrait.html"><span>moment\OptionsTrait</span></a>, 
-			
-					<a href="class-moment.MethodCacheTrait.html"><span>moment\MethodCacheTrait</span></a>
 			
 		</dd>
 	</dl>
 
 
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-moment.MomentBundle.html">moment\MomentBundle</a>
-	</div>
 
 
 
@@ -157,12 +151,12 @@
 
 
 	<div class="info">
-		<b>Abstract</b><br>
+		
 		
 		<b>Namespace:</b> <a href="namespace-moment.html">moment</a><br>
 		
 
-			<b>Located at</b> Bundle.php		<br>
+			<b>Located at</b> SmartyView.php		<br>
 	</div>
 
 
@@ -181,18 +175,20 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>array <var>$options</var> = []</span> )</code>
+		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 		<div class="description short">
-			<p>Construtor</p>
+			<p>Constructor</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Construtor</p>
+			<p>Constructor</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd></dd>
 					<dt><var>$options</var></dt>
 					<dd></dd>
 				</dl></div>
@@ -204,174 +200,76 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="name" id="_name">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_name">#</a>
-		<code>name( )</code>
-
-		<div class="description short">
-			<p>Return bundle name</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return bundle name</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="classNamespace" id="_classNamespace">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_classNamespace">#</a>
-		<code>classNamespace( <span> <var>$component</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Return bundle class namespace</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return bundle class namespace</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="path" id="_path">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_path">#</a>
-		<code>path( <span> <var>$component</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Return bundle path</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return bundle path</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="omitFingerprint" id="_omitFingerprint">
+	<tr data-order="render" id="_render">
 
 		<td class="attributes"><code>
 			 public 
 
-			boolean
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_omitFingerprint">#</a>
-		<code>omitFingerprint( )</code>
+		<a class="anchor" href="#_render">#</a>
+		<code>render( <span>string <var>$template</var></span>, <span>array <var>$data</var> = []</span> )</code>
 
 		<div class="description short">
-			<p>Return boolean flag whether bundle name should be
-omitted when producing fingerprint</p>
+			<p>Render template content</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return boolean flag whether bundle name should be
-omitted when producing fingerprint</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="run" id="_run">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_run">#</a>
-		<code>run( <span><code><a href="class-moment.App.html">moment\App</a></code> <var>$app</var></span> )</code>
-
-		<div class="description short">
-			<p>Bundle callback which is called just before response is
-send to the client</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Bundle callback which is called just before response is
-send to the client</p>
+			<p>Render template content</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$app</var></dt>
+					<dt><var>$template</var></dt>
+					<dd></dd>
+					<dt><var>$data</var></dt>
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-moment.RenderableInterface.html#_render">moment\RenderableInterface::render()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="smarty" id="_smarty">
+
+		<td class="attributes"><code>
+			 public 
+
+			object
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_smarty">#</a>
+		<code>smarty( )</code>
+
+		<div class="description short">
+			<p>Return Smarty instance</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return Smarty instance</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					object
+				</div>
 
 
 
@@ -382,22 +280,6 @@ send to the client</p>
 	</table>
 
 
-	<table class="summary used">
-	<caption>Methods used from <a href="class-moment.OptionsTrait.html#methods">moment\OptionsTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-moment.OptionsTrait.html#_options">options()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-moment.MethodCacheTrait.html#methods">moment\MethodCacheTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-moment.MethodCacheTrait.html#___call">__call()</a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -410,65 +292,33 @@ send to the client</p>
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="reflector" id="$reflector">
+	<tr data-order="smarty" id="$smarty">
 		<td class="attributes"><code>
 			protected  
-			ReflectionClass
+			object
 		</code></td>
 
 		<td class="name">
-<var>$reflector</var>
+<var>$smarty</var>
 			<div class="description short">
-				<p>ReflectionClass instance</p>
+				<p>Smarty instance</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>ReflectionClass instance</p>
+				<p>Smarty instance</p>
 
 			</div>
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$reflector" class="anchor">#</a>
+				<a href="#$smarty" class="anchor">#</a>
 				<code></code>
 			</div>
 		</td>
 	</tr>
-	<tr data-order="options" id="$options">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-<var>$options</var>
-			<div class="description short">
-				<p>Instance options</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Instance options</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$options" class="anchor">#</a>
-				<code>[]</code>
-			</div>
-		</td>
-	</tr>
 	</table>
 
 
-	<table class="summary used">
-	<caption>Properties used from <a href="class-moment.MethodCacheTrait.html#properties">moment\MethodCacheTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-moment.MethodCacheTrait.html#$methodCache"><var>$methodCache</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

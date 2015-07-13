@@ -29,6 +29,11 @@
 						middleware					</a>
 
 						</li>
+				<li>
+					<a href="namespace-moment.service.html">
+						service					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-None.html">
@@ -63,10 +68,16 @@
 				<li><a href="class-moment.MomentBundle.html">MomentBundle</a></li>
 				<li><a href="class-moment.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-moment.Service.html">Service</a></li>
+				<li><a href="class-moment.SmartyView.html">SmartyView</a></li>
+				<li><a href="class-moment.TwigView.html">TwigView</a></li>
 				<li class="active"><a href="class-moment.View.html">View</a></li>
-				<li><a href="class-moment.ViewEngine.html">ViewEngine</a></li>
+				<li><a href="class-moment.ViewRenderer.html">ViewRenderer</a></li>
 			</ul>
 
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-moment.RenderableInterface.html">RenderableInterface</a></li>
+			</ul>
 
 			<h3>Traits</h3>
 			<ul>
@@ -277,7 +288,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code>__invoke( <span>Interop\Container\ContainerInterface <var>$container</var></span>, <span>object <var>$request</var></span>, <span>array <var>$response</var></span>, <span> <var>$vars</var></span> )</code>
+		<code>__invoke( <span>Interop\Container\ContainerInterface <var>$container</var></span>, <span>object <var>$request</var></span>, <span>array <var>$response</var></span>, <span> <var>$viewService</var></span>, <span> <var>$vars</var></span> )</code>
 
 		<div class="description short">
 			<p>Ivoke</p>
@@ -295,6 +306,8 @@
 					<dd>$response</dd>
 					<dt><var>$response</var></dt>
 					<dd>$viewVars</dd>
+					<dt><var>$viewService</var></dt>
+					<dd></dd>
 					<dt><var>$vars</var></dt>
 					<dd></dd>
 				</dl></div>
@@ -372,6 +385,47 @@
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$name</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-moment.Helper.html">moment\Helper</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-moment.Helper.html">moment\Helper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code>__call( <span>string <var>$method</var></span>, <span>array <var>$args</var></span> )</code>
+
+		<div class="description short">
+			<p>Return global helper instance for Twig</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return global helper instance for Twig</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd></dd>
+					<dt><var>$args</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -529,6 +583,30 @@
 		<td class="value">
 			<div>
 				<a href="#$response" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="viewService" id="$viewService">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$viewService</var>
+			<div class="description short">
+				<p>View service to use</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>View service to use</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$viewService" class="anchor">#</a>
 				<code></code>
 			</div>
 		</td>

@@ -6,7 +6,7 @@ free choice about inclusion of additional tools. It is built on top of well-know
 libraries and solutions:
 
 - [Slim][Slim] micro-framework
-- [Twig][Twig]/[Smarty][Smarty] templating engine
+- [Twig][Twig] (or [Smarty][Smarty]) templating engine
 - components responsible for database access, configuration and caching from [Laravel][Laravel] framework
 - [Composer][Composer] dependency manager
 
@@ -14,15 +14,15 @@ Moment (as well as its building blocks) embraces popular web software design pat
 
 - [Model-View-Controller][MVC]
 - [Front Controller][Front Controller]
-- [Dependency Injection][DI] and service container
+- [Dependency Injection][DI] / service container
 
 # Installation
 
-Moment requires following software stack in order to run:
+Moment requires following software stack in order to operate:
 
 - Apache web server with `mod_rewrite` module enabled
 - PHP 5.4 or above
-- [ionCube Loader][ionCube Loader] to be installed on the web server and made available to PHP
+- free [ionCube Loader][ionCube Loader] module to be installed on the web server and made available to PHP
 - [Composer][Composer] dependency manager
 
 It is also recommended (but not required) to enable following PHP modules:
@@ -30,7 +30,7 @@ It is also recommended (but not required) to enable following PHP modules:
 - [mbstring][mbstring]
 - [intl][intl]
 
-Here is step-by-step guide on how to install framework locally using [XAMPP][XAMPP] on Windows:
+Here is step-by-step guide on how to setup framework locally using [XAMPP][XAMPP] on Windows:
 
 - create project folder: `C:\xampp\htdocs\moment`
 - within project folder issue following command (this will install app skeleton and all dependencies):
@@ -38,6 +38,7 @@ Here is step-by-step guide on how to install framework locally using [XAMPP][XAM
 ```bash
 composer create-project momentphp/app . --stability=dev
 ```
+
 - create domain to serve application (`moment.dev` in this example). Do that by adding following
 vhost configuration inside `C:\xampp\apache\conf\extra\httpd-vhosts.conf`:
 
@@ -54,6 +55,11 @@ vhost configuration inside `C:\xampp\apache\conf\extra\httpd-vhosts.conf`:
 ```
 
 - add new domain definition to OS hosts file (`C:\WINDOWS\system32\drivers\etc\hosts`):
+
+```
+127.0.0.1 moment.dev
+```
+
 - restart Apache web server
 
 After completing above steps, point your browser to `http://moment.dev` and you should see framework welcome page with
@@ -61,19 +67,20 @@ some debug information.
 
 # Services
 
-Put simply, a **service** is usually a PHP object that performs some sort of task such as sending emails or persisting information
-into a database. A **service container** (or dependency injection container) is a PHP object that manages the
-instantiation of services (with their dependencies). You can register and retrieve services via `$app` object (passed
-around to various framework components), which is an instance of `moment\App` class.
+Put simply, a **service** is usually a PHP object that performs some sort of task such as sending emails, rendering
+templates or persisting information into a database. A **service container** (or dependency injection container) is a
+PHP object that manages the instantiation of services (with their dependencies). You can register and retrieve services
+via `$app` object (passed around to various framework classes), which is an instance of `moment\App` class.
 
 To retrieve a service from container:
 
 ```php
 $this->app->config // inside controller, model etc.
-{$this->app->config} // inside template
+{{ this.app.config }} // inside Twig template
+{$this->app->config} // inside Smarty template
 ```
 
-You can also retrieve services directly via container:
+You can also retrieve services directly via underlying service container:
 
 ```php
 $config = $app->getContainer()->get('config');
@@ -119,7 +126,7 @@ $app->service('someService', function ($service, $container) {
 ## Service providers
 
 Service providers are classes responsible for registering services and are located inside `/service` folder
-within bundle. Moment service provider class should extend `\moment\Service` and implement `register()` method:
+within bundle. Service provider class should extend `\moment\Service` and implement `register()` method:
 
 ```php
 namespace app\bundle\welcome\service;
@@ -176,7 +183,7 @@ $app->register('\Slim\HttpCache\CacheProvider');
 
 ## Important framework services
 
-All framework features are buit as services. Most important ones with their names and short descriptions are presented
+Most framework features are buit as services. Important ones with their names and short descriptions are presented
 in the following table:
 
 <table>
@@ -268,7 +275,7 @@ Your main application can use multiple bundles.
 ## Creating new bundle
 
 By default bundles are placed inside `/bundle` folder (assuming you are using [app skeleton]).
-Each bundle should have its own unique **name** in [camelCase][camelCase] format.
+Each bundle should have its own **unique name** in [camelCase][camelCase] format.
 If we were to create `helloWorld` bundle we should create class file `/bundle/helloWorld/HelloWorldBundle.php`
 with following content:
 
@@ -308,6 +315,10 @@ class HelloWorldBundle extends \moment\Bundle
         <th>description</th>
     </tr>
     <tr>
+        <td><code>/cell</code></td>
+        <td>bundle cells</td>
+    </tr>
+    <tr>
         <td><code>/config</code></td>
         <td>bundle configuration</td>
     </tr>
@@ -341,7 +352,7 @@ class HelloWorldBundle extends \moment\Bundle
     </tr>
     <tr>
         <td><code>HelloWorldBundle.php</code></td>
-        <td>bundle class file</td>
+        <td>bundle main class file</td>
     </tr>
 </table>
 
@@ -355,9 +366,7 @@ $app = new moment\App([
     new app\bundle\helloWorld\HelloWorldBundle,
     ...
 ]);
-
 // or
-
 $app = new moment\App;
 $app->bundle->load(new app\bundle\helloWorld\HelloWorldBundle);
 $app->bundle->load(...);
@@ -415,8 +424,8 @@ create the same file in bundle `b`:
 /bundle/b/template/a/element/post.tpl
 ```
 
-In order to override class-based components ([controllers][CONTROLLERS], [models][MODELS], [helpers][HELPERS],
-[middlewares][MIDDLEWARES] or [service providers][SERVICES-SERVICE-PROVIDERS]) create corresponding class file with
+In order to override class-based components ([controllers][CONTROLLERS], [models][MODELS], [helpers][TEMPLATES-HELPERS],
+[cells][TEMPLATES-CELLS], [middlewares][MIDDLEWARES] or [service providers][SERVICES-SERVICE-PROVIDERS]) create corresponding class file with
 the same name and extend class from previous bundle:
 
 ```php
@@ -475,7 +484,7 @@ There is also a handy method for checking existence of given configuration key:
 $app->config->has('api.Github'); // false
 ```
 
-Also there is an `app()` global function which allows accessing services inside configuration files and
+Also there is an `app()` global helper function which allows accessing services inside configuration files and
 other parts of the framework:
 
 ```php
@@ -487,7 +496,7 @@ return [
 ## Environment specific configuration
 
 It is often helpful to have different configuration values based on the environment the application is running in.
-Application environment is set inside main `index.php` file:
+By default application environment is set to `production`. You can change environment setting inside main `index.php` file:
 
 ```php
 $app->service('env', 'development');
@@ -514,44 +523,44 @@ Framework stores its configuration in following files:
         <th>description</th>
     </tr>
     <tr>
-        <td>`app.php`</td>
+        <td><code>app.php</code></td>
         <td>application configuration</td>
     </tr>
     <tr>
-        <td>`bundle.php`</td>
+        <td><code>bundle.php</code></td>
         <td>bundles configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
     </tr>
     <tr>
-        <td>`cache.php`</td>
+        <td><code>cache.php</code></td>
         <td>cache stores configuration</td>
     </tr>
     <tr>
-        <td>`database.php`</td>
+        <td><code>cell.php</code></td>
+        <td>cells configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+    </tr>
+    <tr>
+        <td><code>database.php</code></td>
         <td>database connections configuration</td>
     </tr>
     <tr>
-        <td>`helper.php`</td>
+        <td><code>helper.php</code></td>
         <td>helpers configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
     </tr>
     <tr>
-        <td>`log.php`</td>
+        <td><code>log.php</code></td>
         <td>loggers configuration</td>
     </tr>
     <tr>
-        <td>`middleware.php`</td>
+        <td><code>middleware.php</code></td>
         <td>middlewares configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
     </tr>
     <tr>
-        <td>`model.php`</td>
+        <td><code>model.php</code></td>
         <td>models configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
     </tr>
     <tr>
-        <td>`service.php`</td>
+        <td><code>service.php</code></td>
         <td>services configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
-    </tr>
-    <tr>
-        <td>`template.php`</td>
-        <td>templating engine configuration</td>
     </tr>
 </table>
 
@@ -573,8 +582,8 @@ class PostModel extends Model
 ```
 
 Hard-coded options are merged with options passed to constructor function during object initialization.
-For [bundles][Bundles], [models][MODELS], [helpers][Helpers], [service providers][Services] and
-[middlewares][Middlewares] you can define configuration options passed to constructor by creating
+For [bundles][BUNDLES], [models][MODELS], [helpers][TEMPLATES-HELPERS], [cells][TEMPLATES-CELLS], [service providers][SERVICES-SERVICE-PROVIDERS] and
+[middlewares][MIDDLEWARES] you can define configuration options passed to constructor by creating
 appropriate configuration file. For `PostModel` above we could create `/config/model.php` file with following content:
 
 ```php
@@ -648,7 +657,7 @@ Moreover, you can access just about any defined connection by passing it's name 
 $this->db('connection5')->table('posts')->where('id', $id)->first();
 ```
 
-You may also access the raw, underlying PDO instance following way:
+You may also access the raw, underlying [PDO][pdo] instance following way:
 
 ```php
 $pdo = $this->db()->getPdo(); // inside model class
@@ -680,7 +689,7 @@ pass configuration in second param:
 $Post = $this->app->model->factory('Post', ['perPage' => 25]);
 ```
 
-Inside controller and model classes you can access models with more concise syntax:
+Inside controller, cell and model classes you can access models with more concise syntax:
 
 ```php
 $this->Post->index();
@@ -728,7 +737,7 @@ Following table shows a list of all supported options:
         <td><code>store</code></td>
         <td><code>string</code></td>
         <td>not set</td>
-        <td>the name of cache store to use (will use default store if not set)</td>
+        <td>the name of cache store to use (will use default store if not set - see <a href="#caching">Caching</a>)</td>
     </tr>
     <tr>
         <td><code>enabled</code></td>
@@ -762,97 +771,6 @@ Following table shows a list of all supported options:
     </tr>
 </table>
 
-# Routes
-
-Routes are a way to map URLs to the code that gets executed only when a certain request is
-received at the server. Routes are defined in `/route.php` file inside bundle. Each route
-consists of three elements:
-
-- HTTP method
-- URL pattern
-- route handler
-
-Here is sample route definition:
-
-```php
-$app->any('/docs', 'Docs@index');
-```
-
-With above definition, any HTTP request (`GET`, `POST`, `...`) to `/docs` URL will invoke handler - that is
-`DocsController::index()` method. Handler can also be defined as anonymous function which takes
-`$request`, `$response` and `$args` params:
-
-```php
-$app->any('/docs', function ($request, $response, $args) {
-    $debugFlag = $this->debug; // accessing $app->debug service
-    return $response->write('Hello world');
-});
-```
-
-Note that you will have access to the `$app` instance inside of the Closure via the `$this` keyword.
-
-You can find more information about router and routes in [Slim's][Slim] documentation:
-
-- [Router][router]
-
-# Middlewares
-
-Middleware is a callable which is invoked during application request/response lifecycle.
-Please find more detailed information about middleware in [Slim's][Slim] documentation:
-
-- [Middleware][middleware]
-
-In order to create simple `Auth` middleware
-create class file `/middleware/AuthMiddleware.php` with content:
-
-```php
-namespace app\bundle\helloWorld\middleware;
-
-class AuthMiddleware extends \moment\Middleware
-{
-    public function run($request, $response, $next)
-    {
-        $cookies = $request->getCookieParams();
-        if (!isset($cookies['auth'])) {
-            return $response->withRedirect('http://onet.pl');
-        }
-        return $next($request, $response);
-    }
-}
-```
-
-Middleware can be attached at application level manually:
-
-```php
-$app->add('Auth');
-```
-
-or via configuration inside `/config/app.php`:
-
-```php
-'middleware' => [
-    'Auth' => true
-]
-```
-
-Note that you may also easily load middlewares designed for [Slim][Slim] framework:
-
-```php
-'middleware' => [
-    new \Slim\HttpCache\Cache('public', 86400)
-]
-// or
-'middleware' => [
-    '\Slim\HttpCache\Cache' => true
-]
-```
-
-Also you can attach middleware only to certain routes:
-
-```php
-$app->any('/pages/{page:.+}', 'Pages@display')->add('Auth');
-```
-
 # Controllers
 
 Controllers classes are located under `/controller` folder inside a bundle. In a typical scenario
@@ -862,7 +780,7 @@ right response or template is rendered. Commonly, a controller is used to manage
 ## Controller actions
 
 Methods inside controller class are called **actions**. You map incoming URL to given controller action by creating
-corresponding [route][Routes]. Let's create simple route:
+corresponding [route][ROUTES]. Let's create simple route:
 
 ```php
 $app->get('/hello/{name}', 'Hello@say');
@@ -888,13 +806,14 @@ Controller action can return:
 - a response object
 - nothing
 
-In case nothing is returned from action default action template will be rendered: `/template/helloWorld/controller/Hello/say.tpl`.
-You can specify which template should be rendered by setting `$template` property inside action body:
+In case nothing is returned from action default action template will be rendered:
+`/template/helloWorld/controller/Hello/say.twig`. You can specify which template should be rendered by setting
+`$template` property inside action body:
 
 ```php
-$this->template = 'say2'; // will render: /template/helloWorld/controller/Hello/say2.tpl
+$this->template = 'say2'; // will render: /template/helloWorld/controller/Hello/say2.twig
 // or
-$this->template = '/say2'; // will render: /template/say2.tpl
+$this->template = '/say2'; // will render: /template/say2.twig
 ```
 
 The `Controller::set()` method is the main way to send data from your controller to your template:
@@ -904,7 +823,7 @@ The `Controller::set()` method is the main way to send data from your controller
 $this->set('color', 'pink');
 
 // inside template
-You have choosen {$color} color.
+You have choosen {{ color }} color.
 ```
 
 The `Controller::set()` method also takes an associative array as its first parameter.
@@ -962,7 +881,7 @@ You can find more information about request object in [Slim’s][Slim] documenta
 
 ## Response object
 
-You can access current request object inside actions using `$this->response` property. Response object
+You can access current response object inside actions using `$this->response` property. Response object
 can be returned from action. To return redirect response:
 
 ```php
@@ -1015,12 +934,16 @@ like following:
 /app/bundle/helloWorld/template/helloWorld
 ```
 
-Templates fall into 3 default folders presented below:
+Templates fall into default folders presented below:
 
 <table>
     <tr>
         <th>folder</th>
         <th>description</th>
+    </tr>
+    <tr>
+        <td><code>/template/{bundleName}/cell</code></td>
+        <td>templates for cells actions</td>
     </tr>
     <tr>
         <td><code>/template/{bundleName}/controller</code></td>
@@ -1095,6 +1018,101 @@ $this->view // view object
 $this->view->request // request object
 $this->view->vars // template variables
 $this->options() // helper configuration set in /config/helper.php
+```
+
+## Cells
+
+Lorem Ipsum
+
+# Routes
+
+Routes are a way to map URL-s to the code that gets executed only when a certain request is
+received at the server. Routes are defined in `/route.php` file inside bundle. Each route
+consists of three elements:
+
+- HTTP method
+- URL pattern
+- route handler
+
+Here is sample route definition:
+
+```php
+$app->any('/docs', 'Docs@index');
+```
+
+With above definition, any HTTP request (`GET`, `POST`, `...`) to `/docs` URL will invoke handler - that is
+`DocsController::index()` method. Handler can also be defined as anonymous function which takes
+`$request`, `$response` and `$args` params:
+
+```php
+$app->any('/docs', function ($request, $response, $args) {
+    $debugFlag = $this->debug; // accessing $app->debug service
+    return $response->write('Hello world');
+});
+```
+
+Note that you will have access to the `$app` instance inside of the Closure via the `$this` keyword.
+
+You can find more information about router and routes in [Slim's][Slim] documentation:
+
+- [Router][router]
+
+# Middlewares
+
+Middleware is a callable which is invoked during application request/response lifecycle.
+Please find more detailed information about middleware in [Slim's][Slim] documentation:
+
+- [Middleware][middleware]
+
+In order to create simple `Auth` middleware
+create class file `/middleware/AuthMiddleware.php` with content:
+
+```php
+namespace app\bundle\helloWorld\middleware;
+
+class AuthMiddleware extends \moment\Middleware
+{
+    public function run($request, $response, $next)
+    {
+        $cookies = $request->getCookieParams();
+        if (!isset($cookies['auth'])) {
+            return $response->withRedirect('/login');
+        }
+        return $next($request, $response);
+    }
+}
+```
+
+Middleware can be attached at application level manually:
+
+```php
+$app->add('Auth');
+```
+
+or via configuration inside `/config/app.php`:
+
+```php
+'middleware' => [
+    'Auth' => true
+]
+```
+
+Note that you may also easily load middlewares designed for [Slim][Slim] framework:
+
+```php
+'middleware' => [
+    new \Slim\HttpCache\Cache('public', 86400)
+]
+// or
+'middleware' => [
+    '\Slim\HttpCache\Cache' => true
+]
+```
+
+Also you can attach middleware only to certain routes:
+
+```php
+$app->any('/pages/{page:.+}', 'Pages@display')->add('Auth');
 ```
 
 # Caching
@@ -1212,6 +1230,7 @@ You can set PHP error reporting level by setting following value in `/config/app
 
 [mbstring]: http://php.net/manual/en/book.mbstring.php
 [intl]: http://php.net/manual/en/book.intl.php
+[pdo]: http://php.net/manual/en/book.pdo.php
 
 [database]: http://laravel.com/docs/5.0/database
 [queries]: http://laravel.com/docs/5.0/queries
@@ -1226,10 +1245,11 @@ You can set PHP error reporting level by setting following value in `/config/app
 [INSTALLATION]: #installation
 [SERVICES]: #services
 [SERVICES-SERVICE-PROVIDERS]: #services-service-providers
-[MODELS]: #models
 [BUNDLES]: #bundles
-[HELPERS]: #helpers
+[TEMPLATES-HELPERS]: #templates-helpers
+[TEMPLATES-CELLS]: #templates-cells
 [MIDDLEWARES]: #middlewares
 [BUNDLES-BUNDLE-INHERITANCE]: #bundles-bundle-inheritance
+[MODELS]: #models
 [CONTROLLERS]: #controllers
-
+[ROUTES]: #routes

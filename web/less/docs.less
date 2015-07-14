@@ -9,12 +9,18 @@
 
 .docs
 {
-    &-nav
+    &-nav,
+    &-content
     {
         position: fixed;
         top: 0;
-        left: 0;
         bottom: 0;
+        height: auto;
+    }
+
+    &-nav
+    {
+        left: 0;
         width: 25%;
         background: @gray-300;
         color: @black;
@@ -55,10 +61,16 @@
 
     &-content
     {
-        margin-left: 25%;
+        right: 0;
+        width: 75%;
         background: @white;
         color: @black;
-        padding: @u;
+        overflow-y: auto;
+
+        .content
+        {
+            padding: @u;
+        }
     }
 }
 

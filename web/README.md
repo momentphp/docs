@@ -1022,7 +1022,43 @@ $this->options() // helper configuration set in /config/helper.php
 
 ## Cells
 
-Lorem Ipsum
+Cells are small mini-controllers that can invoke view logic and render out templates.
+Cells are ideal for building reusable page components that require interaction with models, view logic, and
+rendering logic. A simple example would be the cart in an online store, or a data-driven navigation menu in a CMS.
+Cells do not dispatch sub-requests. Cells classes are placed under `/cell` folder within bundle.
+
+Let's create sample `ShoppingCart` cell. Create cell class file `/app/bundle/helloWorld/cell/ShoppingCartCell.php`
+with following content:
+
+```php
+namespace app\bundle\helloWorld\cell;
+
+class ShoppingCartCell extends \moment\Cell
+{
+    public function display($items = 5)
+    {
+        // grab some data and set it to the template
+    }
+}
+```
+
+Templates behave just like controller templates but are placed inside `cell` subfolder.
+In case nothing is returned from cell action default template will be rendered:
+`/app/bundle/helloWorld/template/helloWorld/cell/ShoppingCart/display.twig`.
+
+Our newly created cell may be invoked inside any template:
+
+```html
+{{ this.cell('ShoppingCart') }} // Twig
+{$this->cell('ShoppingCart')} // Smarty
+```
+
+You can also invoke any cell action and pass additional arguments:
+
+```html
+{{ this.cell('ShoppingCart@display', {'items': 10}) }} // Twig
+{$this->cell('ShoppingCart@display', ['items' => 10])} // Smarty
+```
 
 # Routes
 
@@ -1204,6 +1240,7 @@ to the Internet at large. Disabling `debug` changes the following types of thing
 - PHP errors are not displayed
 - uncaught exceptions and fatal errors will render default internal server error page
 - uncaught `moment\NotFoundException` will render default not found page
+- templates are not re-compiled when changed
 
 You can set PHP error reporting level by setting following value in `/config/app.php`:
 

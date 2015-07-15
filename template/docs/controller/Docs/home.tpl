@@ -17,14 +17,14 @@
         <div class="tse-scrollable docs-content">
             <div class="tse-content">
                 <div class="content">
-                    <div style="text-align: right">
+                    <div class="_right">
                         <a href="/" class="button-action">Home page &raquo;</a>
                     </div>
                     {if $this->app->bundle->has('welcome')}
                         {$this->cell('Logo')}
                     {/if}
                     <div role="flatdoc-content"></div>
-                    <div style="text-align: right">
+                    <div class="_right">
                         <a href="{$this->app->config->get('bundle.docs.url.improve')}" class="button-action">Improve this doc &raquo;</a>
                     </div>
                 </div>

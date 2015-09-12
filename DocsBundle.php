@@ -1,6 +1,7 @@
 <?php
-namespace moment\bundle\docs;
 
-class DocsBundle extends \moment\Bundle
+namespace momentphp\bundle\docs;
+
+class DocsBundle extends \momentphp\Bundle
 {
 }

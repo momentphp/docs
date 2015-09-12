@@ -4,7 +4,7 @@
     "homepage": "http://momentphp.com",
     "autoload": {
         "psr-4": {
-            "moment\\bundle\\docs\\": "."
+            "momentphp\\bundle\\docs\\": "."
         }
     }
 }

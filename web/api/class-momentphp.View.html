@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class momentphp\View | MomentPHP</title>
+
+	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-momentphp.html">
+						momentphp<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-momentphp.exceptions.html">
+						exceptions					</a>
+
+						</li>
+				<li>
+					<a href="namespace-momentphp.interfaces.html">
+						interfaces					</a>
+
+						</li>
+				<li>
+					<a href="namespace-momentphp.middlewares.html">
+						middlewares					</a>
+
+						</li>
+				<li>
+					<a href="namespace-momentphp.services.html">
+						services					</a>
+
+						</li>
+				<li>
+					<a href="namespace-momentphp.traits.html">
+						traits					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-momentphp.App.html">App</a></li>
+				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
+				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
+				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
+				<li><a href="class-momentphp.Cell.html">Cell</a></li>
+				<li><a href="class-momentphp.Config.html">Config</a></li>
+				<li><a href="class-momentphp.Controller.html">Controller</a></li>
+				<li><a href="class-momentphp.Database.html">Database</a></li>
+				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
+				<li><a href="class-momentphp.Helper.html">Helper</a></li>
+				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
+				<li><a href="class-momentphp.Router.html">Router</a></li>
+				<li><a href="class-momentphp.Service.html">Service</a></li>
+				<li><a href="class-momentphp.SmartyView.html">SmartyView</a></li>
+				<li><a href="class-momentphp.TwigView.html">TwigView</a></li>
+				<li class="active"><a href="class-momentphp.View.html">View</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-momentphp.html" title="Summary of momentphp"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class View</h1>
+
+
+	<div class="description">
+	<p>View</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>momentphp\View</span></b>			
+			
+			 uses 
+					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>, 
+			
+					<a href="class-momentphp.traits.ViewVarsTrait.html"><span>momentphp\traits\ViewVarsTrait</span></a>, 
+			
+					<a href="class-momentphp.traits.CollectionTrait.html"><span>momentphp\traits\CollectionTrait</span></a>, 
+			
+					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
+		
+
+			<b>Located at</b> View.php		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( <span>array <var>$options</var> = []</span> )</code>
+
+		<div class="description short">
+			<p>Constructor</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Constructor</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="render" id="_render">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_render">#</a>
+		<code>render( <span>string <var>$template</var> = <span class="php-keyword1">null</span></span>, <span>string|null <var>$templateBundle</var> = <span class="php-keyword1">null</span></span>, <span>string|null <var>$viewService</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Return template rendered using view service</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return template rendered using view service</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$template</var></dt>
+					<dd></dd>
+					<dt><var>$templateBundle</var></dt>
+					<dd></dd>
+					<dt><var>$viewService</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="cell" id="_cell">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_cell">#</a>
+		<code>cell( )</code>
+
+		<div class="description short">
+			<p>Render cell</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Render cell</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dump" id="_dump">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dump">#</a>
+		<code>dump( <span>mixed <var>$var</var></span> )</code>
+
+		<div class="description short">
+			<p>Allow <code>dump()</code> inside templates</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Allow <code>dump()</code> inside templates</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$var</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__get" id="___get">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___get">#</a>
+		<code>__get( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			<p>Return global helper</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return global helper</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code>__call( <span>string <var>$method</var></span>, <span>array <var>$args</var></span> )</code>
+
+		<div class="description short">
+			<p>Return global helper (for Twig)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return global helper (for Twig)</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd></dd>
+					<dt><var>$args</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.AppAwareTrait.html#methods">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.ViewVarsTrait.html#methods">momentphp\traits\ViewVarsTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.ViewVarsTrait.html#_set">set()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.CollectionTrait.html#methods">momentphp\traits\CollectionTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.CollectionTrait.html#_collection">collection()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.OptionsTrait.html#methods">momentphp\traits\OptionsTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.OptionsTrait.html#_options">options()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="options" id="$options">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$options</var>
+			<div class="description short">
+				<p>Options</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Options</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$options" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.AppAwareTrait.html#properties">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.ViewVarsTrait.html#properties">momentphp\traits\ViewVarsTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.ViewVarsTrait.html#$request"><var>$request</var></a>, 
+			<a href="class-momentphp.traits.ViewVarsTrait.html#$response"><var>$response</var></a>, 
+			<a href="class-momentphp.traits.ViewVarsTrait.html#$template"><var>$template</var></a>, 
+			<a href="class-momentphp.traits.ViewVarsTrait.html#$templateBundle"><var>$templateBundle</var></a>, 
+			<a href="class-momentphp.traits.ViewVarsTrait.html#$vars"><var>$vars</var></a>, 
+			<a href="class-momentphp.traits.ViewVarsTrait.html#$viewService"><var>$viewService</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.CollectionTrait.html#properties">momentphp\traits\CollectionTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.CollectionTrait.html#$collection"><var>$collection</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+</div>
+
+	<div id="footer">
+		MomentPHP API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

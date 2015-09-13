@@ -1,6 +1,6 @@
 title: MomentPHP
 
-source: ../framework/moment
+source: ../framework/src
 
 destination: ./web/api
 

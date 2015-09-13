@@ -1,10 +1,10 @@
-{extends file='welcome/layout/default.tpl'}
+{extends file='layouts/default.tpl'}
 
 {block 'head'}
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
     <link rel="stylesheet" href="//cdn.rawgit.com/jnicol/trackpad-scroll-emulator/master/css/trackpad-scroll-emulator.css">
-    <link rel="stylesheet" href="/bundle/docs/css/docs.css">
+    <link rel="stylesheet" href="/bundles/docs/css/docs.css">
 
 {/block}
 
@@ -18,14 +18,14 @@
             <div class="tse-content">
                 <div class="content">
                     <div class="_right">
-                        <a href="/" class="button-action">Home page &raquo;</a>
+                        <a href="/" class="action-button">Home page &raquo;</a>
                     </div>
-                    {if $this->app->bundle->has('welcome')}
+                    {if $this->app->bundles->has('welcome')}
                         {$this->cell('Logo')}
                     {/if}
                     <div role="flatdoc-content"></div>
                     <div class="_right">
-                        <a href="{$this->app->config->get('bundle.docs.url.improve')}" class="button-action">Improve this doc &raquo;</a>
+                        <a href="{$this->app->config->get('bundles.docs.url.improve')}" class="action-button">Improve this doc &raquo;</a>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
             $('.page-heading h1 a').lettering();
 
             Flatdoc.run({
-                fetcher: Flatdoc.file('/bundle/docs/README.md')
+                fetcher: Flatdoc.file('/bundles/docs/README.md')
             });
 
         });

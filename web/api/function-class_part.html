@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Function path | MomentPHP</title>
+	<title>Function class_part | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -70,8 +70,8 @@
 			<h3>Functions</h3>
 			<ul>
 				<li><a href="function-app.html">app</a></li>
-				<li><a href="function-class_part.html">class_part</a></li>
-				<li class="active"><a href="function-path.html">path</a></li>
+				<li class="active"><a href="function-class_part.html">class_part</a></li>
+				<li><a href="function-path.html">path</a></li>
 			</ul>
 		</div>
 	</div>
@@ -105,11 +105,11 @@
 	</div>
 
 <div id="content" class="function">
-	<h1>Function path</h1>
+	<h1>Function class_part</h1>
 
 
 	<div class="description">
-	<p>Return filesystem path</p>
+	<p>Return prefix or suffix from camel-cased class name</p>
 	</div>
 
 	<div class="info">
@@ -123,14 +123,19 @@
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
-	<tr id="$parts">
-		<td class="name"><code>array</code></td>
-		<td class="value"><code><var>$parts</var> = []</code></td>
+	<tr id="$class">
+		<td class="name"><code>object|string</code></td>
+		<td class="value"><code><var>$class</var></code></td>
 		<td></td>
 	</tr>
-	<tr id="$ds">
+	<tr id="$type">
 		<td class="name"><code></code></td>
-		<td class="value"><code><var>$ds</var> = DIRECTORY_SEPARATOR</code></td>
+		<td class="value"><code><var>$type</var></code></td>
+		<td></td>
+	</tr>
+	<tr id="$parts">
+		<td class="name"><code></code></td>
+		<td class="value"><code><var>$parts</var> = <span class="php-num">1</span></code></td>
 		<td></td>
 	</tr>
 	</table>

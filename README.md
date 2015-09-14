@@ -30,6 +30,8 @@ It is also recommended (but not required) to enable following PHP modules:
 - [mbstring][mbstring]
 - [intl][intl]
 
+## Local setup
+
 Here is step-by-step guide on how to setup framework locally using [XAMPP][XAMPP] on Windows:
 
 - create project folder: `C:\xampp\htdocs\momentphp`
@@ -930,9 +932,9 @@ You can find more information about response object in [Slim’s][Slim] document
 # Templates
 
 Out of the box framework supports [Smarty][Smarty] and [Twig][Twig] templating engines.
-Templating engines are exposed as services (named `smartyView` and `twigView` respectively) and are
-configured inside `/config/service.php`. You pick which service should be used by default by setting
-appropriate value inside `/config/app.php`:
+Templating engines are exposed as services (named `smartyView` and `twigView` respectively) implementing
+common interface and are configured inside `/config/services.php`. You pick which service
+should be used by default by setting appropriate value inside `/config/app.php`:
 
 ```php
 [
@@ -940,14 +942,8 @@ appropriate value inside `/config/app.php`:
 ]
 ```
 
-Template files should be placed inside `/template/{bundleName}` folder so for `helloWorld` bundle the path will look
-like following:
-
-```html
-/app/bundle/helloWorld/template/helloWorld
-```
-
-Templates fall into default folders presented below:
+Template files should be placed inside `/templates` folder within bundle.
+Templates should fall into pre-defined folders presented below:
 
 <table>
     <tr>
@@ -955,19 +951,19 @@ Templates fall into default folders presented below:
         <th>description</th>
     </tr>
     <tr>
-        <td><code>/template/{bundleName}/cell</code></td>
+        <td><code>/templates/cells</code></td>
         <td>templates for cells actions</td>
     </tr>
     <tr>
-        <td><code>/template/{bundleName}/controller</code></td>
+        <td><code>/templates/controllers</code></td>
         <td>templates for controllers actions</td>
     </tr>
     <tr>
-        <td><code>/template/{bundleName}/element</code></td>
+        <td><code>/templates/partials</code></td>
         <td>sub-templates - templates that are included by other templates via <code>{include}</code></td>
     </tr>
     <tr>
-        <td><code>/template/{bundleName}/layout</code></td>
+        <td><code>/templates/layouts</code></td>
         <td>layout templates</td>
     </tr>
 </table>
@@ -997,17 +993,26 @@ You can access various objects inside template file:
     </tr>
 </table>
 
+You can include template from specific bundle (referenced by alias - `hello` in following
+example) via following syntax:
+
+```
+{include file='[hello]partials/debugTable.tpl'} // Smarty
+{% include '@hello/partials/debugTable.twig' %} // Twig
+```
+
+
 ## Helpers
 
 Helpers are classes for the presentation layer of your application. They contain presentational logic that is shared
 between many templates, elements, or layouts. Helpers may assist in creating well-formed markup, aid in formatting text,
-times and numbers etc. Helper classes are placed under `/helper` folder within bundle. Let's create sample `TextHelper`.
-Create class file under `/app/bundle/helloWorld/helper/TextHelper.php` with following content:
+times and numbers etc. Helper classes are placed under `/helpers` folder within bundle. Let's create sample `TextHelper`.
+Create class file under `/app/bundle/helloWorld/helpers/TextHelper.php` with following content:
 
 ```php
-namespace app\bundle\helloWorld\helper;
+namespace app\bundle\helloWorld\helpers;
 
-class TextHelper extends \moment\Helper
+class TextHelper extends \momentphp\Helper
 {
     public function uppercase($text)
     {
@@ -1030,7 +1035,7 @@ $this->app // app object
 $this->view // view object
 $this->view->request // request object
 $this->view->vars // template variables
-$this->options() // helper configuration set in /config/helper.php
+$this->options() // helper configuration set in /config/helpers.php
 ```
 
 ## Cells
@@ -1038,15 +1043,15 @@ $this->options() // helper configuration set in /config/helper.php
 Cells are small mini-controllers that can invoke view logic and render out templates.
 Cells are ideal for building reusable page components that require interaction with models, view logic, and
 rendering logic. A simple example would be the cart in an online store, or a data-driven navigation menu in a CMS.
-Cells do not dispatch sub-requests. Cells classes are placed under `/cell` folder within bundle.
+Cells do not dispatch sub-requests. Cells classes are placed under `/cells` folder within bundle.
 
-Let's create sample `ShoppingCart` cell. Create cell class file `/app/bundle/helloWorld/cell/ShoppingCartCell.php`
+Let's create sample `ShoppingCart` cell. Create cell class file `/app/bundle/helloWorld/cells/ShoppingCartCell.php`
 with following content:
 
 ```php
-namespace app\bundle\helloWorld\cell;
+namespace app\bundle\helloWorld\cells;
 
-class ShoppingCartCell extends \moment\Cell
+class ShoppingCartCell extends \momentphp\Cell
 {
     public function display($items = 5)
     {
@@ -1055,9 +1060,9 @@ class ShoppingCartCell extends \moment\Cell
 }
 ```
 
-Templates behave just like controller templates but are placed inside `cell` subfolder.
+Templates behave just like controller templates but are placed inside `/templates/cells` subfolder.
 In case nothing is returned from cell action default template will be rendered:
-`/app/bundle/helloWorld/template/helloWorld/cell/ShoppingCart/display.twig`.
+`/app/bundle/helloWorld/templates/cells/ShoppingCart/display.twig`.
 
 Our newly created cell may be invoked inside any template:
 
@@ -1069,14 +1074,14 @@ Our newly created cell may be invoked inside any template:
 You can also invoke any cell action and pass additional arguments:
 
 ```html
-{{ this.cell('ShoppingCart@display', {'items': 10}) }} // Twig
-{$this->cell('ShoppingCart@display', ['items' => 10])} // Smarty
+{{ this.cell('ShoppingCart:display', {'items': 10}) }} // Twig
+{$this->cell('ShoppingCart:display', ['items' => 10])} // Smarty
 ```
 
 # Routes
 
 Routes are a way to map URL-s to the code that gets executed only when a certain request is
-received at the server. Routes are defined in `/route.php` file inside bundle. Each route
+received at the server. Routes are defined in `/routes.php` file inside bundle. Each route
 consists of three elements:
 
 - HTTP method
@@ -1086,7 +1091,7 @@ consists of three elements:
 Here is sample route definition:
 
 ```php
-$app->any('/docs', 'Docs@index');
+$app->any('/docs', 'DocsController:index');
 ```
 
 With above definition, any HTTP request (`GET`, `POST`, `...`) to `/docs` URL will invoke handler - that is
@@ -1114,12 +1119,12 @@ Please find more detailed information about middleware in [Slim's][Slim] documen
 - [Middleware][middleware]
 
 In order to create simple `Auth` middleware
-create class file `/middleware/AuthMiddleware.php` with content:
+create class file `/middlewares/AuthMiddleware.php` with content:
 
 ```php
-namespace app\bundle\helloWorld\middleware;
+namespace app\bundle\helloWorld\middlewares;
 
-class AuthMiddleware extends \moment\Middleware
+class AuthMiddleware extends \momentphp\Middleware
 {
     public function run($request, $response, $next)
     {
@@ -1135,33 +1140,21 @@ class AuthMiddleware extends \moment\Middleware
 Middleware can be attached at application level manually:
 
 ```php
-$app->add('Auth');
+$app->add('AuthMiddleware');
 ```
 
 or via configuration inside `/config/app.php`:
 
 ```php
-'middleware' => [
+'middlewares' => [
     'Auth' => true
-]
-```
-
-Note that you may also easily load middlewares designed for [Slim][Slim] framework:
-
-```php
-'middleware' => [
-    new \Slim\HttpCache\Cache('public', 86400)
-]
-// or
-'middleware' => [
-    '\Slim\HttpCache\Cache' => true
 ]
 ```
 
 Also you can attach middleware only to certain routes:
 
 ```php
-$app->any('/pages/{page:.+}', 'Pages@display')->add('Auth');
+$app->any('/pages/{page:.+}', 'PagesController:display')->add('AuthMiddleware');
 ```
 
 # Caching
@@ -1214,7 +1207,7 @@ Please refer to Laravel’s documentation for more information about cache manag
 
 # Logging
 
-By default `log` service will use default logger. In `/config/log.php` file within bundle
+By default `log` service will use default logger. In `/config/loggers.php` file within bundle
 you may define all of your loggers, as well as specify which logger should be used by default.
 Framework uses popular [Monolog][Monolog] library so under the hood each logger is
 an instance of `Monolog\Logger` class.
@@ -1246,15 +1239,15 @@ logger name in `/config/app.php`:
 
 # Error handling
 
-There is a generic "debug" boolean flag that controls lots of different things across the framework - it
-is available as `$app->debug` service which reads `app.debug` configuration setting.
+There is a generic "debug" boolean flag that controls lots of different things across the framework - its
+current value is available as `$app->debug` service (which just reads `app.debug` configuration setting).
 
 Turning `debug = false` disables a number of development features that should never be exposed
 to the Internet at large. Disabling `debug` changes the following types of things:
 
 - PHP errors are not displayed
 - uncaught exceptions and fatal errors will render default internal server error page - using `ErrorController::error()`
-- uncaught `momentphp\NotFoundException` will render default not found page - using `ErrorController::notFound()`
+- uncaught `momentphp\exceptions\NotFoundException` will render default not found page - using `ErrorController::notFound()`
 - templates are not re-compiled when changed
 
 You can set PHP error reporting level by setting `app.error.level` to appropriate value:
@@ -1267,7 +1260,25 @@ You can set PHP error reporting level by setting `app.error.level` to appropriat
 
 # Command line
 
+MomentPHP application can also be invoked in command line mode. This comes handy when
+you need to setup some background processing tasks invoked by cron daemon for instance.
 
+First, setup a `GET` route in `/routes.php`:
+
+```
+if ($app->console) {
+    $app->get('/background/task', function($request, $response, $args) {
+        // perform some tasks using models etc.
+        ...
+    });
+}
+```
+
+Then, issue following command (where `index.php` is application's front controller):
+
+```
+php index.php background/task
+```
 
 [Slim]: http://www.slimframework.com/
 [Smarty]: http://www.smarty.net/

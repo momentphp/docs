@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\Bundle | MomentPHP</title>
+	<title>Class momentphp\Error | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -65,7 +65,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-momentphp.App.html">App</a></li>
-				<li class="active"><a href="class-momentphp.Bundle.html">Bundle</a></li>
+				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
 				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
 				<li><a href="class-momentphp.Cache.html">Cache</a></li>
 				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
@@ -73,7 +73,7 @@
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
-				<li><a href="class-momentphp.Error.html">Error</a></li>
+				<li class="active"><a href="class-momentphp.Error.html">Error</a></li>
 				<li><a href="class-momentphp.ExceptionRenderer.html">ExceptionRenderer</a></li>
 				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
@@ -125,30 +125,15 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Bundle</h1>
+	<h1>Class Error</h1>
 
 
 	<div class="description">
-	<p>Bundle</p>
+	<p>Error</p>
 	</div>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-<b><span>momentphp\Bundle</span></b>			
-			
-			 uses 
-					<a href="class-momentphp.traits.MethodCacheTrait.html"><span>momentphp\traits\MethodCacheTrait</span></a>, 
-			
-					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>
-			
-		</dd>
-	</dl>
 
 
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-momentphp.FrameworkBundle.html">momentphp\FrameworkBundle</a>
-	</div>
 
 
 
@@ -156,12 +141,12 @@
 
 
 	<div class="info">
-		<b>Abstract</b><br>
+		
 		
 		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
 		
 
-			<b>Located at</b> Bundle.php		<br>
+			<b>Located at</b> Error.php		<br>
 	</div>
 
 
@@ -180,7 +165,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>array <var>$options</var> = []</span> )</code>
+		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -192,7 +177,7 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$options</var></dt>
+					<dt><var>$container</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -203,119 +188,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="namespaceName" id="_namespaceName">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_namespaceName">#</a>
-		<code>namespaceName( <span>string <var>$class</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Return PHP namespace for classes within this bundle (bundle base namespace)</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return PHP namespace for classes within this bundle (bundle base namespace)</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$class</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="path" id="_path">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_path">#</a>
-		<code>path( <span>string <var>$path</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Return bundle base path</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return bundle base path</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$path</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="alias" id="_alias">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_alias">#</a>
-		<code>alias( )</code>
-
-		<div class="description short">
-			<p>Return bundle alias (lower-cased and dot-separated namespace if unset)</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return bundle alias (lower-cased and dot-separated namespace if unset)</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="run" id="_run">
+	<tr data-order="register" id="_register">
 
 		<td class="attributes"><code>
 			 public 
@@ -326,23 +199,352 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_run">#</a>
-		<code>run( <span><code><a href="class-momentphp.App.html">momentphp\App</a></code> <var>$app</var></span> )</code>
+		<a class="anchor" href="#_register">#</a>
+		<code>register( )</code>
 
 		<div class="description short">
-			<p>Bundle callback called just before response is sent to the client</p>
+			<p>Register handlers</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Bundle callback called just before response is sent to the client</p>
+			<p>Register handlers</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="notFoundHandler" id="_notFoundHandler">
+
+		<td class="attributes"><code>
+			 public 
+
+			callable
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_notFoundHandler">#</a>
+		<code>notFoundHandler( )</code>
+
+		<div class="description short">
+			<p>Return not found callable (Slim)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return not found callable (Slim)</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					callable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="notAllowedHandler" id="_notAllowedHandler">
+
+		<td class="attributes"><code>
+			 public 
+
+			callable
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_notAllowedHandler">#</a>
+		<code>notAllowedHandler( )</code>
+
+		<div class="description short">
+			<p>Return not allowed callable (Slim)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return not allowed callable (Slim)</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					callable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="errorHandler" id="_errorHandler">
+
+		<td class="attributes"><code>
+			 public 
+
+			callable
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_errorHandler">#</a>
+		<code>errorHandler( )</code>
+
+		<div class="description short">
+			<p>Return error callable (Slim)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return error callable (Slim)</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					callable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="errorHandlerPHP" id="_errorHandlerPHP">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_errorHandlerPHP">#</a>
+		<code>errorHandlerPHP( <span>integer <var>$code</var></span>, <span>string <var>$message</var></span>, <span>string|null <var>$file</var> = <span class="php-quote">''</span></span>, <span>integer|null <var>$line</var> = <span class="php-num">0</span></span>, <span>array|null <var>$context</var> = []</span> )</code>
+
+		<div class="description short">
+			<p>Set the default error handler</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the default error handler</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$app</var></dt>
+					<dt><var>$code</var></dt>
+					<dd></dd>
+					<dt><var>$message</var></dt>
+					<dd></dd>
+					<dt><var>$file</var></dt>
+					<dd></dd>
+					<dt><var>$line</var></dt>
+					<dd></dd>
+					<dt><var>$context</var></dt>
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="shutdownHandler" id="_shutdownHandler">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_shutdownHandler">#</a>
+		<code>shutdownHandler( )</code>
+
+		<div class="description short">
+			<p>Shutdown function</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Shutdown function</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="log" id="_log">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_log">#</a>
+		<code>log( <span>mixed <var>$level</var></span>, <span>string <var>$message</var></span>, <span>array <var>$context</var> = []</span> )</code>
+
+		<div class="description short">
+			<p>Add a log record at an arbitrary level</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a log record at an arbitrary level</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$level</var></dt>
+					<dd></dd>
+					<dt><var>$message</var></dt>
+					<dd></dd>
+					<dt><var>$context</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="logException" id="_logException">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_logException">#</a>
+		<code>logException( <span>Exception <var>$e</var></span> )</code>
+
+		<div class="description short">
+			<p>Log exception</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Log exception</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$e</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="defaultErrorLevelMap" id="_defaultErrorLevelMap">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_defaultErrorLevelMap">#</a>
+		<code>defaultErrorLevelMap( )</code>
+
+		<div class="description short">
+			<p>Error level map</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Error level map</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="codeToString" id="_codeToString">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_codeToString">#</a>
+		<code>codeToString( <span>const <var>$code</var></span> )</code>
+
+		<div class="description short">
+			<p>Return error code as string</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return error code as string</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$code</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -353,22 +555,6 @@
 	</table>
 
 
-	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.MethodCacheTrait.html#methods">momentphp\traits\MethodCacheTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.MethodCacheTrait.html#___call">__call()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.OptionsTrait.html#methods">momentphp\traits\OptionsTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.OptionsTrait.html#_options">options()</a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -381,65 +567,63 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="options" id="$options">
+	<tr data-order="container" id="$container">
+		<td class="attributes"><code>
+			protected  
+			Interop\Container\ContainerInterface
+		</code></td>
+
+		<td class="name">
+<var>$container</var>
+			<div class="description short">
+				<p>Container instance</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Container instance</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$container" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="fatalErrors" id="$fatalErrors">
 		<td class="attributes"><code>
 			protected  
 			array
 		</code></td>
 
 		<td class="name">
-<var>$options</var>
+<var>$fatalErrors</var>
 			<div class="description short">
-				<p>Options</p>
+				<p>Fatal errors</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Options</p>
+				<p>Fatal errors</p>
 
 			</div>
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$options" class="anchor">#</a>
-				<code>[]</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="reflector" id="$reflector">
-		<td class="attributes"><code>
-			protected  
-			ReflectionClass
-		</code></td>
-
-		<td class="name">
-<var>$reflector</var>
-			<div class="description short">
-				<p>ReflectionClass</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>ReflectionClass</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$reflector" class="anchor">#</a>
-				<code></code>
+				<a href="#$fatalErrors" class="anchor">#</a>
+				<code>[
+    E_ERROR,
+    E_PARSE,
+    E_CORE_ERROR,
+    E_COMPILE_ERROR,
+    E_USER_ERROR,
+]</code>
 			</div>
 		</td>
 	</tr>
 	</table>
 
 
-	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.MethodCacheTrait.html#properties">momentphp\traits\MethodCacheTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.MethodCacheTrait.html#$methodCache"><var>$methodCache</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

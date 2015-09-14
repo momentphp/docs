@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\Bundle | MomentPHP</title>
+	<title>Class momentphp\Model | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -65,7 +65,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-momentphp.App.html">App</a></li>
-				<li class="active"><a href="class-momentphp.Bundle.html">Bundle</a></li>
+				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
 				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
 				<li><a href="class-momentphp.Cache.html">Cache</a></li>
 				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
@@ -79,7 +79,7 @@
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
 				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
-				<li><a href="class-momentphp.Model.html">Model</a></li>
+				<li class="active"><a href="class-momentphp.Model.html">Model</a></li>
 				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
@@ -125,30 +125,28 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Bundle</h1>
+	<h1>Class Model</h1>
 
 
 	<div class="description">
-	<p>Bundle</p>
+	<p>Model</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-<b><span>momentphp\Bundle</span></b>			
+<b><span>momentphp\Model</span></b>			
 			
 			 uses 
-					<a href="class-momentphp.traits.MethodCacheTrait.html"><span>momentphp\traits\MethodCacheTrait</span></a>, 
+					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>, 
 			
-					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>
+					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>, 
+			
+					<a href="class-momentphp.traits.EventDispatcherTrait.html"><span>momentphp\traits\EventDispatcherTrait</span></a>
 			
 		</dd>
 	</dl>
 
 
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-momentphp.FrameworkBundle.html">momentphp\FrameworkBundle</a>
-	</div>
 
 
 
@@ -161,7 +159,7 @@
 		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
 		
 
-			<b>Located at</b> Bundle.php		<br>
+			<b>Located at</b> Model.php		<br>
 	</div>
 
 
@@ -203,37 +201,37 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="namespaceName" id="_namespaceName">
+	<tr data-order="db" id="_db">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 
-			string
+			Illuminate\Database\ConnectionInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_namespaceName">#</a>
-		<code>namespaceName( <span>string <var>$class</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_db">#</a>
+		<code>db( <span>string <var>$connectionName</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Return PHP namespace for classes within this bundle (bundle base namespace)</p>
+			<p>Return connection</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return PHP namespace for classes within this bundle (bundle base namespace)</p>
+			<p>Return connection</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$class</var></dt>
+					<dt><var>$connectionName</var></dt>
 					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
+					Illuminate\Database\ConnectionInterface
 				</div>
 
 
@@ -242,37 +240,32 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="path" id="_path">
+	<tr data-order="implementedEvents" id="_implementedEvents">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 
-			string
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_path">#</a>
-		<code>path( <span>string <var>$path</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_implementedEvents">#</a>
+		<code>implementedEvents( )</code>
 
 		<div class="description short">
-			<p>Return bundle base path</p>
+			<p>Return a list of all events that will fire in the model during its lifecycle</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return bundle base path</p>
+			<p>Return a list of all events that will fire in the model during its lifecycle</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$path</var></dt>
-					<dd></dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
+					array
 				</div>
 
 
@@ -281,41 +274,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="alias" id="_alias">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_alias">#</a>
-		<code>alias( )</code>
-
-		<div class="description short">
-			<p>Return bundle alias (lower-cased and dot-separated namespace if unset)</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return bundle alias (lower-cased and dot-separated namespace if unset)</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="run" id="_run">
+	<tr data-order="initialize" id="_initialize">
 
 		<td class="attributes"><code>
 			 public 
@@ -326,23 +285,91 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_run">#</a>
-		<code>run( <span><code><a href="class-momentphp.App.html">momentphp\App</a></code> <var>$app</var></span> )</code>
+		<a class="anchor" href="#_initialize">#</a>
+		<code>initialize( )</code>
 
 		<div class="description short">
-			<p>Bundle callback called just before response is sent to the client</p>
+			<p>Model callback invoked just after model construction</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Bundle callback called just before response is sent to the client</p>
+			<p>Model callback invoked just after model construction</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="objectKey" id="_objectKey">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_objectKey">#</a>
+		<code>objectKey( )</code>
+
+		<div class="description short">
+			<p>Return model key (for caching purposes)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return model key (for caching purposes)</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__get" id="___get">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-momentphp.Model.html">momentphp\Model</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___get">#</a>
+		<code>__get( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			<p>Return model</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return model</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$app</var></dt>
+					<dt><var>$name</var></dt>
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-momentphp.Model.html">momentphp\Model</a></code>
+				</div>
 
 
 
@@ -354,18 +381,27 @@
 
 
 	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.MethodCacheTrait.html#methods">momentphp\traits\MethodCacheTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.MethodCacheTrait.html#___call">__call()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
 	<caption>Methods used from <a href="class-momentphp.traits.OptionsTrait.html#methods">momentphp\traits\OptionsTrait</a></caption>
 	<tr>
 		<td><code>
 			<a href="class-momentphp.traits.OptionsTrait.html#_options">options()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.AppAwareTrait.html#methods">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.EventDispatcherTrait.html#methods">momentphp\traits\EventDispatcherTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.EventDispatcherTrait.html#_bindImplementedEvents">bindImplementedEvents()</a>, 
+			<a href="class-momentphp.traits.EventDispatcherTrait.html#_eventDispatcher">eventDispatcher()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -381,6 +417,30 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="connection" id="$connection">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$connection</var>
+			<div class="description short">
+				<p>Connection name to use</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Connection name to use</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$connection" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
 	<tr data-order="options" id="$options">
 		<td class="attributes"><code>
 			protected  
@@ -405,38 +465,22 @@
 			</div>
 		</td>
 	</tr>
-	<tr data-order="reflector" id="$reflector">
-		<td class="attributes"><code>
-			protected  
-			ReflectionClass
-		</code></td>
-
-		<td class="name">
-<var>$reflector</var>
-			<div class="description short">
-				<p>ReflectionClass</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>ReflectionClass</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$reflector" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
 	</table>
 
 
 	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.MethodCacheTrait.html#properties">momentphp\traits\MethodCacheTrait</a></caption>
+	<caption>Properties used from <a href="class-momentphp.traits.AppAwareTrait.html#properties">momentphp\traits\AppAwareTrait</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-momentphp.traits.MethodCacheTrait.html#$methodCache"><var>$methodCache</var></a>
+			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.EventDispatcherTrait.html#properties">momentphp\traits\EventDispatcherTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.EventDispatcherTrait.html#$eventDispatcher"><var>$eventDispatcher</var></a>
 		</code></td>
 	</tr>
 	</table>

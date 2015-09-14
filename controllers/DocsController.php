@@ -8,4 +8,9 @@ class DocsController extends \momentphp\Controller
     {
         $this->set('htmlTitle', 'Docs');
     }
+
+    public function readme()
+    {
+        return file_get_contents(path([$this->app->bundles->owns($this)->path(), 'README.md']));
+    }
 }

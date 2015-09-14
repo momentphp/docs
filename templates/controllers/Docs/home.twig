@@ -48,7 +48,7 @@
             $('.page-heading h1 a').lettering();
 
             Flatdoc.run({
-                fetcher: Flatdoc.file('/bundles/docs/README.md')
+                fetcher: Flatdoc.file('{{ this.app.router.pathFor('docs-readme') }}')
             });
 
         });

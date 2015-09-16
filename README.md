@@ -406,7 +406,8 @@ $app->bundles->load([app\bundle\helloWorld\HelloWorldBundle::class => ['alias' =
 
 ## Bundle inheritance
 
-As stated earlier application can use multiple bundles. The order in which bundles are loaded matters. Resources from
+Bundle inheritance is one of the most powerful features of MomentPHP. As stated earlier application
+can use multiple bundles. The order in which bundles are loaded matters. Resources from
 previous bundle can be overriden in next bundle in chain. To illustrate this process let's assume
 that application loads two bundles:
 

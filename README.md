@@ -94,7 +94,7 @@ It can be used just about anywhere (for example in configuration files):
 
 ```php
 return [
-    template' => app('bundles')->paths('templates'),
+    'templates' => app('bundles')->paths('templates'),
 ]
 ```
 

@@ -40,8 +40,8 @@
 
 						</li>
 				<li>
-					<a href="namespace-momentphp.services.html">
-						services					</a>
+					<a href="namespace-momentphp.providers.html">
+						providers					</a>
 
 						</li>
 				<li>
@@ -73,8 +73,9 @@
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li class="active"><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
+				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
-				<li><a href="class-momentphp.ExceptionRenderer.html">ExceptionRenderer</a></li>
+				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
 				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
@@ -83,10 +84,11 @@
 				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.Service.html">Service</a></li>
-				<li><a href="class-momentphp.SmartyView.html">SmartyView</a></li>
-				<li><a href="class-momentphp.TwigView.html">TwigView</a></li>
+				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
+				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -139,8 +141,6 @@
 			 uses 
 					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>, 
 			
-					<a href="class-momentphp.traits.ViewVarsTrait.html"><span>momentphp\traits\ViewVarsTrait</span></a>, 
-			
 					<a href="class-momentphp.traits.EventDispatcherTrait.html"><span>momentphp\traits\EventDispatcherTrait</span></a>
 			
 		</dd>
@@ -182,7 +182,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>Psr\Http\Message\RequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
+		<code>__construct( <span>Psr\Http\Message\RequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span>, <span><code><a href="class-momentphp.View.html">momentphp\View</a></code> <var>$view</var></span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -198,81 +198,10 @@
 					<dd></dd>
 					<dt><var>$response</var></dt>
 					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="template" id="_template">
-
-		<td class="attributes"><code>
-			 public 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_template">#</a>
-		<code>template( <span>string <var>$action</var> = __FUNCTION__</span> )</code>
-
-		<div class="description short">
-			<p>Return template file to use for given action</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return template file to use for given action</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$action</var></dt>
+					<dt><var>$view</var></dt>
 					<dd></dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="view" id="_view">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-momentphp.View.html">momentphp\View</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_view">#</a>
-		<code>view( )</code>
-
-		<div class="description short">
-			<p>Return view</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return view</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-momentphp.View.html">momentphp\View</a></code>
-				</div>
 
 
 
@@ -414,6 +343,88 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="set" id="_set">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-momentphp.View.html">momentphp\View</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_set">#</a>
+		<code>set( <span>mixed <var>$name</var></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Save a variable or an associative array of variables for use inside a template</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Save a variable or an associative array of variables for use inside a template</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-momentphp.View.html">momentphp\View</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="render" id="_render">
+
+		<td class="attributes"><code>
+			 public 
+
+			Psr\Http\Message\ResponseInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_render">#</a>
+		<code>render( <span>string <var>$template</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$bundle</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Return response object with rendered template</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return response object with rendered template</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$template</var></dt>
+					<dd></dd>
+					<dt><var>$bundle</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					Psr\Http\Message\ResponseInterface
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="__invoke" id="___invoke">
 
 		<td class="attributes"><code>
@@ -506,14 +517,6 @@
 	</tr>
 	</table>
 	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.ViewVarsTrait.html#methods">momentphp\traits\ViewVarsTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.ViewVarsTrait.html#_set">set()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
 	<caption>Methods used from <a href="class-momentphp.traits.EventDispatcherTrait.html#methods">momentphp\traits\EventDispatcherTrait</a></caption>
 	<tr>
 		<td><code>
@@ -566,19 +569,6 @@
 	<tr>
 		<td><code>
 			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.ViewVarsTrait.html#properties">momentphp\traits\ViewVarsTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.ViewVarsTrait.html#$request"><var>$request</var></a>, 
-			<a href="class-momentphp.traits.ViewVarsTrait.html#$response"><var>$response</var></a>, 
-			<a href="class-momentphp.traits.ViewVarsTrait.html#$template"><var>$template</var></a>, 
-			<a href="class-momentphp.traits.ViewVarsTrait.html#$templateBundle"><var>$templateBundle</var></a>, 
-			<a href="class-momentphp.traits.ViewVarsTrait.html#$vars"><var>$vars</var></a>, 
-			<a href="class-momentphp.traits.ViewVarsTrait.html#$viewService"><var>$viewService</var></a>
 		</code></td>
 	</tr>
 	</table>

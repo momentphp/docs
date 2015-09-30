@@ -40,8 +40,8 @@
 
 						</li>
 				<li>
-					<a href="namespace-momentphp.services.html">
-						services					</a>
+					<a href="namespace-momentphp.providers.html">
+						providers					</a>
 
 						</li>
 				<li>
@@ -73,8 +73,9 @@
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
+				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
-				<li><a href="class-momentphp.ExceptionRenderer.html">ExceptionRenderer</a></li>
+				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
 				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
@@ -83,10 +84,11 @@
 				<li class="active"><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.Service.html">Service</a></li>
-				<li><a href="class-momentphp.SmartyView.html">SmartyView</a></li>
-				<li><a href="class-momentphp.TwigView.html">TwigView</a></li>
+				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
+				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -137,6 +139,8 @@
 <b><span>momentphp\ModelCollection</span></b>			
 			
 			 uses 
+					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>, 
+			
 					<a href="class-momentphp.traits.CollectionTrait.html"><span>momentphp\traits\CollectionTrait</span></a>, 
 			
 					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>
@@ -164,43 +168,6 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span>, <span> <var>$options</var> = []</span> )</code>
-
-		<div class="description short">
-			<p>Constructor</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Constructor</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$container</var></dt>
-					<dd>$options</dd>
-					<dt><var>$options</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="factory" id="_factory">
 
 		<td class="attributes"><code>
@@ -285,6 +252,14 @@
 
 
 	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.AppAwareTrait.html#methods">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
 	<caption>Methods used from <a href="class-momentphp.traits.CollectionTrait.html#methods">momentphp\traits\CollectionTrait</a></caption>
 	<tr>
 		<td><code>
@@ -313,30 +288,6 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="container" id="$container">
-		<td class="attributes"><code>
-			protected  
-			Interop\Container\ContainerInterface
-		</code></td>
-
-		<td class="name">
-<var>$container</var>
-			<div class="description short">
-				<p>Container instance</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Container instance</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$container" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
 	<tr data-order="options" id="$options">
 		<td class="attributes"><code>
 			protected  
@@ -364,6 +315,14 @@
 	</table>
 
 
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.AppAwareTrait.html#properties">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+		</code></td>
+	</tr>
+	</table>
 	<table class="summary used">
 	<caption>Properties used from <a href="class-momentphp.traits.CollectionTrait.html#properties">momentphp\traits\CollectionTrait</a></caption>
 	<tr>

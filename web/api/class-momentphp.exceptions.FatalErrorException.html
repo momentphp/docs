@@ -40,8 +40,8 @@
 
 						</li>
 				<li>
-					<a href="namespace-momentphp.services.html">
-						services					</a>
+					<a href="namespace-momentphp.providers.html">
+						providers					</a>
 
 						</li>
 				<li>
@@ -68,6 +68,7 @@
 			<h3>Exceptions</h3>
 			<ul>
 				<li class="active"><a href="class-momentphp.exceptions.FatalErrorException.html">FatalErrorException</a></li>
+				<li><a href="class-momentphp.exceptions.NotAllowedException.html">NotAllowedException</a></li>
 				<li><a href="class-momentphp.exceptions.NotFoundException.html">NotFoundException</a></li>
 			</ul>
 
@@ -119,6 +120,12 @@ Exception
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
+ErrorException
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
 <b><span>momentphp\exceptions\FatalErrorException</span></b>			
 			
 			
@@ -138,6 +145,8 @@ Exception
 		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a>\<a href="namespace-momentphp.exceptions.html">exceptions</a><br>
 		
 
+				<b>Author:</b>
+				Konstanton Myakshin <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;:&#x6b;&#111;&#99;&#x2d;&#x64;&#112;&#64;&#x79;&#97;&#110;&#x64;&#x65;&#120;&#46;&#x72;&#x75;">&#x6b;&#111;&#99;&#x2d;&#x64;&#112;&#64;&#x79;&#97;&#110;&#x64;&#x65;&#120;&#46;&#x72;&#x75;</a><br>
 			<b>Located at</b> exceptions/FatalErrorException.php		<br>
 	</div>
 
@@ -157,39 +166,66 @@ Exception
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>string <var>$message</var></span>, <span>integer <var>$code</var> = <span class="php-num">500</span></span>, <span>string|null <var>$file</var> = <span class="php-keyword1">null</span></span>, <span>integer|null <var>$line</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>__construct( <span> <var>$message</var></span>, <span> <var>$code</var></span>, <span> <var>$severity</var></span>, <span> <var>$filename</var></span>, <span> <var>$lineno</var></span>, <span> <var>$traceOffset</var> = <span class="php-keyword1">null</span></span>, <span> <var>$traceArgs</var> = <span class="php-keyword1">true</span></span>, <span>array <var>$trace</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Constructor</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Constructor</p>
+			
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$message</var></dt>
-					<dd></dd>
-					<dt><var>$code</var></dt>
-					<dd></dd>
-					<dt><var>$file</var></dt>
-					<dd></dd>
-					<dt><var>$line</var></dt>
-					<dd></dd>
-				</dl></div>
 
 
 
 
 				<h4>Overrides</h4>
-				<div class="list"><code>Exception::__construct()</code></div>
+				<div class="list"><code>ErrorException::__construct()</code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setTrace" id="_setTrace">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setTrace">#</a>
+		<code>setTrace( <span> <var>$trace</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
 
 		</div>
 		</div></td>
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from ErrorException</caption>
+	<tr>
+		<td><code>
+getSeverity()
+		</code></td>
+	</tr>
+	</table>
 	<table class="summary inherited">
 	<caption>Methods inherited from Exception</caption>
 	<tr>
@@ -217,6 +253,14 @@ getTraceAsString()
 
 
 
+	<table class="summary inherited">
+	<caption>Properties inherited from ErrorException</caption>
+	<tr>
+		<td><code>
+<var>$severity</var>
+		</code></td>
+	</tr>
+	</table>
 	<table class="summary inherited">
 	<caption>Properties inherited from Exception</caption>
 	<tr>

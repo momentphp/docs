@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\services\SmartyViewService | MomentPHP</title>
+	<title>Class momentphp\middlewares\ContentTypeMiddleware | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -34,14 +34,14 @@
 						interfaces					</a>
 
 						</li>
-				<li>
+				<li class="active">
 					<a href="namespace-momentphp.middlewares.html">
 						middlewares					</a>
 
 						</li>
-				<li class="active">
-					<a href="namespace-momentphp.services.html">
-						services					</a>
+				<li>
+					<a href="namespace-momentphp.providers.html">
+						providers					</a>
 
 						</li>
 				<li>
@@ -64,8 +64,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-momentphp.services.SmartyViewService.html">SmartyViewService</a></li>
-				<li><a href="class-momentphp.services.TwigViewService.html">TwigViewService</a></li>
+				<li><a href="class-momentphp.middlewares.BundleAssetsMiddleware.html">BundleAssetsMiddleware</a></li>
+				<li class="active"><a href="class-momentphp.middlewares.ContentTypeMiddleware.html">ContentTypeMiddleware</a></li>
 			</ul>
 
 
@@ -92,7 +92,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-momentphp.services.html" title="Summary of momentphp\services"><span>Namespace</span></a>
+				<a href="namespace-momentphp.middlewares.html" title="Summary of momentphp\middlewares"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -104,16 +104,16 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class SmartyViewService</h1>
+	<h1>Class ContentTypeMiddleware</h1>
 
 
 	<div class="description">
-	<p>SmartyViewService</p>
+	<p>ContentTypeMiddleware</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-			<a href="class-momentphp.Service.html"><span>momentphp\Service</span></a>
+			<a href="class-momentphp.Middleware.html"><span>momentphp\Middleware</span></a>
 			
 			
 			 uses 
@@ -124,7 +124,7 @@
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>momentphp\services\SmartyViewService</span></b>			
+<b><span>momentphp\middlewares\ContentTypeMiddleware</span></b>			
 			
 			
 		</dd>
@@ -140,39 +140,52 @@
 	<div class="info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a>\<a href="namespace-momentphp.services.html">services</a><br>
+		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a>\<a href="namespace-momentphp.middlewares.html">middlewares</a><br>
 		
 
-			<b>Located at</b> services/SmartyViewService.php		<br>
+			<b>Located at</b> middlewares/ContentTypeMiddleware.php		<br>
 	</div>
 
 
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="register" id="_register">
+	<tr data-order="handle" id="_handle">
 
 		<td class="attributes"><code>
 			 public 
 
-			
+			Psr\Http\Message\ResponseInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_register">#</a>
-		<code>register( )</code>
+		<a class="anchor" href="#_handle">#</a>
+		<code>handle( <span>Psr\Http\Message\ServerRequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span>, <span>callable <var>$next</var></span> )</code>
 
 		<div class="description short">
-			<p>Register service</p>
+			<p>Invoke middleware</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Register service</p>
+			<p>Invoke middleware</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$request</var></dt>
+					<dd></dd>
+					<dt><var>$response</var></dt>
+					<dd></dd>
+					<dt><var>$next</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					Psr\Http\Message\ResponseInterface
+				</div>
 
 
 
@@ -183,10 +196,11 @@
 	</table>
 
 	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-momentphp.Service.html#methods">momentphp\Service</a></caption>
+	<caption>Methods inherited from <a href="class-momentphp.Middleware.html#methods">momentphp\Middleware</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-momentphp.Service.html#___construct">__construct()</a>
+			<a href="class-momentphp.Middleware.html#___construct">__construct()</a>, 
+			<a href="class-momentphp.Middleware.html#___invoke">__invoke()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -219,10 +233,10 @@
 
 
 	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-momentphp.Service.html#properties">momentphp\Service</a></caption>
+	<caption>Properties inherited from <a href="class-momentphp.Middleware.html#properties">momentphp\Middleware</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-momentphp.Service.html#$options"><var>$options</var></a>
+			<a href="class-momentphp.Middleware.html#$options"><var>$options</var></a>
 		</code></td>
 	</tr>
 	</table>

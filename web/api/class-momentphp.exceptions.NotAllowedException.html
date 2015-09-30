@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\Cache | MomentPHP</title>
+	<title>Class momentphp\exceptions\NotAllowedException | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -24,7 +24,7 @@
 					</a>
 
 						<ul>
-				<li>
+				<li class="active">
 					<a href="namespace-momentphp.exceptions.html">
 						exceptions					</a>
 
@@ -62,37 +62,15 @@
 
 
 		<div id="elements">
-			<h3>Classes</h3>
+
+
+
+			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-momentphp.App.html">App</a></li>
-				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
-				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
-				<li class="active"><a href="class-momentphp.Cache.html">Cache</a></li>
-				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
-				<li><a href="class-momentphp.Cell.html">Cell</a></li>
-				<li><a href="class-momentphp.Config.html">Config</a></li>
-				<li><a href="class-momentphp.Controller.html">Controller</a></li>
-				<li><a href="class-momentphp.Database.html">Database</a></li>
-				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
-				<li><a href="class-momentphp.Error.html">Error</a></li>
-				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
-				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
-				<li><a href="class-momentphp.Helper.html">Helper</a></li>
-				<li><a href="class-momentphp.Log.html">Log</a></li>
-				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
-				<li><a href="class-momentphp.Model.html">Model</a></li>
-				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
-				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
-				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
-				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
-				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
-				<li><a href="class-momentphp.View.html">View</a></li>
-				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
+				<li><a href="class-momentphp.exceptions.FatalErrorException.html">FatalErrorException</a></li>
+				<li class="active"><a href="class-momentphp.exceptions.NotAllowedException.html">NotAllowedException</a></li>
+				<li><a href="class-momentphp.exceptions.NotFoundException.html">NotFoundException</a></li>
 			</ul>
-
-
-
 
 
 		</div>
@@ -115,7 +93,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-momentphp.html" title="Summary of momentphp"><span>Namespace</span></a>
+				<a href="namespace-momentphp.exceptions.html" title="Summary of momentphp\exceptions"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -127,13 +105,26 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Cache</h1>
+	<h1>Class NotAllowedException</h1>
 
 
 	<div class="description">
-	<p>Cache</p>
+	<p>NotAllowedException</p>
 	</div>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Exception
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>momentphp\exceptions\NotAllowedException</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -145,10 +136,10 @@
 	<div class="info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
+		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a>\<a href="namespace-momentphp.exceptions.html">exceptions</a><br>
 		
 
-			<b>Located at</b> Cache.php		<br>
+			<b>Located at</b> exceptions/NotAllowedException.php		<br>
 	</div>
 
 
@@ -167,7 +158,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span><code><a href="class-momentphp.Config.html">momentphp\Config</a></code> <var>$config</var></span> )</code>
+		<code>__construct( <span>array <var>$methods</var></span>, <span>string <var>$message</var> = <span class="php-quote">''</span></span>, <span>integer <var>$code</var> = <span class="php-num">0</span></span>, <span>Exception <var>$previous</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -179,50 +170,51 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$config</var></dt>
+					<dt><var>$methods</var></dt>
+					<dd></dd>
+					<dt><var>$message</var></dt>
+					<dd></dd>
+					<dt><var>$code</var></dt>
+					<dd></dd>
+					<dt><var>$previous</var></dt>
 					<dd></dd>
 				</dl></div>
 
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code>Exception::__construct()</code></div>
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="__call" id="___call">
+	<tr data-order="getMethods" id="_getMethods">
 
 		<td class="attributes"><code>
 			 public 
 
-			mixed
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___call">#</a>
-		<code>__call( <span>string <var>$method</var></span>, <span>array <var>$args</var></span> )</code>
+		<a class="anchor" href="#_getMethods">#</a>
+		<code>getMethods( )</code>
 
 		<div class="description short">
-			<p>Proxy calls to manager</p>
+			<p>Return methods</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Proxy calls to manager</p>
+			<p>Return methods</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$method</var></dt>
-					<dd></dd>
-					<dt><var>$args</var></dt>
-					<dd></dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed
+					array
 				</div>
 
 
@@ -233,6 +225,21 @@
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from Exception</caption>
+	<tr>
+		<td><code>
+__toString(), 
+getCode(), 
+getFile(), 
+getLine(), 
+getMessage(), 
+getPrevious(), 
+getTrace(), 
+getTraceAsString()
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -246,32 +253,43 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="cacheManager" id="$cacheManager">
+	<tr data-order="methods" id="$methods">
 		<td class="attributes"><code>
 			protected  
-			Illuminate\Cache\CacheManager
+			array
 		</code></td>
 
 		<td class="name">
-<var>$cacheManager</var>
+<var>$methods</var>
 			<div class="description short">
-				<p>Cache manager</p>
+				<p>Methods</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Cache manager</p>
+				<p>Methods</p>
 
 			</div>
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$cacheManager" class="anchor">#</a>
-				<code></code>
+				<a href="#$methods" class="anchor">#</a>
+				<code>[]</code>
 			</div>
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Properties inherited from Exception</caption>
+	<tr>
+		<td><code>
+<var>$code</var>, 
+<var>$file</var>, 
+<var>$line</var>, 
+<var>$message</var>
+		</code></td>
+	</tr>
+	</table>
 
 
 

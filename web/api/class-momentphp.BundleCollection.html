@@ -40,8 +40,8 @@
 
 						</li>
 				<li>
-					<a href="namespace-momentphp.services.html">
-						services					</a>
+					<a href="namespace-momentphp.providers.html">
+						providers					</a>
 
 						</li>
 				<li>
@@ -73,8 +73,9 @@
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
+				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
-				<li><a href="class-momentphp.ExceptionRenderer.html">ExceptionRenderer</a></li>
+				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
 				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
@@ -83,10 +84,11 @@
 				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.Service.html">Service</a></li>
-				<li><a href="class-momentphp.SmartyView.html">SmartyView</a></li>
-				<li><a href="class-momentphp.TwigView.html">TwigView</a></li>
+				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
+				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -137,6 +139,8 @@
 <b><span>momentphp\BundleCollection</span></b>			
 			
 			 uses 
+					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>, 
+			
 					<a href="class-momentphp.traits.CollectionTrait.html"><span>momentphp\traits\CollectionTrait</span></a>, 
 			
 					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>
@@ -353,6 +357,129 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="classPrefix" id="_classPrefix">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_classPrefix">#</a>
+		<code>classPrefix( <span>string|object <var>$class</var></span> )</code>
+
+		<div class="description short">
+			<p>Check defined namespaces and return prefix for given class:
+TestServiceProvider -> Test</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check defined namespaces and return prefix for given class:
+TestServiceProvider -> Test</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$class</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="classSuffix" id="_classSuffix">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_classSuffix">#</a>
+		<code>classSuffix( <span>string|object <var>$class</var></span> )</code>
+
+		<div class="description short">
+			<p>Check defined namespaces and return suffix for given class:
+TestServiceProvider -> ServiceProvider</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check defined namespaces and return suffix for given class:
+TestServiceProvider -> ServiceProvider</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$class</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="classPart" id="_classPart">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_classPart">#</a>
+		<code>classPart( <span>string|object <var>$class</var></span>, <span>string <var>$type</var></span> )</code>
+
+		<div class="description short">
+			<p>Check defined namespaces and return suffix or prefix</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check defined namespaces and return suffix or prefix</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$class</var></dt>
+					<dd></dd>
+					<dt><var>$type</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="construct" id="_construct">
 
 		<td class="attributes"><code>
@@ -465,44 +592,17 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="run" id="_run">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_run">#</a>
-		<code>run( <span><code><a href="class-momentphp.App.html">momentphp\App</a></code> <var>$app</var></span> )</code>
-
-		<div class="description short">
-			<p>Execute <code>Bundle::run()</code> callback across loaded bundles</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Execute <code>Bundle::run()</code> callback across loaded bundles</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$app</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	</table>
 
 
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.AppAwareTrait.html#methods">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
+		</code></td>
+	</tr>
+	</table>
 	<table class="summary used">
 	<caption>Methods used from <a href="class-momentphp.traits.CollectionTrait.html#methods">momentphp\traits\CollectionTrait</a></caption>
 	<tr>
@@ -553,18 +653,18 @@
 			<div>
 				<a href="#$options" class="anchor">#</a>
 				<code>[
-    <span class="php-quote">'classes'</span> =&gt; [
-        <span class="php-quote">'cells'</span>,
-        <span class="php-quote">'controllers'</span>,
-        <span class="php-quote">'models'</span>,
-        <span class="php-quote">'helpers'</span>,
-        <span class="php-quote">'services'</span>,
-        <span class="php-quote">'middlewares'</span>,
+    <span class="php-quote">'namespaces'</span> =&gt; [
+        <span class="php-quote">'cells'</span>         =&gt; <span class="php-quote">'Cell'</span>,
+        <span class="php-quote">'controllers'</span>   =&gt; <span class="php-quote">'Controller'</span>,
+        <span class="php-quote">'models'</span>        =&gt; <span class="php-quote">'Model'</span>,
+        <span class="php-quote">'helpers'</span>       =&gt; <span class="php-quote">'Helper'</span>,
+        <span class="php-quote">'providers'</span>     =&gt; <span class="php-quote">'ServiceProvider'</span>,
+        <span class="php-quote">'middlewares'</span>   =&gt; <span class="php-quote">'Middleware'</span>,
     ],
     <span class="php-quote">'resources'</span> =&gt; [
-        <span class="php-quote">'routes'</span> =&gt; <span class="php-quote">'routes.php'</span>,
-        <span class="php-quote">'templates'</span> =&gt; <span class="php-quote">'templates'</span>,
-        <span class="php-quote">'config'</span> =&gt; <span class="php-quote">'config'</span>,
+        <span class="php-quote">'routes'</span>        =&gt; <span class="php-quote">'routes.php'</span>,
+        <span class="php-quote">'templates'</span>     =&gt; <span class="php-quote">'templates'</span>,
+        <span class="php-quote">'config'</span>        =&gt; <span class="php-quote">'config'</span>,
     ]
 ]</code>
 			</div>
@@ -573,6 +673,14 @@
 	</table>
 
 
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.AppAwareTrait.html#properties">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+		</code></td>
+	</tr>
+	</table>
 	<table class="summary used">
 	<caption>Properties used from <a href="class-momentphp.traits.CollectionTrait.html#properties">momentphp\traits\CollectionTrait</a></caption>
 	<tr>

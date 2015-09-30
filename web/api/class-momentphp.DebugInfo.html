@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\ExceptionRenderer | MomentPHP</title>
+	<title>Class momentphp\DebugInfo | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -40,8 +40,8 @@
 
 						</li>
 				<li>
-					<a href="namespace-momentphp.services.html">
-						services					</a>
+					<a href="namespace-momentphp.providers.html">
+						providers					</a>
 
 						</li>
 				<li>
@@ -73,8 +73,9 @@
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
+				<li class="active"><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
-				<li class="active"><a href="class-momentphp.ExceptionRenderer.html">ExceptionRenderer</a></li>
+				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
 				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
@@ -83,10 +84,11 @@
 				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.Service.html">Service</a></li>
-				<li><a href="class-momentphp.SmartyView.html">SmartyView</a></li>
-				<li><a href="class-momentphp.TwigView.html">TwigView</a></li>
+				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
+				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -125,13 +127,22 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class ExceptionRenderer</h1>
+	<h1>Class DebugInfo</h1>
 
 
 	<div class="description">
-	<p>ExceptionRenderer</p>
+	<p>DebugInfo</p>
 	</div>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>momentphp\DebugInfo</span></b>			
+			
+			 uses 
+					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>
+			
+		</dd>
+	</dl>
 
 
 
@@ -146,44 +157,44 @@
 		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
 		
 
-			<b>Located at</b> ExceptionRenderer.php		<br>
+			<b>Located at</b> DebugInfo.php		<br>
 	</div>
 
 
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="render" id="_render">
+	<tr data-order="get" id="_get">
 
 		<td class="attributes"><code>
 			 public 
 
-			string
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_render">#</a>
-		<code>render( <span>Exception <var>$exception</var></span> )</code>
+		<a class="anchor" href="#_get">#</a>
+		<code>get( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Render exception as HTML</p>
+			<p>Return app debug info</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Render exception as HTML</p>
+			<p>Return app debug info</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$exception</var></dt>
+					<dt><var>$key</var></dt>
 					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
+					array
 				</div>
 
 
@@ -192,37 +203,32 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="__invoke" id="___invoke">
+	<tr data-order="getConfig" id="_getConfig">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
 
-			string
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___invoke">#</a>
-		<code>__invoke( <span>Exception <var>$exception</var></span> )</code>
+		<a class="anchor" href="#_getConfig">#</a>
+		<code>getConfig( )</code>
 
 		<div class="description short">
-			<p>Return rendered exception stack</p>
+			<p>Return whole configuration</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return rendered exception stack</p>
+			<p>Return whole configuration</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$exception</var></dt>
-					<dd></dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
+					array
 				</div>
 
 
@@ -230,6 +236,16 @@
 
 		</div>
 		</div></td>
+	</tr>
+	</table>
+
+
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.AppAwareTrait.html#methods">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
+		</code></td>
 	</tr>
 	</table>
 
@@ -244,8 +260,14 @@
 
 
 
-
-
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.AppAwareTrait.html#properties">momentphp\traits\AppAwareTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

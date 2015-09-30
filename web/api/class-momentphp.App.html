@@ -40,8 +40,8 @@
 
 						</li>
 				<li>
-					<a href="namespace-momentphp.services.html">
-						services					</a>
+					<a href="namespace-momentphp.providers.html">
+						providers					</a>
 
 						</li>
 				<li>
@@ -73,8 +73,9 @@
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
+				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
-				<li><a href="class-momentphp.ExceptionRenderer.html">ExceptionRenderer</a></li>
+				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
 				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
@@ -83,10 +84,11 @@
 				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.Service.html">Service</a></li>
-				<li><a href="class-momentphp.SmartyView.html">SmartyView</a></li>
-				<li><a href="class-momentphp.TwigView.html">TwigView</a></li>
+				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
+				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -165,7 +167,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>array <var>$bundles</var> = []</span> )</code>
+		<code>__construct( <span>array <var>$bundles</var> = []</span>, <span>array <var>$services</var> = []</span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -178,6 +180,8 @@
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$bundles</var></dt>
+					<dd></dd>
+					<dt><var>$services</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -272,11 +276,11 @@
 		<code>resolveCallable( <span>mixed <var>$callable</var></span> )</code>
 
 		<div class="description short">
-			<p>Resolve callable helper</p>
+			<p>Resolve callable (helper)</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Resolve callable helper</p>
+			<p>Resolve callable (helper)</p>
 
 
 				<h4>Parameters</h4>
@@ -311,11 +315,11 @@
 		<code>service( <span>string <var>$name</var></span>, <span>callable <var>$callable</var></span> )</code>
 
 		<div class="description short">
-			<p>Register service in the container</p>
+			<p>Register service in the container (helper)</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Register service in the container</p>
+			<p>Register service in the container (helper)</p>
 
 
 				<h4>Parameters</h4>
@@ -345,21 +349,53 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_register">#</a>
-		<code>register( <span><code><a href="class-momentphp.Service.html">momentphp\Service</a></code>|string <var>$provider</var></span> )</code>
+		<code>register( <span><code><a href="class-momentphp.ServiceProvider.html">momentphp\ServiceProvider</a></code>|string <var>$provider</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 		<div class="description short">
-			<p>Register service provider class</p>
+			<p>Register a service provider</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Register service provider class</p>
+			<p>Register a service provider</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$provider</var></dt>
 					<dd></dd>
+					<dt><var>$options</var></dt>
+					<dd></dd>
 				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerProviders" id="_registerProviders">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerProviders">#</a>
+		<code>registerProviders( )</code>
+
+		<div class="description short">
+			<p>Register service providers defined inside <code>app.providers</code> configuration setting</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Register service providers defined inside <code>app.providers</code> configuration setting</p>
+
+
 
 
 
@@ -383,41 +419,11 @@
 		<code>registerRoutes( )</code>
 
 		<div class="description short">
-			<p>Register routes from each bundle</p>
+			<p>Register routes from loaded bundles</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Register routes from each bundle</p>
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="registerServices" id="_registerServices">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_registerServices">#</a>
-		<code>registerServices( )</code>
-
-		<div class="description short">
-			<p>Register service providers defined inside <code>app.services</code> configuration setting</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Register service providers defined inside <code>app.services</code> configuration setting</p>
+			<p>Register routes from loaded bundles</p>
 
 
 
@@ -458,6 +464,96 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="bootProviders" id="_bootProviders">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bootProviders">#</a>
+		<code>bootProviders( )</code>
+
+		<div class="description short">
+			<p>Boot all service providers</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Boot all service providers</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bootBundles" id="_bootBundles">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bootBundles">#</a>
+		<code>bootBundles( )</code>
+
+		<div class="description short">
+			<p>Boot all bundles</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Boot all bundles</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="boot" id="_boot">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_boot">#</a>
+		<code>boot( )</code>
+
+		<div class="description short">
+			<p>Boot app</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Boot app</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="run" id="_run">
 
 		<td class="attributes"><code>
@@ -473,11 +569,11 @@
 		<code>run( <span>boolean|false <var>$silent</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
-			<p>Invoke <code>Bundle::run()</code> callback in each bundle and send response to the client</p>
+			<p>Invoke app</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Invoke <code>Bundle::run()</code> callback in each bundle and send response to the client</p>
+			<p>Invoke app</p>
 
 
 				<h4>Parameters</h4>
@@ -551,11 +647,11 @@
 		<code>__get( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
-			<p>Proxy calls to underlying Slim app</p>
+			<p>Container proxy method</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Proxy calls to underlying Slim app</p>
+			<p>Container proxy method</p>
 
 
 				<h4>Parameters</h4>
@@ -590,11 +686,11 @@
 		<code>__isset( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
-			<p>Proxy calls to underlying Slim app</p>
+			<p>Container proxy method</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Proxy calls to underlying Slim app</p>
+			<p>Container proxy method</p>
 
 
 				<h4>Parameters</h4>
@@ -660,7 +756,7 @@
 		<td class="attributes"><code>
 			 public 
 
-			ResponseInterface
+			Psr\Http\Message\ResponseInterface
 			
 			</code>
 		</td>
@@ -670,11 +766,11 @@
 		<code>__invoke( <span>Psr\Http\Message\ServerRequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
 
 		<div class="description short">
-			<p>Invoke application</p>
+			<p>Invoke app</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Invoke application</p>
+			<p>Invoke app</p>
 
 
 				<h4>Parameters</h4>
@@ -687,7 +783,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					ResponseInterface
+					Psr\Http\Message\ResponseInterface
 				</div>
 
 
@@ -756,6 +852,30 @@
 			<div>
 				<a href="#$slim" class="anchor">#</a>
 				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="providers" id="$providers">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$providers</var>
+			<div class="description short">
+				<p>Service providers</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Service providers</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$providers" class="anchor">#</a>
+				<code>[]</code>
 			</div>
 		</td>
 	</tr>

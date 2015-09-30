@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\CallableResolver | MomentPHP</title>
+	<title>Class momentphp\ViewTemplate | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -68,7 +68,7 @@
 				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
 				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
 				<li><a href="class-momentphp.Cache.html">Cache</a></li>
-				<li class="active"><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
+				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
 				<li><a href="class-momentphp.Cell.html">Cell</a></li>
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
@@ -88,7 +88,7 @@
 				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
 				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
-				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
+				<li class="active"><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -127,21 +127,21 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class CallableResolver</h1>
+	<h1>Class ViewTemplate</h1>
 
 
 	<div class="description">
-	<p>CallableResolver</p>
+	<p>ViewTemplate</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-<b><span>momentphp\CallableResolver</span></b>			
-			 implements 
-<span>Slim\Interfaces\CallableResolverInterface</span>
+<b><span>momentphp\ViewTemplate</span></b>			
 			
 			 uses 
 					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>, 
+			
+					<a href="class-momentphp.traits.CollectionTrait.html"><span>momentphp\traits\CollectionTrait</span></a>, 
 			
 					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>
 			
@@ -161,126 +161,14 @@
 		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
 		
 
-			<b>Located at</b> CallableResolver.php		<br>
+			<b>Located at</b> ViewTemplate.php		<br>
 	</div>
 
 
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="callableResolverSlim" id="_callableResolverSlim">
-
-		<td class="attributes"><code>
-			 public 
-
-			Slim\CallableResolver
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_callableResolverSlim">#</a>
-		<code>callableResolverSlim( )</code>
-
-		<div class="description short">
-			<p>Return Slim's callable resolver</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return Slim's callable resolver</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Slim\CallableResolver
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="resolve" id="_resolve">
-
-		<td class="attributes"><code>
-			 public 
-
-			callable
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_resolve">#</a>
-		<code>resolve( <span>mixed <var>$toResolve</var></span> )</code>
-
-		<div class="description short">
-			<p>Resolve <code>$toResolve</code> into a callable</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Resolve <code>$toResolve</code> into a callable</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$toResolve</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					callable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="resolveFromBundles" id="_resolveFromBundles">
-
-		<td class="attributes"><code>
-			 public 
-
-			callable
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_resolveFromBundles">#</a>
-		<code>resolveFromBundles( <span>mixed <var>$toResolve</var></span> )</code>
-
-		<div class="description short">
-			<p>Resolve <code>$toResolve</code> into a callable (from bundles)</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Resolve <code>$toResolve</code> into a callable (from bundles)</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$toResolve</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					callable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="autoNamespace" id="_autoNamespace">
+	<tr data-order="cell" id="_cell">
 
 		<td class="attributes"><code>
 			 public 
@@ -291,26 +179,140 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_autoNamespace">#</a>
-		<code>autoNamespace( <span>string <var>$class</var></span> )</code>
+		<a class="anchor" href="#_cell">#</a>
+		<code>cell( )</code>
 
 		<div class="description short">
-			<p>Prepend namespace to class without it (if namespace is defined)</p>
+			<p>Render a cell</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Prepend namespace to class without it (if namespace is defined)</p>
+			<p>Render a cell</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="d" id="_d">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_d">#</a>
+		<code>d( <span>mixed <var>$var</var></span> )</code>
+
+		<div class="description short">
+			<p>Allow <code>d()</code> inside templates</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Allow <code>d()</code> inside templates</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$class</var></dt>
+					<dt><var>$var</var></dt>
 					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
 					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__get" id="___get">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___get">#</a>
+		<code>__get( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			<p>Return global helper</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return global helper</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code>__call( <span>string <var>$method</var></span>, <span>array <var>$args</var></span> )</code>
+
+		<div class="description short">
+			<p>Return global helper (for Twig)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return global helper (for Twig)</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd></dd>
+					<dt><var>$args</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>
 				</div>
 
 
@@ -327,6 +329,14 @@
 	<tr>
 		<td><code>
 			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.CollectionTrait.html#methods">momentphp\traits\CollectionTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.CollectionTrait.html#_collection">collection()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -350,6 +360,78 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="request" id="$request">
+		<td class="attributes"><code>
+			public  
+			Psr\Http\Message\RequestInterface
+		</code></td>
+
+		<td class="name">
+<var>$request</var>
+			<div class="description short">
+				<p>Request</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Request</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$request" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="response" id="$response">
+		<td class="attributes"><code>
+			public  
+			Psr\Http\Message\ResponseInterface
+		</code></td>
+
+		<td class="name">
+<var>$response</var>
+			<div class="description short">
+				<p>Response</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Response</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$response" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="vars" id="$vars">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$vars</var>
+			<div class="description short">
+				<p>Variables for the template</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Variables for the template</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$vars" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
 	<tr data-order="options" id="$options">
 		<td class="attributes"><code>
 			protected  
@@ -370,34 +452,7 @@
 		<td class="value">
 			<div>
 				<a href="#$options" class="anchor">#</a>
-				<code>[
-    <span class="php-quote">'separator'</span> =&gt; <span class="php-quote">':'</span>,
-    <span class="php-quote">'prefix'</span> =&gt; <span class="php-quote">'::'</span>, <span class="php-comment">// triggers Slim's callable resolver</span>
-]</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="callableResolverSlim" id="$callableResolverSlim">
-		<td class="attributes"><code>
-			protected  
-			Slim\CallableResolver
-		</code></td>
-
-		<td class="name">
-<var>$callableResolverSlim</var>
-			<div class="description short">
-				<p>Slim's callable resolver</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Slim's callable resolver</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$callableResolverSlim" class="anchor">#</a>
-				<code></code>
+				<code>[]</code>
 			</div>
 		</td>
 	</tr>
@@ -409,6 +464,14 @@
 	<tr>
 		<td><code>
 			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.CollectionTrait.html#properties">momentphp\traits\CollectionTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.CollectionTrait.html#$collection"><var>$collection</var></a>
 		</code></td>
 	</tr>
 	</table>

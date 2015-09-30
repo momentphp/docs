@@ -4,7 +4,11 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/github.min.css">
     <link rel="stylesheet" href="//cdn.rawgit.com/jnicol/trackpad-scroll-emulator/master/css/trackpad-scroll-emulator.css">
-    <link rel="stylesheet" href="/bundles/docs/css/docs.css">
+    <link rel="stylesheet" href="/bundle/docs/css/docs.css">
+
+    <script>
+        app.docsReadme = '{{ this.app.router.pathFor('docs-readme') }}';
+    </script>
 
 {% endblock %}
 
@@ -41,41 +45,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.js"></script>
     <script src="//cdn.rawgit.com/jnicol/trackpad-scroll-emulator/master/jquery.trackpad-scroll-emulator.js"></script>
-    <script>
-
-        $(document).ready(function() {
-
-            $('.page-heading h1 a').lettering();
-
-            Flatdoc.run({
-                fetcher: Flatdoc.file('{{ this.app.router.pathFor('docs-readme') }}')
-            });
-
-        });
-
-        $(document).on('flatdoc:ready', function() {
-
-            $('.docs-nav, .docs-content').TrackpadScrollEmulator();
-
-            $('h1, h2, h3', '.docs-content').waypoint(function(direction) {
-                var id = $(this).attr('id');
-                $('.docs-nav a').removeClass('active');
-                $("[href='#" + id + "']").addClass('active');
-            }, {
-                context: '.docs-content .tse-scroll-content'
-            });
-
-            $('pre code').each(function(i, block) {
-                hljs.highlightBlock(block);
-            });
-
-            if (window.location.hash) {
-                $(window.location.hash).get(0).scrollIntoView();
-            }
-
-        });
-
-    </script>
+    <script src="/bundle/docs/js/docs.js"></script>
 
 {% endblock %}
 

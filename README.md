@@ -2,7 +2,7 @@ MomentPHP is a lightweight and intuitive PHP mini-framework enabling modular app
 The *mini* prefix means that it sits somewhere between micro and full-stack frameworks.
 It offers bare minimum of functionality required in order to create web sites and
 web applications. Most importantly it gives "structure" to your code, leaving
-free choice about inclusion of additional tools. It is built on top of well-known amongst the PHP community
+free choice about inclusion of additional tools. It is built on top of well-known (amongst the PHP community)
 libraries and solutions:
 
 - [Slim][Slim] micro-framework
@@ -35,13 +35,13 @@ It is also recommended (but not required) to enable following PHP modules:
 Here is step-by-step guide on how to setup framework locally using [XAMPP][XAMPP] on Windows:
 
 - create project folder: `C:\xampp\htdocs\momentphp`
-- within project folder issue following command (this will install app skeleton and all dependencies):
+- within project folder issue following command (this will install app skeleton along with its dependencies):
 
 ```bash
 composer create-project momentphp/app . --stability=dev
 ```
 
-- create domain to serve application (`momentphp.local` in this example). Do that by adding following
+- create domain to serve the application (`momentphp.local` in this example). Do that by adding following
 vhost configuration inside `C:\xampp\apache\conf\extra\httpd-vhosts.conf`:
 
 ```
@@ -69,10 +69,12 @@ some debug information.
 
 # Services
 
-Put simply, a **service** is usually a PHP object that performs some sort of task such as sending emails, rendering
-templates or persisting information into a database. A **service container** (or dependency injection container) is a
-PHP object that manages the instantiation of services (with their dependencies). MomentPHP uses [Pimple][Pimple] service container.
-You can register and retrieve services via `$app` object (passed around to various framework classes), which is an
+Put simply, a **service** is usually a PHP object that performs some sort of task
+such as sending emails, rendering templates or persisting information into a database.
+A **service container** (or dependency injection container) is a PHP object that
+manages the instantiation of services (with their dependencies). MomentPHP uses default
+service container provided by Slim - [Pimple][Pimple]. You can register and retrieve
+services via `$app` object (passed around to various framework classes), which is an
 instance of `momentphp\App` class.
 
 To retrieve a service from container via `$app` object:
@@ -107,7 +109,7 @@ of the object for all calls:
 ```php
 $app->service('someService', function ($container) {
     $otherService = $container->get('otherService'); // you may access other services in the container
-    return new Object;
+    return new Object($otherService);
 });
 ```
 
@@ -139,13 +141,13 @@ $app->getContainer()->extend('someService', function ($service, $container) {
 
 ## Service providers
 
-Service providers are classes responsible for registering services and are located inside `/services` folder
-within bundle. Service provider class should extend `momentphp\Service` and implement `register()` method:
+Service providers are classes responsible for registering services and are located inside `/providers` folder
+within bundle. Service provider class should extend `momentphp\ServiceProvider` and implement `register()` method:
 
 ```php
-namespace app\bundle\welcome\services;
+namespace app\bundle\welcome\providers;
 
-class TestService extends \momentphp\Service
+class TestService extends \momentphp\ServiceProvider
 {
     public function register()
     {
@@ -160,7 +162,7 @@ Service providers are loaded via configuration. In order to load above service p
 following line in `/config/app.php`:
 
 ```php
-'services' => [
+'providers' => [
     'Test' => true
 ]
 ```
@@ -168,19 +170,23 @@ following line in `/config/app.php`:
 You can also unload service provider loaded by previous bundle (see [Bundle inheritance][BUNDLES-BUNDLE-INHERITANCE]):
 
 ```php
-'service' => [
+'providers' => [
     'Other' => false
 ]
 ```
 
-You can also load service provider manually via `momentphp\App::register()` method (e.g. inside `momentphp\Bundle::run()` callback:
+You can also load service provider manually via `momentphp\App::register()` method:
 
 ```php
-$app->register('TestService');
+$app->register('TestServiceProvider');
 ```
 
-Note that you may put default service provider options in `/config/services.php` and later access
-those options within class via `$this->options()` - see [Instance configuration][INSTANCE-CONFIGURATION].
+Note that you may put default service provider options in `/config/providers.php` and later access
+those options within the class via `$this->options()` - see [Instance configuration][INSTANCE-CONFIGURATION].
+
+You may also implement `ServiceProvider::boot()` method. This method is called after all
+other service providers have been registered, meaning you have access to all other services
+that have been registered.
 
 ## Important framework services
 
@@ -207,6 +213,14 @@ in the following table:
     <tr>
         <td><code>$app->environment</code></td>
         <td>returns server environment data</td>
+    </tr>
+    <tr>
+        <td><code>$app->request</code></td>
+        <td>returns current request object</td>
+    </tr>
+    <tr>
+        <td><code>$app->response</code></td>
+        <td>returns current response object</td>
     </tr>
     <tr>
         <td><code>$app->debug</code></td>
@@ -257,12 +271,12 @@ in the following table:
         <td>returns object that manages routes</td>
     </tr>
     <tr>
-        <td><code>$app->view</td>
-        <td>returns view object that controller uses</td>
+        <td><code>$app->view</code></td>
+        <td>returns view object that allows to render templates</td>
     </tr>
     <tr>
         <td><code>$app->error</td>
-        <td>returns object that manages error handling &amp; error logging</td>
+        <td>returns object that registers framework error handlers</td>
     </tr>
 </table>
 
@@ -309,16 +323,15 @@ Aliases are used across various framework parts - i.e. to load templates from sp
 get bundle object from `$app->bundles` service. You may alter default alias with custom one while
 loading bundle.
 
-`momentphp\Bundle::run()` callback is invoked just before response is sent to the client. It takes `$app` as an argument.
-It can be used to set some global PHP settings or manually register service providers or middlewares:
+`momentphp\Bundle::boot()` callback is invoked just before response is sent to the client.
+It can be used to set some global PHP settings or to manually register middlewares:
 
 ```php
 class HelloWorldBundle extends \momentphp\Bundle
 {
-    public function run($app)
+    public function boot()
     {
-        $app->register('TestService'); // register service provider
-        $app->add('TestMiddleware'); // register app middleware
+        $this->app->add('TestMiddleware'); // register app middleware
         ini_set('memory_limit', '2048M'); // set global PHP settings
     }
 }
@@ -356,7 +369,7 @@ class HelloWorldBundle extends \momentphp\Bundle
         <td>bundle middlewares</td>
     </tr>
     <tr>
-        <td><code>/services</code></td>
+        <td><code>/providers</code></td>
         <td>bundle service providers</td>
     </tr>
     <tr>
@@ -511,7 +524,13 @@ It is often helpful to have different configuration values based on the environm
 By default application environment is set to `production`. You can change environment setting inside main `index.php` file:
 
 ```php
-$app->service('env', 'development');
+$services = [
+    'env' => 'production',
+    'pathBase' => $pathBase,
+    'pathWeb' => __DIR__,
+];
+
+$app = new momentphp\App([...], $services);
 ```
 
 To override configuration for development environment (set above) simply create a folder within the `/config` directory
@@ -571,7 +590,7 @@ Framework stores its configuration in a set of pre-defined files:
         <td>models configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
     </tr>
     <tr>
-        <td><code>services.php</code></td>
+        <td><code>providers.php</code></td>
         <td>service providers configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
     </tr>
 </table>
@@ -672,7 +691,7 @@ You may also access the raw, underlying [PDO][pdo] instance following way:
 
 ```php
 $pdo = $this->db()->getPdo(); // inside model class
-$pdo = $this->app->database->getConnection()->getPdo(); // via app object elsewhere
+$pdo = $this->app->database->connection()->getPdo(); // via app object elsewhere
 ```
 
 ## Accessing models
@@ -697,7 +716,7 @@ If needed, you can create as many model instances as you wish manually via `mome
 Using this way you must pass configuration in second param:
 
 ```php
-$Post = $this->app->model->factory('Post', ['perPage' => 25]);
+$Post = $this->app->models->factory('Post', ['perPage' => 25]);
 ```
 
 Inside controller, cell and model classes you can access models with more concise syntax:
@@ -818,20 +837,30 @@ Controller action can return:
 - nothing
 
 In case nothing is returned from action default action template will be rendered:
-`/templates/controllers/Hello/say.twig`. You can specify which template should be rendered by setting
-`$template` property inside action body:
+`/templates/controllers/Hello/say.twig`. You can specify which template should be rendered by
+interacting with controller's view object:
 
 ```php
-$this->template = 'say2'; // will render: /templates/controllers/Hello/say2.twig
+$this->view->template('say2'); // will render: /templates/controllers/Hello/say2.twig
 // or
-$this->template = '/say2'; // will render: /templates/say2.twig
+$this->view->template('/say2'); // will render: /templates/say2.twig
 ```
 
 You can also force controller to use template from specific bundle (referenced by alias):
 
 ```php
-$this->templateBundle = 'hello';
-$this->template = 'say2'; // will render: /templates/controllers/Hello/say2.twig from 'hello' bundle
+// following will render: /templates/controllers/Hello/say2.twig from 'hello' bundle
+$this->view->template('say2')->bundle('hello');
+```
+
+If client asks for JSON (or XML) and your application is using [ContentTypeMiddleware][MIDDLEWARES-DEFAULT-MIDDLEWARES]
+templates are rendered in following manner:
+
+```php
+// client asks for JSON
+$this->view->template('say2'); // will render: /templates/controllers/Hello/json/say2.twig
+// client asks for XML
+$this->view->template('say2'); // will render: /templates/controllers/Hello/xml/say2.twig
 ```
 
 The `momentphp\Controller::set()` method is the main way to send data from your controller to your template:
@@ -839,12 +868,14 @@ The `momentphp\Controller::set()` method is the main way to send data from your 
 ```php
 // send variable to the template inside controller action:
 $this->set('color', 'pink');
+// or
+$this->view->set('color', 'pink');
 
 // access variable inside a template
 You have choosen {{ color }} color.
 ```
 
-The `momentphp\Controller::set()` method also takes an associative array as its first parameter.
+The `set()` method also takes an associative array as its first parameter.
 
 ## Controller callbacks
 
@@ -933,13 +964,13 @@ You can find more information about response object in [Slim’s][Slim] document
 # Templates
 
 Out of the box framework supports [Smarty][Smarty] and [Twig][Twig] templating engines.
-Templating engines are exposed as services (named `smartyView` and `twigView` respectively) implementing
-common interface and are configured inside `/config/services.php`. You pick which service
+Templating engines are exposed as services (named `smarty` and `twig` respectively) implementing
+a common interface and are configured inside `/config/providers.php`. You pick which service
 should be used by default by setting appropriate value inside `/config/app.php`:
 
 ```php
 [
-    'viewService' => 'smartyView'
+    'viewEngine' => 'smarty'
 ]
 ```
 
@@ -969,7 +1000,8 @@ Templates should fall into pre-defined folders presented below:
     </tr>
 </table>
 
-You can access various objects inside template file:
+The `this` variable inside templates represents `\momentphp\ViewTemplate` instance and allows you to
+access various objects inside template file:
 
 <table>
     <tr>
@@ -1002,7 +1034,6 @@ example) via following syntax:
 {% include '@hello/partials/debugTable.twig' %} // Twig
 ```
 
-
 ## Helpers
 
 Helpers are classes for the presentation layer of your application. They contain presentational logic that is shared
@@ -1033,7 +1064,7 @@ Inside helper methods you may access:
 
 ```php
 $this->app // app object
-$this->view // view object
+$this->view // ViewTemplate object
 $this->view->request // request object
 $this->view->vars // template variables
 $this->options() // helper configuration set in /config/helpers.php
@@ -1075,8 +1106,8 @@ Our newly created cell may be invoked inside any template:
 You can also invoke any cell action and pass additional arguments:
 
 ```html
-{{ this.cell('ShoppingCart:display', {'items': 10}) }} // Twig
-{$this->cell('ShoppingCart:display', ['items' => 10])} // Smarty
+{{ this.cell('ShoppingCart:display', 10) }} // Twig
+{$this->cell('ShoppingCart:display', 10)} // Smarty
 ```
 
 # Routes
@@ -1157,6 +1188,30 @@ Also you can attach middleware only to certain routes:
 ```php
 $app->any('/pages/{page:.+}', 'PagesController:display')->add('AuthMiddleware');
 ```
+
+## Default middlewares
+
+By default MomentPHP ships with following middlewares:
+
+<table>
+    <tr>
+        <th>name</th>
+        <th>description</th>
+    </tr>
+    <tr>
+        <td><code>BundleAssetsMiddleware</code></td>
+        <td>
+            Allows to serve bundle assets placed inside <code>/web</code> folder via properly
+            constructed URL: <code>/bundle/{bundleAlias}/css/style.css</code>. Note that is's
+            just a quick solution (files are served via PHP) and you should symlink your assets for
+            performance reasons in production.
+        </td>
+    </tr>
+    <tr>
+        <td><code>ContentTypeMiddleware</code></td>
+        <td>Will automatically switch response content type from HTML to JSON (or XML) if client asks for it.</td>
+    </tr>
+</table>
 
 # Caching
 
@@ -1240,24 +1295,26 @@ logger name in `/config/app.php`:
 
 # Error handling
 
-There is a generic "debug" boolean flag that controls lots of different things across the framework - its
-current value is available as `$app->debug` service (which just reads `app.debug` configuration setting).
-
-Turning `debug = false` disables a number of development features that should never be exposed
-to the Internet at large. Disabling `debug` changes the following types of things:
-
-- PHP errors are not displayed
-- uncaught exceptions and fatal errors will render default internal server error page - using `ErrorController::error()`
-- uncaught `momentphp\exceptions\NotFoundException` will render default not found page - using `ErrorController::notFound()`
-- templates are not re-compiled when changed
-
-You can set PHP error reporting level by setting `app.error.level` to appropriate value:
+MomentPHP converts all PHP errors to exceptions. You can set PHP error reporting level by
+setting `app.error.level` to appropriate value:
 
 ```php
 'error' => [
     'level' => -1 // report all errors
 ]
 ```
+
+By default framework will display all errors as exceptions using the [Whoops!][Whoops] package if the `app.debug`
+switch is turned on OR hide them and use `ErrorController` to render client-friendly messages if the switch is turned off.
+
+The value of `app.debug` configuration setting is available as a `$app->debug` service.
+
+To sum up - setting `debug` to `false` changes the following types of things:
+
+- PHP errors are not displayed
+- uncaught exceptions and fatal errors will render default internal server error page - using `ErrorController::error()`
+- uncaught `momentphp\exceptions\NotFoundException` will render default not found page - using `ErrorController::notFound()`
+- templates are not re-compiled when changed
 
 # Command line
 
@@ -1291,6 +1348,7 @@ php index.php background/task
 [ionCube Loader]: https://www.ioncube.com/loaders.php
 [JSON]: https://en.wikipedia.org/wiki/JSON
 [Pimple]: http://pimple.sensiolabs.org/
+[Whoops]: http://filp.github.io/whoops/
 
 [MVC]: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 [Front Controller]: https://en.wikipedia.org/wiki/Front_Controller_pattern
@@ -1319,6 +1377,7 @@ php index.php background/task
 [TEMPLATES-HELPERS]: #templates-helpers
 [TEMPLATES-CELLS]: #templates-cells
 [MIDDLEWARES]: #middlewares
+[MIDDLEWARES-DEFAULT-MIDDLEWARES]: #middlewares-default-middlewares
 [BUNDLES-BUNDLE-INHERITANCE]: #bundles-bundle-inheritance
 [MODELS]: #models
 [CONTROLLERS]: #controllers

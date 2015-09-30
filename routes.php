@@ -6,5 +6,5 @@ $app->group('/docs', function () {
 });
 
 $app->get('/api', function ($req, $res) {
-    return $res->withRedirect('/bundles/docs/api/index.html');
+    return $res->withRedirect('/bundle/docs/api/index.html');
 })->setName('api');

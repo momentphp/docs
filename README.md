@@ -957,6 +957,18 @@ class HelloController extends \momentphp\Controller
 }
 ```
 
+To render 404 - page not found - throw following exception:
+
+```php
+class HelloController extends \momentphp\Controller
+{
+    public function say($name)
+    {
+        throw new \momentphp\exceptions\NotFoundException;
+    }
+}
+```
+
 You can find more information about response object in [Slim’s][Slim] documentation:
 
 - [Response object][response]

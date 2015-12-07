@@ -18,11 +18,11 @@ The framework (as well as its building blocks) embraces popular web software des
 
 # Installation
 
-MomentPHP requires following software stack in order to operate:
+MomentPHP requires following software stack in order to run:
 
-- a web server like Apache or Nginx (read more about [web server setup][web-servers] in Slim's documentation)
+- a web server such as Apache or Nginx (read more about [web server setup][web-servers] in Slim's documentation)
 - PHP 5.5.9 or above
-- free [ionCube Loader][ionCube Loader] module to be installed and made available to PHP
+- free [ionCube Loader][ionCube Loader] module to be installed and made available to PHP (if you are looking for non-encoded version write an email to: <mailto:contact@momentphp.com>)
 - [Composer][Composer] dependency manager
 
 It is also recommended (but not required) to enable following PHP modules:
@@ -38,7 +38,7 @@ Here is step-by-step guide on how to setup framework locally using [XAMPP][XAMPP
 - within project folder issue following command (this will install app skeleton along with its dependencies):
 
 ```bash
-composer create-project momentphp/app . --stability=dev
+composer create-project momentphp/app .
 ```
 
 - create domain to serve the application (`momentphp.local` in this example). Do that by adding following
@@ -74,12 +74,15 @@ such as sending emails, rendering templates or persisting information into a dat
 A **service container** (or dependency injection container) is a PHP object that
 manages the instantiation of services (with their dependencies). MomentPHP uses default
 service container provided by Slim - [Pimple][Pimple]. You can register and retrieve
-services via `$app` object (passed around to various framework classes), which is an
+services via `$app` object (available as a property within framework classes), which is an
 instance of `momentphp\App` class.
 
-To retrieve a service from container via `$app` object:
+Example ways of retrieving `config` service from the container via `$app` instance:
 
 ```php
+$app->get('/', function () { // inside route callable
+    $config = $this->app->config;
+});
 $this->app->config // inside controller, model etc.
 {{ this.app.config }} // inside Twig template
 {$this->app->config} // inside Smarty template
@@ -89,6 +92,10 @@ You can also retrieve services using service container directly:
 
 ```php
 $config = $app->getContainer()->get('config');
+// or
+$app->get('/', function () {
+    $config = $this->get('config');
+});
 ```
 
 There is also a global helper function `app()` which allows accessing services in the container.
@@ -96,9 +103,12 @@ It can be used just about anywhere (for example in configuration files):
 
 ```php
 return [
-    'templates' => app('bundles')->paths('templates'),
+    'compile' => path([app('pathStorage'), 'templates', 'smarty', app()->fingerprint()]),
 ]
 ```
+
+Note that if you do not supply service name, the `app()` function will return application
+instance.
 
 ## Registering services
 
@@ -142,14 +152,14 @@ $app->getContainer()->extend('someService', function ($service, $container) {
 ## Service providers
 
 Service providers are classes responsible for registering services and are located inside `/providers` folder
-within bundle. Service provider class should extend `momentphp\ServiceProvider` and implement `register()` method:
+within bundle. Service provider class should extend `momentphp\Provider` and implement `__invoke()` method:
 
 ```php
-namespace app\bundle\welcome\providers;
+namespace bundles\welcome\providers;
 
-class TestService extends \momentphp\ServiceProvider
+class TestProvider extends \momentphp\Provider
 {
-    public function register()
+    public function __invoke()
     {
         $this->app->service('test', function() {
             return 'Test Service';
@@ -163,28 +173,22 @@ following line in `/config/app.php`:
 
 ```php
 'providers' => [
-    'Test' => true
-]
+    'test' => 'TestProvider',
+],
 ```
 
 You can also unload service provider loaded by previous bundle (see [Bundle inheritance][BUNDLES-BUNDLE-INHERITANCE]):
 
 ```php
 'providers' => [
-    'Other' => false
+    'test' => false
 ]
-```
-
-You can also load service provider manually via `momentphp\App::register()` method:
-
-```php
-$app->register('TestServiceProvider');
 ```
 
 Note that you may put default service provider options in `/config/providers.php` and later access
 those options within the class via `$this->options()` - see [Instance configuration][INSTANCE-CONFIGURATION].
 
-You may also implement `ServiceProvider::boot()` method. This method is called after all
+You may also implement `Provider::boot()` method. This method is called after all
 other service providers have been registered, meaning you have access to all other services
 that have been registered.
 
@@ -200,83 +204,75 @@ in the following table:
     </tr>
     <tr>
         <td><code>$app->app</code></td>
-        <td>returns application object</td>
-    </tr>
-    <tr>
-        <td><code>$app->bundles</code></td>
-        <td>returns object that manages loaded bundles (e.g retrieves correct classes or paths)</td>
+        <td>application instance (manages loaded bundles)</td>
     </tr>
     <tr>
         <td><code>$app->env</code></td>
-        <td>returns app environment name</td>
+        <td>application environment name (`production`, `development`, etc.)</td>
     </tr>
     <tr>
         <td><code>$app->environment</code></td>
-        <td>returns server environment data</td>
+        <td>server environment data</td>
     </tr>
     <tr>
         <td><code>$app->request</code></td>
-        <td>returns current request object</td>
+        <td>initial request object</td>
     </tr>
     <tr>
         <td><code>$app->response</code></td>
-        <td>returns current response object</td>
+        <td>initial response object</td>
     </tr>
     <tr>
         <td><code>$app->debug</code></td>
-        <td>returns app debug flag</td>
+        <td>application debug flag</td>
     </tr>
     <tr>
         <td><code>$app->console</code></td>
-        <td>returns app console flag</td>
+        <td>application console flag</td>
     </tr>
     <tr>
         <td><code>$app->pathBase</code></td>
-        <td>returns app skeleton installation path</td>
+        <td>application skeleton installation path</td>
     </tr>
     <tr>
         <td><code>$app->pathWeb</code></td>
-        <td>returns web server document root path</td>
+        <td>web server document root path</td>
     </tr>
     <tr>
-        <td><code>$app->pathTmp</code></td>
-        <td>returns temporary files path</td>
-    </tr>
-    <tr>
-        <td><code>$app->pathLogs</code></td>
-        <td>returns logs path</td>
+        <td><code>$app->pathStorage</code></td>
+        <td>framework generated files path (logs, compiled templates, etc.)</td>
     </tr>
     <tr>
         <td><code>$app->config</code></td>
-        <td>returns object that manages configuration</td>
+        <td>object that manages configuration</td>
+    </tr>
+    <tr>
+        <td><code>$app->registry</code></td>
+        <td>object that manages loaded "global" instances of various classes like models, controllers, etc.</td>
     </tr>
     <tr>
         <td><code>$app->database</code></td>
-        <td>returns object that manages database connections</td>
-    </tr>
-    <tr>
-        <td><code>$app->models</code></td>
-        <td>returns object that manages models</td>
+        <td>object that manages database connections</td>
     </tr>
     <tr>
         <td><code>$app->cache</code></td>
-        <td>returns object that manages cache stores</td>
+        <td>object that manages cache stores</td>
     </tr>
     <tr>
         <td><code>$app->log</code></td>
-        <td>returns object that manages loggers</td>
+        <td>object that manages loggers</td>
     </tr>
     <tr>
         <td><code>$app->router</code></td>
-        <td>returns object that manages routes</td>
+        <td>object that manages routes</td>
     </tr>
     <tr>
         <td><code>$app->view</code></td>
-        <td>returns view object that allows to render templates</td>
+        <td>view object that allows to render templates</td>
     </tr>
     <tr>
         <td><code>$app->error</td>
-        <td>returns object that registers framework error handlers</td>
+        <td>object that registers framework error handlers</td>
     </tr>
 </table>
 

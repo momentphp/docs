@@ -2,6 +2,9 @@
     "name": "momentphp/docs",
     "description": "MomentPHP | Framework documentation",
     "homepage": "http://momentphp.com",
+    "require": {
+        "erusev/parsedown": "1.6.*"
+    },
     "autoload": {
         "psr-4": {
             "momentphp\\bundles\\docs\\": "src"

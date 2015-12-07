@@ -1,7 +1,10 @@
 <?php
 
+/**
+ * Routes definitions
+ */
 $app->group('/docs', function () {
-    $this->get('/', 'DocsController:home')->setName('docs');
+    $this->get('', 'DocsController:home')->setName('docs');
     $this->get('/readme', 'DocsController:readme')->setName('docs-readme');
 });
 

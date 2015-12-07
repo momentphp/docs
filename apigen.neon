@@ -2,6 +2,6 @@ title: MomentPHP
 
 source: ../framework/src
 
-destination: ./web/api
+destination: ./src/web/api
 
 noSourceCode: Yes

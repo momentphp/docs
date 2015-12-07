@@ -1,5 +1,5 @@
 MomentPHP is a lightweight and intuitive PHP mini-framework enabling modular app design.
-The *mini* prefix means that it sits somewhere between micro and full-stack frameworks.
+The *mini* prefix means that it can be put somewhere between micro and full-stack frameworks.
 It offers bare minimum of functionality required in order to create web sites and
 web applications. Most importantly it gives "structure" to your code, leaving
 free choice about inclusion of additional tools. It is built on top of well-known (amongst the PHP community)

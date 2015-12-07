@@ -78,6 +78,7 @@ div[role="flatdoc-content"] table th {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f5f5f5+0,eeeeee+100 */
   background: #f5f5f5;
   /* Old browsers */
+  background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
   /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
   /* Chrome10-25,Safari5.1-6 */
@@ -101,7 +102,7 @@ div[role="flatdoc-content"] code.hljs {
 }
 div[role="flatdoc-content"] code:not([class]) {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  padding: 0.2em 0.4em;
+  padding: 0.1em 0.2em;
   background: #eeeeee;
   border-radius: 3px;
   white-space: nowrap;

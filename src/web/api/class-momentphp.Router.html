@@ -5,7 +5,7 @@
 
 	<title>Class momentphp\Router | MomentPHP</title>
 
-	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
 </head>
 
@@ -66,29 +66,27 @@
 			<ul>
 				<li><a href="class-momentphp.App.html">App</a></li>
 				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
-				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
 				<li><a href="class-momentphp.Cache.html">Cache</a></li>
 				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
-				<li><a href="class-momentphp.Cell.html">Cell</a></li>
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
 				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
 				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
-				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
 				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
 				<li><a href="class-momentphp.Model.html">Model</a></li>
-				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
+				<li><a href="class-momentphp.Provider.html">Provider</a></li>
+				<li><a href="class-momentphp.Registry.html">Registry</a></li>
 				<li class="active"><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.Settings.html">Settings</a></li>
 				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.Template.html">Template</a></li>
 				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
-				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -130,6 +128,9 @@
 	<h1>Class Router</h1>
 
 
+	<div class="description">
+	<p>Router</p>
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -165,40 +166,33 @@ Slim\Router
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="addRoute" id="_addRoute">
+	<tr data-order="createDispatcher" id="_createDispatcher">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
 
-			
+			FastRoute\Dispatcher
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_addRoute">#</a>
-		<code>addRoute( <span>string|string[] <var>$httpMethod</var></span>, <span>string <var>$route</var></span>, <span>mixed <var>$handler</var></span> )</code>
+		<a class="anchor" href="#_createDispatcher">#</a>
+		<code>createDispatcher( )</code>
 
 		<div class="description short">
-			<p>Adds a route to the collection.</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Adds a route to the collection.</p>
-
-<p>The syntax used in the $route string depends on the used route parser.</p>
+			
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$httpMethod</var></dt>
-					<dd></dd>
-					<dt><var>$route</var></dt>
-					<dd></dd>
-					<dt><var>$handler</var></dt>
-					<dd></dd>
-				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					FastRoute\Dispatcher
+				</div>
 
 
 

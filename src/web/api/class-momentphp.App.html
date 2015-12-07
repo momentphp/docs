@@ -5,7 +5,7 @@
 
 	<title>Class momentphp\App | MomentPHP</title>
 
-	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
 </head>
 
@@ -66,29 +66,27 @@
 			<ul>
 				<li class="active"><a href="class-momentphp.App.html">App</a></li>
 				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
-				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
 				<li><a href="class-momentphp.Cache.html">Cache</a></li>
 				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
-				<li><a href="class-momentphp.Cell.html">Cell</a></li>
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
 				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
 				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
-				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
 				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
 				<li><a href="class-momentphp.Model.html">Model</a></li>
-				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
+				<li><a href="class-momentphp.Provider.html">Provider</a></li>
+				<li><a href="class-momentphp.Registry.html">Registry</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.Settings.html">Settings</a></li>
 				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.Template.html">Template</a></li>
 				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
-				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -134,6 +132,17 @@
 	<p>App</p>
 	</div>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>momentphp\App</span></b>			
+			
+			 uses 
+					<a href="class-momentphp.traits.ContainerTrait.html"><span>momentphp\traits\ContainerTrait</span></a>, 
+			
+					<a href="class-momentphp.traits.CollectionTrait.html"><span>momentphp\traits\CollectionTrait</span></a>
+			
+		</dd>
+	</dl>
 
 
 
@@ -167,7 +176,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>array <var>$bundles</var> = []</span>, <span>array <var>$services</var> = []</span> )</code>
+		<code>__construct( <span>array <var>$bundles</var> = []</span>, <span>array <var>$container</var> = []</span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -181,10 +190,127 @@
 				<div class="list"><dl>
 					<dt><var>$bundles</var></dt>
 					<dd></dd>
-					<dt><var>$services</var></dt>
+					<dt><var>$container</var></dt>
 					<dd></dd>
 				</dl></div>
 
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="defaultPaths" id="_defaultPaths">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_defaultPaths">#</a>
+		<code>defaultPaths( <span>Illuminate\Support\Collection <var>$bundles</var></span>, <span>string <var>$resource</var></span> )</code>
+
+		<div class="description short">
+			<p>Default paths</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Default paths</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bundles</var></dt>
+					<dd></dd>
+					<dt><var>$resource</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resource" id="_resource">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resource">#</a>
+		<code>resource( <span>string <var>$key</var></span>, <span>callable <var>$callable</var></span> )</code>
+
+		<div class="description short">
+			<p>Add resource</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add resource</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd></dd>
+					<dt><var>$callable</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resourcePaths" id="_resourcePaths">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resourcePaths">#</a>
+		<code>resourcePaths( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Return resource paths</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return resource paths</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -261,37 +387,140 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="resolveCallable" id="_resolveCallable">
+	<tr data-order="registerAutoloader" id="_registerAutoloader">
 
 		<td class="attributes"><code>
 			 public 
 
-			callable
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_resolveCallable">#</a>
-		<code>resolveCallable( <span>mixed <var>$callable</var></span> )</code>
+		<a class="anchor" href="#_registerAutoloader">#</a>
+		<code>registerAutoloader( )</code>
 
 		<div class="description short">
-			<p>Resolve callable (helper)</p>
+			<p>Register autoloader</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Resolve callable (helper)</p>
+			<p>Register autoloader</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unregisterAutoloader" id="_unregisterAutoloader">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unregisterAutoloader">#</a>
+		<code>unregisterAutoloader( )</code>
+
+		<div class="description short">
+			<p>Unregister autoloader</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Unregister autoloader</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadClass" id="_loadClass">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadClass">#</a>
+		<code>loadClass( <span>string <var>$class</var></span> )</code>
+
+		<div class="description short">
+			<p>Autoloader</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Autoloader</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$callable</var></dt>
+					<dt><var>$class</var></dt>
 					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bundleClass" id="_bundleClass">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bundleClass">#</a>
+		<code>bundleClass( <span>string|null <var>$relativeClass</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Return PHP namespace of last bundle inside collection</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return PHP namespace of last bundle inside collection</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relativeClass</var></dt>
+					<dd>$class</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					callable
+					string
 				</div>
 
 
@@ -337,36 +566,120 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="register" id="_register">
+	<tr data-order="url" id="_url">
 
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_register">#</a>
-		<code>register( <span><code><a href="class-momentphp.ServiceProvider.html">momentphp\ServiceProvider</a></code>|string <var>$provider</var></span>, <span>array <var>$options</var> = []</span> )</code>
+		<a class="anchor" href="#_url">#</a>
+		<code>url( <span>string <var>$name</var></span>, <span>array <var>$data</var> = []</span>, <span>array <var>$queryParams</var> = []</span> )</code>
 
 		<div class="description short">
-			<p>Register a service provider</p>
+			<p>Build the path for a named route including the base path (helper)</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Register a service provider</p>
+			<p>Build the path for a named route including the base path (helper)</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$provider</var></dt>
+					<dt><var>$name</var></dt>
 					<dd></dd>
-					<dt><var>$options</var></dt>
+					<dt><var>$data</var></dt>
+					<dd></dd>
+					<dt><var>$queryParams</var></dt>
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fingerprint" id="_fingerprint">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fingerprint">#</a>
+		<code>fingerprint( <span>string <var>$glue</var> = <span class="php-quote">'_'</span></span> )</code>
+
+		<div class="description short">
+			<p>Return fingerprint</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return fingerprint</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$glue</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bundles" id="_bundles">
+
+		<td class="attributes"><code>
+			 public 
+
+			Illuminate\Support\Collection|<code><a href="class-momentphp.Bundle.html">momentphp\Bundle</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bundles">#</a>
+		<code>bundles( <span>string|null <var>$alias</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Return bundle(s)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return bundle(s)</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$alias</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					Illuminate\Support\Collection|<code><a href="class-momentphp.Bundle.html">momentphp\Bundle</a></code>
+				</div>
 
 
 
@@ -389,41 +702,11 @@
 		<code>registerProviders( )</code>
 
 		<div class="description short">
-			<p>Register service providers defined inside <code>app.providers</code> configuration setting</p>
+			<p>Register providers</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Register service providers defined inside <code>app.providers</code> configuration setting</p>
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="registerRoutes" id="_registerRoutes">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_registerRoutes">#</a>
-		<code>registerRoutes( )</code>
-
-		<div class="description short">
-			<p>Register routes from loaded bundles</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Register routes from loaded bundles</p>
+			<p>Register providers</p>
 
 
 
@@ -449,11 +732,11 @@
 		<code>registerMiddlewares( )</code>
 
 		<div class="description short">
-			<p>Register middlewares defined inside <code>app.middlewares</code> configuration setting</p>
+			<p>Register middlewares</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Register middlewares defined inside <code>app.middlewares</code> configuration setting</p>
+			<p>Register middlewares</p>
 
 
 
@@ -464,7 +747,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="bootProviders" id="_bootProviders">
+	<tr data-order="registerRoutes" id="_registerRoutes">
 
 		<td class="attributes"><code>
 			 public 
@@ -475,15 +758,15 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_bootProviders">#</a>
-		<code>bootProviders( )</code>
+		<a class="anchor" href="#_registerRoutes">#</a>
+		<code>registerRoutes( )</code>
 
 		<div class="description short">
-			<p>Boot all service providers</p>
+			<p>Register routes</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Boot all service providers</p>
+			<p>Register routes</p>
 
 
 
@@ -509,11 +792,41 @@
 		<code>bootBundles( )</code>
 
 		<div class="description short">
-			<p>Boot all bundles</p>
+			<p>Boot bundles</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Boot all bundles</p>
+			<p>Boot bundles</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bootProviders" id="_bootProviders">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bootProviders">#</a>
+		<code>bootProviders( )</code>
+
+		<div class="description short">
+			<p>Boot providers</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Boot providers</p>
 
 
 
@@ -569,11 +882,11 @@
 		<code>run( <span>boolean|false <var>$silent</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
-			<p>Invoke app</p>
+			<p>Run app</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Invoke app</p>
+			<p>Run app</p>
 
 
 				<h4>Parameters</h4>
@@ -593,37 +906,39 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="prepareRequestResponse" id="_prepareRequestResponse">
+	<tr data-order="visit" id="_visit">
 
 		<td class="attributes"><code>
 			 public 
 
-			array
+			Psr\Http\Message\ResponseInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_prepareRequestResponse">#</a>
-		<code>prepareRequestResponse( <span>array <var>$data</var></span> )</code>
+		<a class="anchor" href="#_visit">#</a>
+		<code>visit( <span>string <var>$uri</var></span>, <span>string <var>$method</var> = <span class="php-quote">'GET'</span></span> )</code>
 
 		<div class="description short">
-			<p>Prepare request &amp; response objects for CLI or testing purposes</p>
+			<p>Simulate app request</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Prepare request &amp; response objects for CLI or testing purposes</p>
+			<p>Simulate app request</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$data</var></dt>
+					<dt><var>$uri</var></dt>
+					<dd></dd>
+					<dt><var>$method</var></dt>
 					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					array
+					Psr\Http\Message\ResponseInterface
 				</div>
 
 
@@ -751,50 +1066,25 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="__invoke" id="___invoke">
-
-		<td class="attributes"><code>
-			 public 
-
-			Psr\Http\Message\ResponseInterface
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___invoke">#</a>
-		<code>__invoke( <span>Psr\Http\Message\ServerRequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
-
-		<div class="description short">
-			<p>Invoke app</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Invoke app</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$request</var></dt>
-					<dd></dd>
-					<dt><var>$response</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					Psr\Http\Message\ResponseInterface
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	</table>
 
 
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.ContainerTrait.html#methods">momentphp\traits\ContainerTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.ContainerTrait.html#_container">container()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-momentphp.traits.CollectionTrait.html#methods">momentphp\traits\CollectionTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.CollectionTrait.html#_collection">collection()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -855,6 +1145,78 @@
 			</div>
 		</td>
 	</tr>
+	<tr data-order="booted" id="$booted">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+<var>$booted</var>
+			<div class="description short">
+				<p>Booted flag</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Booted flag</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$booted" class="anchor">#</a>
+				<code><span class="php-keyword1">false</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="autoloaderRegistered" id="$autoloaderRegistered">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+<var>$autoloaderRegistered</var>
+			<div class="description short">
+				<p>Autoloader registered flag</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Autoloader registered flag</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$autoloaderRegistered" class="anchor">#</a>
+				<code><span class="php-keyword1">false</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="resources" id="$resources">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$resources</var>
+			<div class="description short">
+				<p>Resources</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Resources</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$resources" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
 	<tr data-order="providers" id="$providers">
 		<td class="attributes"><code>
 			protected  
@@ -864,11 +1226,11 @@
 		<td class="name">
 <var>$providers</var>
 			<div class="description short">
-				<p>Service providers</p>
+				<p>Providers</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Service providers</p>
+				<p>Providers</p>
 
 			</div>
 		</td>
@@ -882,6 +1244,23 @@
 	</table>
 
 
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.ContainerTrait.html#properties">momentphp\traits\ContainerTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.ContainerTrait.html#$app"><var>$app</var></a>, 
+			<a href="class-momentphp.traits.ContainerTrait.html#$container"><var>$container</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Properties used from <a href="class-momentphp.traits.CollectionTrait.html#properties">momentphp\traits\CollectionTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.traits.CollectionTrait.html#$collection"><var>$collection</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

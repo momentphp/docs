@@ -5,7 +5,7 @@
 
 	<title>Class momentphp\Database | MomentPHP</title>
 
-	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
 </head>
 
@@ -66,29 +66,27 @@
 			<ul>
 				<li><a href="class-momentphp.App.html">App</a></li>
 				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
-				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
 				<li><a href="class-momentphp.Cache.html">Cache</a></li>
 				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
-				<li><a href="class-momentphp.Cell.html">Cell</a></li>
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li class="active"><a href="class-momentphp.Database.html">Database</a></li>
 				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
 				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
-				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
 				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
 				<li><a href="class-momentphp.Model.html">Model</a></li>
-				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
+				<li><a href="class-momentphp.Provider.html">Provider</a></li>
+				<li><a href="class-momentphp.Registry.html">Registry</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.Settings.html">Settings</a></li>
 				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.Template.html">Template</a></li>
 				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
-				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -139,8 +137,6 @@
 <b><span>momentphp\Database</span></b>			
 			
 			 uses 
-					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>, 
-			
 					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>
 			
 		</dd>
@@ -166,6 +162,43 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( <span>array <var>$options</var> = []</span>, <span>boolean <var>$debug</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			<p>Constructor</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Constructor</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd></dd>
+					<dt><var>$debug</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="capsule" id="_capsule">
 
 		<td class="attributes"><code>
@@ -278,27 +311,32 @@
 		<td class="attributes"><code>
 			 public 
 
-			Illuminate\Database\ConnectionInterface|false
+			ConnectionInterface|false
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_connectionStatus">#</a>
-		<code>connectionStatus( )</code>
+		<code>connectionStatus( <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Return default connection status</p>
+			<p>Return connection status</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return default connection status</p>
+			<p>Return connection status</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					Illuminate\Database\ConnectionInterface|false
+					ConnectionInterface|false
 				</div>
 
 
@@ -310,14 +348,6 @@
 	</table>
 
 
-	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.AppAwareTrait.html#methods">momentphp\traits\AppAwareTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
-		</code></td>
-	</tr>
-	</table>
 	<table class="summary used">
 	<caption>Methods used from <a href="class-momentphp.traits.OptionsTrait.html#methods">momentphp\traits\OptionsTrait</a></caption>
 	<tr>
@@ -338,30 +368,6 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="options" id="$options">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-<var>$options</var>
-			<div class="description short">
-				<p>Options</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Options</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$options" class="anchor">#</a>
-				<code>[]</code>
-			</div>
-		</td>
-	</tr>
 	<tr data-order="capsule" id="$capsule">
 		<td class="attributes"><code>
 			protected  
@@ -386,14 +392,39 @@
 			</div>
 		</td>
 	</tr>
+	<tr data-order="debug" id="$debug">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+<var>$debug</var>
+			<div class="description short">
+				<p>Debug flag</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Debug flag</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$debug" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
 	</table>
 
 
 	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.AppAwareTrait.html#properties">momentphp\traits\AppAwareTrait</a></caption>
+	<caption>Properties used from <a href="class-momentphp.traits.OptionsTrait.html#properties">momentphp\traits\OptionsTrait</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+			<a href="class-momentphp.traits.OptionsTrait.html#$options"><var>$options</var></a>, 
+			<a href="class-momentphp.traits.OptionsTrait.html#$optionsInitialized"><var>$optionsInitialized</var></a>
 		</code></td>
 	</tr>
 	</table>

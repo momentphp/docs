@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\Model | MomentPHP</title>
+	<title>Class momentphp\Template | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -77,14 +77,14 @@
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
 				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
-				<li class="active"><a href="class-momentphp.Model.html">Model</a></li>
+				<li><a href="class-momentphp.Model.html">Model</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-momentphp.Provider.html">Provider</a></li>
 				<li><a href="class-momentphp.Registry.html">Registry</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
 				<li><a href="class-momentphp.Settings.html">Settings</a></li>
 				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
-				<li><a href="class-momentphp.Template.html">Template</a></li>
+				<li class="active"><a href="class-momentphp.Template.html">Template</a></li>
 				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
 			</ul>
@@ -125,25 +125,19 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Model</h1>
+	<h1>Class Template</h1>
 
 
 	<div class="description">
-	<p>Model</p>
+	<p>Template</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-<b><span>momentphp\Model</span></b>			
+<b><span>momentphp\Template</span></b>			
 			
 			 uses 
-					<a href="class-momentphp.traits.ContainerTrait.html"><span>momentphp\traits\ContainerTrait</span></a>, 
-			
-					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>, 
-			
-					<a href="class-momentphp.traits.EventsDispatcherTrait.html"><span>momentphp\traits\EventsDispatcherTrait</span></a>, 
-			
-					<a href="class-momentphp.traits.ClassTrait.html"><span>momentphp\traits\ClassTrait</span></a>
+					<a href="class-momentphp.traits.ContainerTrait.html"><span>momentphp\traits\ContainerTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -156,12 +150,12 @@
 
 
 	<div class="info">
-		<b>Abstract</b><br>
+		
 		
 		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
 		
 
-			<b>Located at</b> Model.php		<br>
+			<b>Located at</b> Template.php		<br>
 	</div>
 
 
@@ -180,7 +174,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span>, <span>array <var>$options</var> = []</span> )</code>
+		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -194,8 +188,6 @@
 				<div class="list"><dl>
 					<dt><var>$container</var></dt>
 					<dd></dd>
-					<dt><var>$options</var></dt>
-					<dd></dd>
 				</dl></div>
 
 
@@ -205,37 +197,32 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="db" id="_db">
+	<tr data-order="prepareRegistry" id="_prepareRegistry">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
 
-			Illuminate\Database\ConnectionInterface
+			<code><a href="class-momentphp.Registry.html">momentphp\Registry</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_db">#</a>
-		<code>db( <span>string <var>$connectionName</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_prepareRegistry">#</a>
+		<code>prepareRegistry( )</code>
 
 		<div class="description short">
-			<p>Return connection</p>
+			<p>Prepare helpers registry</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return connection</p>
+			<p>Prepare helpers registry</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$connectionName</var></dt>
-					<dd></dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					Illuminate\Database\ConnectionInterface
+					<code><a href="class-momentphp.Registry.html">momentphp\Registry</a></code>
 				</div>
 
 
@@ -244,71 +231,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="implementedEvents" id="_implementedEvents">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_implementedEvents">#</a>
-		<code>implementedEvents( )</code>
-
-		<div class="description short">
-			<p>Return a list of all events that will fire in the model during its lifecycle</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return a list of all events that will fire in the model during its lifecycle</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="initialize" id="_initialize">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_initialize">#</a>
-		<code>initialize( )</code>
-
-		<div class="description short">
-			<p>Model callback invoked just after model construction</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Model callback invoked just after model construction</p>
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="objectKey" id="_objectKey">
+	<tr data-order="cell" id="_cell">
 
 		<td class="attributes"><code>
 			 public 
@@ -319,17 +242,56 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_objectKey">#</a>
-		<code>objectKey( )</code>
+		<a class="anchor" href="#_cell">#</a>
+		<code>cell( )</code>
 
 		<div class="description short">
-			<p>Return model key (for caching purposes)</p>
+			<p>Render a cell</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return model key (for caching purposes)</p>
+			<p>Render a cell</p>
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="d" id="_d">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_d">#</a>
+		<code>d( <span>mixed <var>$var</var></span> )</code>
+
+		<div class="description short">
+			<p>Allow <code>d()</code> inside templates</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Allow <code>d()</code> inside templates</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$var</var></dt>
+					<dd></dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
@@ -347,7 +309,7 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-momentphp.Model.html">momentphp\Model</a></code>|<code><a href="class-momentphp.Registry.html">momentphp\Registry</a></code>
+			<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>|<code><a href="class-momentphp.Registry.html">momentphp\Registry</a></code>
 			
 			</code>
 		</td>
@@ -357,11 +319,11 @@
 		<code>__get( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
-			<p>Return model</p>
+			<p>Return helper</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return model</p>
+			<p>Return helper</p>
 
 
 				<h4>Parameters</h4>
@@ -372,8 +334,81 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-momentphp.Model.html">momentphp\Model</a></code>|<code><a href="class-momentphp.Registry.html">momentphp\Registry</a></code>
+					<code><a href="class-momentphp.Helper.html">momentphp\Helper</a></code>|<code><a href="class-momentphp.Registry.html">momentphp\Registry</a></code>
 				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__isset" id="___isset">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___isset">#</a>
+		<code>__isset( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			<p>Dynamic properties inside Twig templates</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Dynamic properties inside Twig templates</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://twig.sensiolabs.org/doc/recipes.html#using-dynamic-object-properties">http://twig.sensiolabs.org/doc/recipes.html#using-dynamic-object-properties</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__clone" id="___clone">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___clone">#</a>
+		<code>__clone( )</code>
+
+		<div class="description short">
+			<p>Clone</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Clone</p>
+
+
+
 
 
 
@@ -392,37 +427,6 @@
 		</code></td>
 	</tr>
 	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.OptionsTrait.html#methods">momentphp\traits\OptionsTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.OptionsTrait.html#_options">options()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.EventsDispatcherTrait.html#methods">momentphp\traits\EventsDispatcherTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.EventsDispatcherTrait.html#_bindImplementedEvents">bindImplementedEvents()</a>, 
-			<a href="class-momentphp.traits.EventsDispatcherTrait.html#_eventsDispatcher">eventsDispatcher()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.ClassTrait.html#methods">momentphp\traits\ClassTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.ClassTrait.html#_classBasename">classBasename()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classConfigKey">classConfigKey()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classNamespace">classNamespace()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classPart">classPart()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classPath">classPath()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classPrefix">classPrefix()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classSuffix">classSuffix()</a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -435,27 +439,99 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="connection" id="$connection">
+	<tr data-order="registry" id="$registry">
 		<td class="attributes"><code>
-			protected  
-			string
+			public  
+			<code><a href="class-momentphp.Registry.html">momentphp\Registry</a></code>
 		</code></td>
 
 		<td class="name">
-<var>$connection</var>
+<var>$registry</var>
 			<div class="description short">
-				<p>Connection name to use</p>
+				<p>Helpers registry</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Connection name to use</p>
+				<p>Helpers registry</p>
 
 			</div>
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$connection" class="anchor">#</a>
+				<a href="#$registry" class="anchor">#</a>
 				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="request" id="$request">
+		<td class="attributes"><code>
+			public  
+			Psr\Http\Message\RequestInterface
+		</code></td>
+
+		<td class="name">
+<var>$request</var>
+			<div class="description short">
+				<p>Request</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Request</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$request" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="response" id="$response">
+		<td class="attributes"><code>
+			public  
+			Psr\Http\Message\ResponseInterface
+		</code></td>
+
+		<td class="name">
+<var>$response</var>
+			<div class="description short">
+				<p>Response</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Response</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$response" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="vars" id="$vars">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$vars</var>
+			<div class="description short">
+				<p>Variables for the template</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Variables for the template</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$vars" class="anchor">#</a>
+				<code>[]</code>
 			</div>
 		</td>
 	</tr>
@@ -468,23 +544,6 @@
 		<td><code>
 			<a href="class-momentphp.traits.ContainerTrait.html#$app"><var>$app</var></a>, 
 			<a href="class-momentphp.traits.ContainerTrait.html#$container"><var>$container</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.OptionsTrait.html#properties">momentphp\traits\OptionsTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.OptionsTrait.html#$options"><var>$options</var></a>, 
-			<a href="class-momentphp.traits.OptionsTrait.html#$optionsInitialized"><var>$optionsInitialized</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.EventsDispatcherTrait.html#properties">momentphp\traits\EventsDispatcherTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.EventsDispatcherTrait.html#$eventsDispatcher"><var>$eventsDispatcher</var></a>
 		</code></td>
 	</tr>
 	</table>

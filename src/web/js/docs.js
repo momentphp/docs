@@ -39,7 +39,6 @@ $(document).on('flatdoc:ready', function() {
         $(this).data('inview', new Waypoint.Inview({
             element: $(this)[0],
             entered: function (direction) {
-                // $('.docs-nav a').removeClass('active');
                 $("[href='#" + id + "']").addClass('active');
             },
             exited: function (direction) {

@@ -5,7 +5,7 @@
 
 	<title>Class momentphp\View | MomentPHP</title>
 
-	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
 </head>
 
@@ -66,29 +66,27 @@
 			<ul>
 				<li><a href="class-momentphp.App.html">App</a></li>
 				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
-				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
 				<li><a href="class-momentphp.Cache.html">Cache</a></li>
 				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
-				<li><a href="class-momentphp.Cell.html">Cell</a></li>
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
 				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
 				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
-				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
 				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
 				<li><a href="class-momentphp.Model.html">Model</a></li>
-				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
+				<li><a href="class-momentphp.Provider.html">Provider</a></li>
+				<li><a href="class-momentphp.Registry.html">Registry</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.Settings.html">Settings</a></li>
 				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.Template.html">Template</a></li>
 				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li class="active"><a href="class-momentphp.View.html">View</a></li>
-				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -139,7 +137,7 @@
 <b><span>momentphp\View</span></b>			
 			
 			 uses 
-					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>
+					<a href="class-momentphp.traits.ContainerTrait.html"><span>momentphp\traits\ContainerTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -164,6 +162,45 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span>, <span>array <var>$engine</var></span>, <span>string <var>$engine</var>,…</span> )</code>
+
+		<div class="description short">
+			<p>Constructor</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Constructor</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd></dd>
+					<dt><var>$engine</var></dt>
+					<dd>$options</dd>
+					<dt><var>$engine</var>,…</dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="set" id="_set">
 
 		<td class="attributes"><code>
@@ -205,37 +242,32 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="engine" id="_engine">
+	<tr data-order="viewEngine" id="_viewEngine">
 
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-momentphp.View.html">momentphp\View</a></code>|string
+			<code><a href="class-momentphp.interfaces.ViewEngineInterface.html">momentphp\interfaces\ViewEngineInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_engine">#</a>
-		<code>engine( <span>string <var>$engine</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_viewEngine">#</a>
+		<code>viewEngine( )</code>
 
 		<div class="description short">
-			<p>Engine getter/setter</p>
+			<p>Return view engine instance</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Engine getter/setter</p>
+			<p>Return view engine instance</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$engine</var></dt>
-					<dd></dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-momentphp.View.html">momentphp\View</a></code>|string
+					<code><a href="class-momentphp.interfaces.ViewEngineInterface.html">momentphp\interfaces\ViewEngineInterface</a></code>
 				</div>
 
 
@@ -256,7 +288,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_render">#</a>
-		<code>render( <span>string|null <var>$path</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>render( <span>string|null <var>$template</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Render template content</p>
@@ -268,7 +300,7 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$path</var></dt>
+					<dt><var>$template</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -295,7 +327,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_exists">#</a>
-		<code>exists( <span>string|null <var>$path</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>exists( <span>string|null <var>$template</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Check if given template exists</p>
@@ -307,7 +339,7 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$path</var></dt>
+					<dt><var>$template</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -322,41 +354,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="templatePath" id="_templatePath">
-
-		<td class="attributes"><code>
-			 public 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_templatePath">#</a>
-		<code>templatePath( )</code>
-
-		<div class="description short">
-			<p>Return template path</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Return template path</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="contentTypePath" id="_contentTypePath">
+	<tr data-order="path" id="_path">
 
 		<td class="attributes"><code>
 			 protected 
@@ -367,20 +365,20 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_contentTypePath">#</a>
-		<code>contentTypePath( <span>string <var>$templatePath</var></span> )</code>
+		<a class="anchor" href="#_path">#</a>
+		<code>path( <span>string <var>$template</var></span> )</code>
 
 		<div class="description short">
-			<p>Return template path based on detected content type</p>
+			<p>Return template path</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return template path based on detected content type</p>
+			<p>Return template path</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$templatePath</var></dt>
+					<dt><var>$template</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -395,39 +393,37 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getSet" id="_getSet">
+	<tr data-order="mediaTypeTemplate" id="_mediaTypeTemplate">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getSet">#</a>
-		<code>getSet( <span>string <var>$property</var></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_mediaTypeTemplate">#</a>
+		<code>mediaTypeTemplate( <span>string <var>$template</var></span> )</code>
 
 		<div class="description short">
-			<p>Universal getter/setter</p>
+			<p>Return template path based on detected media type</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Universal getter/setter</p>
+			<p>Return template path based on detected media type</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$property</var></dt>
-					<dd></dd>
-					<dt><var>$value</var></dt>
+					<dt><var>$template</var></dt>
 					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<br>$this|mixed
+					string
 				</div>
 
 
@@ -451,11 +447,11 @@
 		<code>__call( <span>string <var>$method</var></span>, <span>array <var>$args</var> = []</span> )</code>
 
 		<div class="description short">
-			<p>Proxy calls to universal getter/setter</p>
+			<p>Universal getter/setter</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Proxy calls to universal getter/setter</p>
+			<p>Universal getter/setter</p>
 
 
 				<h4>Parameters</h4>
@@ -481,10 +477,10 @@
 
 
 	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.AppAwareTrait.html#methods">momentphp\traits\AppAwareTrait</a></caption>
+	<caption>Methods used from <a href="class-momentphp.traits.ContainerTrait.html#methods">momentphp\traits\ContainerTrait</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
+			<a href="class-momentphp.traits.ContainerTrait.html#_container">container()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -500,14 +496,14 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="guardedProperties" id="$guardedProperties">
+	<tr data-order="guarded" id="$guarded">
 		<td class="attributes"><code>
 			protected  
 			array
 		</code></td>
 
 		<td class="name">
-<var>$guardedProperties</var>
+<var>$guarded</var>
 			<div class="description short">
 				<p>Guarded properties</p>
 			</div>
@@ -519,10 +515,154 @@
 		</td>
 		<td class="value">
 			<div>
-				<a href="#$guardedProperties" class="anchor">#</a>
+				<a href="#$guarded" class="anchor">#</a>
 				<code>[
     <span class="php-quote">'viewEngine'</span>,
 ]</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="engine" id="$engine">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$engine</var>
+			<div class="description short">
+				<p>The name of the service implementing \momentphp\interfaces\ViewEngineInterface</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The name of the service implementing \momentphp\interfaces\ViewEngineInterface</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$engine" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="viewEngine" id="$viewEngine">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-momentphp.interfaces.ViewEngineInterface.html">momentphp\interfaces\ViewEngineInterface</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$viewEngine</var>
+			<div class="description short">
+				<p>View engine</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>View engine</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$viewEngine" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="template" id="$template">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$template</var>
+			<div class="description short">
+				<p>Template file to render</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Template file to render</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$template" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="templateFolder" id="$templateFolder">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$templateFolder</var>
+			<div class="description short">
+				<p>Template folder</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Template folder</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$templateFolder" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="bundle" id="$bundle">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$bundle</var>
+			<div class="description short">
+				<p>Bundle alias (if template should be rendered out of specific bundle)</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Bundle alias (if template should be rendered out of specific bundle)</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$bundle" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="vars" id="$vars">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$vars</var>
+			<div class="description short">
+				<p>Variables for the template</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Variables for the template</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$vars" class="anchor">#</a>
+				<code>[]</code>
 			</div>
 		</td>
 	</tr>
@@ -574,158 +714,15 @@
 			</div>
 		</td>
 	</tr>
-	<tr data-order="template" id="$template">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$template</var>
-			<div class="description short">
-				<p>Template to render</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Template to render</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$template" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="bundle" id="$bundle">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$bundle</var>
-			<div class="description short">
-				<p>Bundle alias (if template should be rendered out of specific bundle)</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Bundle alias (if template should be rendered out of specific bundle)</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$bundle" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="engine" id="$engine">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$engine</var>
-			<div class="description short">
-				<p>View engine to use</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>View engine to use</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$engine" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="viewEngine" id="$viewEngine">
-		<td class="attributes"><code>
-			protected  
-			<code><a href="class-momentphp.interfaces.ViewEngineInterface.html">momentphp\interfaces\ViewEngineInterface</a></code>
-		</code></td>
-
-		<td class="name">
-<var>$viewEngine</var>
-			<div class="description short">
-				<p>View engine instance</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>View engine instance</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$viewEngine" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="vars" id="$vars">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-<var>$vars</var>
-			<div class="description short">
-				<p>Variables for the template</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Variables for the template</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$vars" class="anchor">#</a>
-				<code>[]</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="context" id="$context">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-<var>$context</var>
-			<div class="description short">
-				<p>Object context mode (controllers &amp; cells)</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Object context mode (controllers &amp; cells)</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$context" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
 	</table>
 
 
 	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.AppAwareTrait.html#properties">momentphp\traits\AppAwareTrait</a></caption>
+	<caption>Properties used from <a href="class-momentphp.traits.ContainerTrait.html#properties">momentphp\traits\ContainerTrait</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+			<a href="class-momentphp.traits.ContainerTrait.html#$app"><var>$app</var></a>, 
+			<a href="class-momentphp.traits.ContainerTrait.html#$container"><var>$container</var></a>
 		</code></td>
 	</tr>
 	</table>

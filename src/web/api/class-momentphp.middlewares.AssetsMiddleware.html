@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\Helper | MomentPHP</title>
+	<title>Class momentphp\middlewares\AssetsMiddleware | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -34,7 +34,7 @@
 						interfaces					</a>
 
 						</li>
-				<li>
+				<li class="active">
 					<a href="namespace-momentphp.middlewares.html">
 						middlewares					</a>
 
@@ -64,29 +64,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-momentphp.App.html">App</a></li>
-				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
-				<li><a href="class-momentphp.Cache.html">Cache</a></li>
-				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
-				<li><a href="class-momentphp.Config.html">Config</a></li>
-				<li><a href="class-momentphp.Controller.html">Controller</a></li>
-				<li><a href="class-momentphp.Database.html">Database</a></li>
-				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
-				<li><a href="class-momentphp.Error.html">Error</a></li>
-				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
-				<li class="active"><a href="class-momentphp.Helper.html">Helper</a></li>
-				<li><a href="class-momentphp.Log.html">Log</a></li>
-				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
-				<li><a href="class-momentphp.Model.html">Model</a></li>
-				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
-				<li><a href="class-momentphp.Provider.html">Provider</a></li>
-				<li><a href="class-momentphp.Registry.html">Registry</a></li>
-				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.Settings.html">Settings</a></li>
-				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
-				<li><a href="class-momentphp.Template.html">Template</a></li>
-				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
-				<li><a href="class-momentphp.View.html">View</a></li>
+				<li class="active"><a href="class-momentphp.middlewares.AssetsMiddleware.html">AssetsMiddleware</a></li>
+				<li><a href="class-momentphp.middlewares.NegotiationMiddleware.html">NegotiationMiddleware</a></li>
 			</ul>
 
 
@@ -113,7 +92,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-momentphp.html" title="Summary of momentphp"><span>Namespace</span></a>
+				<a href="namespace-momentphp.middlewares.html" title="Summary of momentphp\middlewares"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -125,16 +104,17 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Helper</h1>
+	<h1>Class AssetsMiddleware</h1>
 
 
 	<div class="description">
-	<p>Helper</p>
+	<p>AssetMiddleware</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-<b><span>momentphp\Helper</span></b>			
+			<a href="class-momentphp.Middleware.html"><span>momentphp\Middleware</span></a>
+			
 			
 			 uses 
 					<a href="class-momentphp.traits.ContainerTrait.html"><span>momentphp\traits\ContainerTrait</span></a>, 
@@ -142,6 +122,12 @@
 					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>, 
 			
 					<a href="class-momentphp.traits.ClassTrait.html"><span>momentphp\traits\ClassTrait</span></a>
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>momentphp\middlewares\AssetsMiddleware</span></b>			
+			
 			
 		</dd>
 	</dl>
@@ -154,50 +140,93 @@
 
 
 	<div class="info">
-		<b>Abstract</b><br>
 		
-		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
+		
+		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a>\<a href="namespace-momentphp.middlewares.html">middlewares</a><br>
 		
 
-			<b>Located at</b> Helper.php		<br>
+			<b>Located at</b> middlewares/AssetsMiddleware.php		<br>
 	</div>
 
 
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="__invoke" id="___invoke">
 
 		<td class="attributes"><code>
 			 public 
 
-			
+			Psr\Http\Message\ResponseInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span>, <span><code><a href="class-momentphp.Template.html">momentphp\Template</a></code> <var>$template</var></span>, <span> <var>$options</var> = []</span> )</code>
+		<a class="anchor" href="#___invoke">#</a>
+		<code>__invoke( <span>Psr\Http\Message\RequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span>, <span>callable <var>$next</var></span> )</code>
 
 		<div class="description short">
-			<p>Constructor</p>
+			<p>Invoke middleware</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Constructor</p>
+			<p>Invoke middleware</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$container</var></dt>
+					<dt><var>$request</var></dt>
 					<dd></dd>
-					<dt><var>$template</var></dt>
-					<dd>$options</dd>
-					<dt><var>$options</var></dt>
+					<dt><var>$response</var></dt>
+					<dd></dd>
+					<dt><var>$next</var></dt>
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					Psr\Http\Message\ResponseInterface
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mimeType" id="_mimeType">
+
+		<td class="attributes"><code>
+			 protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mimeType">#</a>
+		<code>mimeType( <span>string <var>$file</var></span> )</code>
+
+		<div class="description short">
+			<p>Return file mime type</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return file mime type</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd>$filename</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -207,6 +236,14 @@
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-momentphp.Middleware.html#methods">momentphp\Middleware</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-momentphp.Middleware.html#___construct">__construct()</a>
+		</code></td>
+	</tr>
+	</table>
 
 	<table class="summary used">
 	<caption>Methods used from <a href="class-momentphp.traits.ContainerTrait.html#methods">momentphp\traits\ContainerTrait</a></caption>
@@ -248,33 +285,6 @@
 
 
 
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="template" id="$template">
-		<td class="attributes"><code>
-			protected  
-			<code><a href="class-momentphp.Template.html">momentphp\Template</a></code>
-		</code></td>
-
-		<td class="name">
-<var>$template</var>
-			<div class="description short">
-				<p>Template</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Template</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$template" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 
 	<table class="summary used">

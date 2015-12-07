@@ -5,7 +5,7 @@
 
 	<title>Class momentphp\ExceptionHandler | MomentPHP</title>
 
-	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
 </head>
 
@@ -66,29 +66,27 @@
 			<ul>
 				<li><a href="class-momentphp.App.html">App</a></li>
 				<li><a href="class-momentphp.Bundle.html">Bundle</a></li>
-				<li><a href="class-momentphp.BundleCollection.html">BundleCollection</a></li>
 				<li><a href="class-momentphp.Cache.html">Cache</a></li>
 				<li><a href="class-momentphp.CallableResolver.html">CallableResolver</a></li>
-				<li><a href="class-momentphp.Cell.html">Cell</a></li>
 				<li><a href="class-momentphp.Config.html">Config</a></li>
 				<li><a href="class-momentphp.Controller.html">Controller</a></li>
 				<li><a href="class-momentphp.Database.html">Database</a></li>
 				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
 				<li class="active"><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
-				<li><a href="class-momentphp.FrameworkBundle.html">FrameworkBundle</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
 				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
 				<li><a href="class-momentphp.Model.html">Model</a></li>
-				<li><a href="class-momentphp.ModelCollection.html">ModelCollection</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
+				<li><a href="class-momentphp.Provider.html">Provider</a></li>
+				<li><a href="class-momentphp.Registry.html">Registry</a></li>
 				<li><a href="class-momentphp.Router.html">Router</a></li>
-				<li><a href="class-momentphp.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-momentphp.Settings.html">Settings</a></li>
 				<li><a href="class-momentphp.SmartyViewEngine.html">SmartyViewEngine</a></li>
+				<li><a href="class-momentphp.Template.html">Template</a></li>
 				<li><a href="class-momentphp.TwigViewEngine.html">TwigViewEngine</a></li>
 				<li><a href="class-momentphp.View.html">View</a></li>
-				<li><a href="class-momentphp.ViewTemplate.html">ViewTemplate</a></li>
 			</ul>
 
 
@@ -139,7 +137,7 @@
 <b><span>momentphp\ExceptionHandler</span></b>			
 			
 			 uses 
-					<a href="class-momentphp.traits.AppAwareTrait.html"><span>momentphp\traits\AppAwareTrait</span></a>
+					<a href="class-momentphp.traits.ContainerTrait.html"><span>momentphp\traits\ContainerTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -164,6 +162,80 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span> )</code>
+
+		<div class="description short">
+			<p>Constructor</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Constructor</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderForConsole" id="_renderForConsole">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderForConsole">#</a>
+		<code>renderForConsole( <span>Exception <var>$e</var></span> )</code>
+
+		<div class="description short">
+			<p>Render exception for CLI</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Render exception for CLI</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$e</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="renderHttpResponse" id="_renderHttpResponse">
 
 		<td class="attributes"><code>
@@ -176,7 +248,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderHttpResponse">#</a>
-		<code>renderHttpResponse( <span>Exception <var>$e</var></span>, <span>Psr\Http\Message\ServerRequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
+		<code>renderHttpResponse( <span>Exception <var>$e</var></span> )</code>
 
 		<div class="description short">
 			<p>Render http response for given exception</p>
@@ -189,10 +261,6 @@
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$e</var></dt>
-					<dd></dd>
-					<dt><var>$request</var></dt>
-					<dd></dd>
-					<dt><var>$response</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -212,60 +280,21 @@
 		<td class="attributes"><code>
 			 protected 
 
-			object
+			Whoops\Handler\HandlerInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_whoopsHandler">#</a>
-		<code>whoopsHandler( <span>Psr\Http\Message\ServerRequestInterface <var>$request</var></span> )</code>
+		<code>whoopsHandler( <span>Exception <var>$e</var></span> )</code>
 
 		<div class="description short">
-			<p>Return correct whoops handler</p>
+			<p>Return correct Whoops handler</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Return correct whoops handler</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$request</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					object
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="renderForConsole" id="_renderForConsole">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_renderForConsole">#</a>
-		<code>renderForConsole( <span>Exception <var>$e</var></span> )</code>
-
-		<div class="description short">
-			<p>Render exception in CLI</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Render exception in CLI</p>
+			<p>Return correct Whoops handler</p>
 
 
 				<h4>Parameters</h4>
@@ -274,6 +303,44 @@
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					Whoops\Handler\HandlerInterface
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whoops" id="_whoops">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Whoops\Run
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whoops">#</a>
+		<code>whoops( )</code>
+
+		<div class="description short">
+			<p>Return prepared Whoops instance</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return prepared Whoops instance</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Whoops\Run
+				</div>
 
 
 
@@ -393,10 +460,10 @@
 
 
 	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.AppAwareTrait.html#methods">momentphp\traits\AppAwareTrait</a></caption>
+	<caption>Methods used from <a href="class-momentphp.traits.ContainerTrait.html#methods">momentphp\traits\ContainerTrait</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-momentphp.traits.AppAwareTrait.html#_app">app()</a>
+			<a href="class-momentphp.traits.ContainerTrait.html#_container">container()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -413,10 +480,11 @@
 
 
 	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.AppAwareTrait.html#properties">momentphp\traits\AppAwareTrait</a></caption>
+	<caption>Properties used from <a href="class-momentphp.traits.ContainerTrait.html#properties">momentphp\traits\ContainerTrait</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-momentphp.traits.AppAwareTrait.html#$app"><var>$app</var></a>
+			<a href="class-momentphp.traits.ContainerTrait.html#$app"><var>$app</var></a>, 
+			<a href="class-momentphp.traits.ContainerTrait.html#$container"><var>$container</var></a>
 		</code></td>
 	</tr>
 	</table>

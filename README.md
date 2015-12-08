@@ -285,23 +285,24 @@ Your application can use multiple bundles.
 
 ## Creating a new bundle
 
-By default bundles are placed inside `/bundle` folder (assuming you are using [app skeleton]).
+By default bundles are placed inside `/bundles` folder (assuming you are using [app skeleton]).
 Each bundle should have its own **unique namespace**. If we were to create `helloWorld` bundle we should start
-by creating bundle class file `/bundle/helloWorld/HelloWorldBundle.php` with following content:
+by creating bundle class file `/bundles/helloWorld/Bundle.php` with following content:
 
 ```php
-namespace app\bundle\helloWorld;
+namespace bundles\helloWorld;
 
-class HelloWorldBundle extends \momentphp\Bundle
+class Bundle extends \momentphp\Bundle
 {
 }
 ```
 
 The location of bundle class file determines bundle root folder. Within that folder you can place various
-bundle resources like configuration, routes, models, controllers etc. Theoretically bundle can be placed in any path
-as long as Composer's autoloader is able to locate bundle class file.
+bundle resources (configuration, routes, templates) and classes (models, controllers, etc.).
+Theoretically bundle can be placed anywhere in the filesystem as long as Composer's autoloader is able
+to locate bundle class file.
 
-Each bundle has an alias, which is the lower-cased version of the bundle namespace where namespace separators (`\`)
+Each bundle has **an alias**, which is the lower-cased version of the bundle namespace where namespace separators (`\`)
 are replaced with dots:
 
 <table>
@@ -310,25 +311,32 @@ are replaced with dots:
         <th>alias</th>
     </tr>
     <tr>
-        <td><code>app\bundle\helloWorld</code></td>
-        <td><code>app.bundle.helloworld</code></td>
+        <td><code>bundles\helloWorld</code></td>
+        <td><code>bundles.helloworld</code></td>
     </tr>
 </table>
 
-Aliases are used across various framework parts - i.e. to load templates from specific bundle or
-get bundle object from `$app->bundles` service. You may alter default alias with custom one while
-loading bundle.
-
-`momentphp\Bundle::boot()` callback is invoked just before response is sent to the client.
-It can be used to set some global PHP settings or to manually register middlewares:
+Aliases are used across various framework parts - i.e. to load templates from specific bundle. You can get bundle object
+via `$app->bundles('bundles.helloworld')` method. Also you may alter default alias with custom one while
+loading bundle:
 
 ```php
-class HelloWorldBundle extends \momentphp\Bundle
+$app = new momentphp\App([
+    bundles\helloWorld\Bundle::class => ['alias' => 'hello'],
+]);
+```
+
+`momentphp\Bundle::boot()` callback is invoked (if implemented) just before response is sent to the client.
+It can be used to perform some logic (i.e. to set some global PHP settings):
+
+```php
+namespace bundles\helloWorld;
+
+class Bundle extends \momentphp\Bundle
 {
     public function boot()
     {
-        $this->app->add('TestMiddleware'); // register app middleware
-        ini_set('memory_limit', '2048M'); // set global PHP settings
+        ini_set('memory_limit', '2048M');
     }
 }
 ```
@@ -338,46 +346,42 @@ class HelloWorldBundle extends \momentphp\Bundle
 <table>
     <tr>
         <th>folder or file</td>
-        <th>description</th>
-    </tr>
-    <tr>
-        <td><code>/cells</code></td>
-        <td>bundle cells</td>
+        <th>holds</th>
     </tr>
     <tr>
         <td><code>/config</code></td>
-        <td>bundle configuration</td>
+        <td>configuration files</td>
     </tr>
     <tr>
         <td><code>/controllers</code></td>
-        <td>bundle controllers</td>
+        <td>controllers classes</td>
     </tr>
     <tr>
         <td><code>/helpers</code></td>
-        <td>bundle helpers</td>
+        <td>helpers classes</td>
     </tr>
      <tr>
         <td><code>/templates</code></td>
-        <td>bundle templates</td>
+        <td>templates</td>
     </tr>
     <tr>
         <td><code>/middlewares</code></td>
-        <td>bundle middlewares</td>
+        <td>middlewares classes</td>
     </tr>
     <tr>
         <td><code>/providers</code></td>
-        <td>bundle service providers</td>
+        <td>providers classes</td>
     </tr>
     <tr>
         <td><code>/models</code></td>
-        <td>bundle models</td>
+        <td>models classes</td>
     </tr>
     <tr>
         <td><code>routes.php</code></td>
-        <td>bundle routes</td>
+        <td>routes</td>
     </tr>
     <tr>
-        <td><code>HelloWorldBundle.php</code></td>
+        <td><code>Bundle.php</code></td>
         <td>bundle main class file</td>
     </tr>
 </table>
@@ -389,28 +393,23 @@ requests:
 
 ```php
 $app = new momentphp\App([
-    app\bundle\helloWorld\HelloWorldBundle::class,
+    bundles\helloWorld\Bundle::class,
     ...
 ]);
-// or
-$app = new momentphp\App;
-$app->bundles->load(app\bundle\helloWorld\HelloWorldBundle::class);
-$app->bundles->load(...);
 ```
 
-While loading a bundle you may choose to disable loading of certain bundle resources or assign custom
-alias:
+While loading a bundle, apart from defining custom alias, you may choose to disable loading of certain resources or classes:
 
 ```php
 /**
- * Do not load configuration and routes from helloWorld bundle and assign custom alias
+ * Do not load configuration, routes and models from helloWorld bundle
  */
 $app = new momentphp\App([
-    app\bundle\helloWorld\HelloWorldBundle::class => ['alias' => 'hello', 'skip' => ['config', 'routes']],
-    ...
+    bundles\helloWorld\Bundle::class => [
+        'skipResource' => ['config', 'routes'],
+        'skipClass' => ['models'],
+    ],
 ]);
-// or
-$app->bundles->load([app\bundle\helloWorld\HelloWorldBundle::class => ['alias' => 'hello', 'skip' => ['config', 'routes']]]);
 ```
 
 ## Bundle inheritance
@@ -422,8 +421,8 @@ that application loads two bundles:
 
 ```php
 $app = new momentphp\App([
-    app\bundle\first\FirstBundle::class,
-    app\bundle\second\SecondBundle::class
+    bundles\first\Bundle::class,
+    bundles\second\Bundle::class
 ]);
 ```
 
@@ -442,13 +441,13 @@ handler (see [Routes][ROUTES]).
 In order to override specific template from `first` bundle:
 
 ```html
-/bundle/first/templates/partials/post.tpl
+/bundles/first/templates/partials/post.tpl
 ```
 
 create the template file with the same name in `second` bundle:
 
 ```html
-/bundle/second/templates/partials/post.tpl
+/bundles/second/templates/partials/post.tpl
 ```
 
 See [Templates][TEMPLATES] for more information.
@@ -459,9 +458,9 @@ In order to override class-based resources (like [controllers][CONTROLLERS], [mo
 create corresponding class file with the same name and extend suitable parent class:
 
 ```php
-namespace app\bundle\second\models;
+namespace bundles\second\models;
 
-class PostModel extends \app\bundle\first\models\PostModel
+class PostModel extends \bundles\first\models\PostModel
 {
     public function index()
     {
@@ -520,13 +519,11 @@ It is often helpful to have different configuration values based on the environm
 By default application environment is set to `production`. You can change environment setting inside main `index.php` file:
 
 ```php
-$services = [
-    'env' => 'production',
+$app = new momentphp\App([...], [
+    'env' => 'development',
     'pathBase' => $pathBase,
     'pathWeb' => __DIR__,
-];
-
-$app = new momentphp\App([...], $services);
+]);
 ```
 
 To override configuration for development environment (set above) simply create a folder within the `/config` directory
@@ -536,7 +533,7 @@ that environment. For example, to override the debug flag for the development en
 
 ```php
 return [
-    'debug' => true
+    'displayErrorDetails' => true
 ]
 ```
 
@@ -562,8 +559,8 @@ Framework stores its configuration in a set of pre-defined files:
         <td>cache stores configuration</td>
     </tr>
     <tr>
-        <td><code>cells.php</code></td>
-        <td>cells configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
+        <td><code>controllers.php</code></td>
+        <td>controllers/cells configuration (see <a href="#instance-configuration">Instance configuration</a>)</td>
     </tr>
     <tr>
         <td><code>database.php</code></td>
@@ -600,7 +597,7 @@ hard code configuration inside a class:
 ```php
 class PostModel extends Model
 {
-    protected $options = [
+    protected $defaults = [
         'listing' => [
             'perPage' => 10
         ]
@@ -609,7 +606,7 @@ class PostModel extends Model
 ```
 
 Hard-coded options are merged with options passed to constructor function during object initialization.
-For [bundles][BUNDLES], [models][MODELS], [helpers][TEMPLATES-HELPERS], [cells][TEMPLATES-CELLS], [service providers][SERVICES-SERVICE-PROVIDERS] and [middlewares][MIDDLEWARES] you can define configuration options passed to constructor by creating
+For [controllers][CONTROLLER], [models][MODELS], [helpers][TEMPLATES-HELPERS], [service providers][SERVICES-SERVICE-PROVIDERS] and [middlewares][MIDDLEWARES] you can define configuration options passed to constructor by creating
 appropriate configuration file. For `PostModel` above we could create `/config/models.php` file with following content:
 
 ```php
@@ -635,19 +632,19 @@ $this->Post->options('listing.perPage', 5); // set
 Model classes in MVC pattern are responsible for providing controllers with data from various sources: databases,
 files on disk or even external web services. MomentPHP model classes are located inside `/models` folder within bundle.
 
-Here is a simple example of a model definition from `miniBlog` bundle:
+Here is a simple example of a model definition from hypothetical `blog` bundle:
 
 ```php
-namespace app\bundle\miniBlog\models;
+namespace bundles\blog\models;
 
 class PostModel extends \momentphp\Model
 {
-    public function index()
+    public function findAll()
     {
         return $this->db()->table('posts')->get();
     }
 
-    public function view($id)
+    public function findById($id)
     {
         return $this->db()->table('posts')->where('id', $id)->first();
     }
@@ -673,7 +670,7 @@ You may tell model class to use different connection by specifying `$connection`
 ```php
 class PostModel extends \momentphp\Model
 {
-    public $connection = 'connection2';
+    protected $connection = 'connection2';
 }
 ```
 
@@ -687,15 +684,15 @@ You may also access the raw, underlying [PDO][pdo] instance following way:
 
 ```php
 $pdo = $this->db()->getPdo(); // inside model class
-$pdo = $this->app->database->connection()->getPdo(); // via app object elsewhere
+$pdo = $this->app->database->connection()->getPdo(); // via $app object elsewhere
 ```
 
 ## Accessing models
 
-You can access model instance via `$app->models` service:
+You can access model instance via `$app->registry` service:
 
 ```php
-$this->app->models->Post->index();
+$this->app->registry->models->Post->findAll();
 ```
 
 Above creates "global" model instance which is initialized with configuration from `/config/models.php`:
@@ -708,17 +705,17 @@ return [
 ]
 ```
 
-If needed, you can create as many model instances as you wish manually via `momentphp\Model::factory()` method.
+If needed, you can create as many model instances as you wish manually via `momentphp\Registry::factory()` method.
 Using this way you must pass configuration in second param:
 
 ```php
-$Post = $this->app->models->factory('Post', ['perPage' => 25]);
+$Post = $this->app->registry->factory('PostModel', ['perPage' => 25]);
 ```
 
-Inside controller, cell and model classes you can access models with more concise syntax:
+Inside controller and model classes you can access other models with more concise syntax:
 
 ```php
-$this->Post->index();
+$this->Post->findAll();
 ```
 
 ## Model callbacks
@@ -815,18 +812,18 @@ $app->get('/hello/{name}', 'HelloController:say');
 and corresponding controller class:
 
 ```php
-namespace app\bundle\helloWorld\controllers;
+namespace bundles\helloWorld\controllers;
 
 class HelloController extends \momentphp\Controller
 {
-    public function say($name)
+    protected function say($name)
     {
         return 'Hello ' . $name;
     }
 }
 ```
 
-Controller action can return:
+Controller action must be `protected` and can return:
 
 - a string (sent to browser as `text/html`)
 - a response object
@@ -845,11 +842,11 @@ $this->view->template('/say2'); // will render: /templates/say2.twig
 You can also force controller to use template from specific bundle (referenced by alias):
 
 ```php
-// following will render: /templates/controllers/Hello/say2.twig from 'hello' bundle
+// following will render: /templates/controllers/Hello/say2.twig from "hello" bundle
 $this->view->template('say2')->bundle('hello');
 ```
 
-If client asks for JSON (or XML) and your application is using [ContentTypeMiddleware][MIDDLEWARES-DEFAULT-MIDDLEWARES]
+If client asks for JSON (or XML) and your application is using [NegotiationMiddleware][MIDDLEWARES-DEFAULT-MIDDLEWARES]
 templates are rendered in following manner:
 
 ```php
@@ -868,7 +865,8 @@ $this->set('color', 'pink');
 $this->view->set('color', 'pink');
 
 // access variable inside a template
-You have choosen {{ color }} color.
+You have choosen {{ color }} color. // Twig
+You have choosen {$color} color. // Smarty
 ```
 
 The `set()` method also takes an associative array as its first parameter.
@@ -895,7 +893,7 @@ class HelloController extends \momentphp\Controller
         }
     }
 
-    public function say($name)
+    protected function say($name)
     {
         return 'Hello ' . $name;
     }
@@ -934,7 +932,7 @@ can be returned from action. To return redirect response:
 ```php
 class HelloController extends \momentphp\Controller
 {
-    public function say($name)
+    protected function say($name)
     {
         return $this->response->withRedirect('/login');
     }
@@ -946,21 +944,21 @@ To return [JSON][JSON] response:
 ```php
 class HelloController extends \momentphp\Controller
 {
-    public function say($name)
+    protected function say($name)
     {
         return $this->response->withJson(['name' => $name]);
     }
 }
 ```
 
-To render 404 - page not found - throw following exception:
+To render 404 - page not found:
 
 ```php
 class HelloController extends \momentphp\Controller
 {
-    public function say($name)
+    protected function say($name)
     {
-        throw new \momentphp\exceptions\NotFoundException;
+        $this->abort();
     }
 }
 ```
@@ -968,6 +966,46 @@ class HelloController extends \momentphp\Controller
 You can find more information about response object in [Slim’s][Slim] documentation:
 
 - [Response object][response]
+
+## Cells
+
+Cells are small mini-controllers that can invoke view logic and render out templates.
+Cells are ideal for building reusable page components that require interaction with models, view logic, and
+rendering logic. A simple example would be the cart in an online store, or a data-driven navigation menu in a CMS.
+Cells do not dispatch sub-requests. Cells classes are placed under `/controllers/cells` folder within bundle.
+
+Let's create sample `ShoppingCart` cell. Create cell class file `bundles/helloWorld/controllers/cells/ShoppingCartController.php`
+with following content:
+
+```php
+namespace bundles\helloWorld\controllers\cells;
+
+class ShoppingCartController extends \momentphp\Controller
+{
+    protected function display($items = 5)
+    {
+        // grab some data and set it to the template
+    }
+}
+```
+
+Our newly created cell may be invoked inside any template:
+
+```html
+{{ this.cell('ShoppingCart') }} // Twig
+{$this->cell('ShoppingCart')} // Smarty
+```
+
+You can also invoke any cell action and pass additional arguments:
+
+```html
+{{ this.cell('ShoppingCart:display', 10) }} // Twig
+{$this->cell('ShoppingCart:display', 10)} // Smarty
+```
+
+Cell templates are placed inside `/templates/controllers/cells` subfolder.
+In case no action is specified while invoking cell, `display` action will be invoked, rendering following template:
+`bundles/helloWorld/templates/controllers/cells/ShoppingCart/display.twig`.
 
 # Templates
 
@@ -991,16 +1029,12 @@ Templates should fall into pre-defined folders presented below:
         <th>description</th>
     </tr>
     <tr>
-        <td><code>/templates/cells</code></td>
-        <td>templates for cells actions</td>
-    </tr>
-    <tr>
         <td><code>/templates/controllers</code></td>
         <td>templates for controllers actions</td>
     </tr>
     <tr>
         <td><code>/templates/partials</code></td>
-        <td>sub-templates - templates that are included by other templates via <code>{include}</code></td>
+        <td>sub-templates - templates that are included by other templates</td>
     </tr>
     <tr>
         <td><code>/templates/layouts</code></td>
@@ -1008,7 +1042,7 @@ Templates should fall into pre-defined folders presented below:
     </tr>
 </table>
 
-The `this` variable inside templates represents `\momentphp\ViewTemplate` instance and allows you to
+The `this` variable inside templates represents `\momentphp\Template` instance and allows you to
 access various objects inside template file:
 
 <table>
@@ -1045,12 +1079,12 @@ example) via following syntax:
 ## Helpers
 
 Helpers are classes for the presentation layer of your application. They contain presentational logic that is shared
-between many templates, elements, or layouts. Helpers may assist in creating well-formed markup, aid in formatting text,
+between many templates, partials or layouts. Helpers may assist in creating well-formed markup, aid in formatting text,
 times and numbers etc. Helper classes are placed under `/helpers` folder within bundle. Let's create sample `TextHelper`.
-Create class file under `/app/bundle/helloWorld/helpers/TextHelper.php` with following content:
+Create class file under `bundles/helloWorld/helpers/TextHelper.php` with following content:
 
 ```php
-namespace app\bundle\helloWorld\helpers;
+namespace bundles\helloWorld\helpers;
 
 class TextHelper extends \momentphp\Helper
 {
@@ -1072,50 +1106,10 @@ Inside helper methods you may access:
 
 ```php
 $this->app // app object
-$this->view // ViewTemplate object
-$this->view->request // request object
-$this->view->vars // template variables
-$this->options() // helper configuration set in /config/helpers.php
-```
-
-## Cells
-
-Cells are small mini-controllers that can invoke view logic and render out templates.
-Cells are ideal for building reusable page components that require interaction with models, view logic, and
-rendering logic. A simple example would be the cart in an online store, or a data-driven navigation menu in a CMS.
-Cells do not dispatch sub-requests. Cells classes are placed under `/cells` folder within bundle.
-
-Let's create sample `ShoppingCart` cell. Create cell class file `/app/bundle/helloWorld/cells/ShoppingCartCell.php`
-with following content:
-
-```php
-namespace app\bundle\helloWorld\cells;
-
-class ShoppingCartCell extends \momentphp\Cell
-{
-    public function display($items = 5)
-    {
-        // grab some data and set it to the template
-    }
-}
-```
-
-Templates behave just like controller templates but are placed inside `/templates/cells` subfolder.
-In case nothing is returned from cell action default template will be rendered:
-`/app/bundle/helloWorld/templates/cells/ShoppingCart/display.twig`.
-
-Our newly created cell may be invoked inside any template:
-
-```html
-{{ this.cell('ShoppingCart') }} // Twig
-{$this->cell('ShoppingCart')} // Smarty
-```
-
-You can also invoke any cell action and pass additional arguments:
-
-```html
-{{ this.cell('ShoppingCart:display', 10) }} // Twig
-{$this->cell('ShoppingCart:display', 10)} // Smarty
+$this->template // Template object
+$this->template->request // request object
+$this->template->vars // template variables
+$this->options() // helper configuration set in "/config/helpers.php"
 ```
 
 # Routes
@@ -1145,7 +1139,7 @@ $app->any('/docs', function ($request, $response, $args) {
 });
 ```
 
-Note that you will have access to the `$app` instance inside of the Closure via the `$this` keyword.
+Note that you will have access to the service container instance inside of the Closure via the `$this` keyword.
 
 You can find more information about router and routes in [Slim's][Slim] documentation:
 
@@ -1162,11 +1156,11 @@ In order to create simple `Auth` middleware
 create class file `/middlewares/AuthMiddleware.php` with content:
 
 ```php
-namespace app\bundle\helloWorld\middlewares;
+namespace bundles\helloWorld\middlewares;
 
 class AuthMiddleware extends \momentphp\Middleware
 {
-    public function run($request, $response, $next)
+    public function __invoke($request, $response, $next)
     {
         $cookies = $request->getCookieParams();
         if (!isset($cookies['auth'])) {
@@ -1177,24 +1171,28 @@ class AuthMiddleware extends \momentphp\Middleware
 }
 ```
 
-Middleware can be attached at application level manually:
-
-```php
-$app->add('AuthMiddleware');
-```
-
-or via configuration inside `/config/app.php`:
+Middleware can be attached at application level via `app.middlewares.app` configuration key:
 
 ```php
 'middlewares' => [
-    'Auth' => true
+    'app' => [
+        'auth' => 'AuthMiddleware',
+    ],
 ]
 ```
 
-Also you can attach middleware only to certain routes:
+Also you can attach middleware only to certain routes via `app.middlewares.route` configuration key:
 
 ```php
-$app->any('/pages/{page:.+}', 'PagesController:display')->add('AuthMiddleware');
+'middlewares' => [
+    'route' => [
+        'auth' => 'AuthMiddleware',
+    ],
+]
+```
+
+```php
+$app->any('/pages/{page:.+}', 'PagesController:display')->add('auth');
 ```
 
 ## Default middlewares
@@ -1207,23 +1205,23 @@ By default MomentPHP ships with following middlewares:
         <th>description</th>
     </tr>
     <tr>
-        <td><code>BundleAssetsMiddleware</code></td>
+        <td><code>AssetsMiddleware</code></td>
         <td>
             Allows to serve bundle assets placed inside <code>/web</code> folder via properly
-            constructed URL: <code>/bundle/{bundleAlias}/css/style.css</code>. Note that is's
+            constructed URL: <code>/bundles/{bundleAlias}/css/style.css</code>. Note that is's
             just a quick solution (files are served via PHP) and you should symlink your assets for
             performance reasons in production.
         </td>
     </tr>
     <tr>
-        <td><code>ContentTypeMiddleware</code></td>
+        <td><code>NegotiationMiddleware</code></td>
         <td>Will automatically switch response content type from HTML to JSON (or XML) if client asks for it.</td>
     </tr>
 </table>
 
 # Caching
 
-Moment uses caching component from Laravel framework. Cache manager instance is available
+MomentPHP uses caching component from Laravel framework. Cache manager instance is available
 as `cache` service. The cache configuration is located at `/config/cache.php`. In this file you
 may specify which cache driver you would like used by default throughout your application.
 By default, framework is configured to use the file cache driver, which stores the serialized,
@@ -1255,7 +1253,7 @@ requested item doesn't exist. You may do this using the `remember()` method:
 
 ```php
 $value = $app->cache->remember('users', $minutes, function() use ($app) {
-    return $app->model->Users->all();
+    return $app->registry->models->User->findAll();
 });
 ```
 
@@ -1297,14 +1295,14 @@ logger name in `/config/app.php`:
 
 ```php
 'error' => [
-    'log' => 'error'
+    'log' => 'error' // set to `false` to disable PHP errors logging
 ]
 ```
 
 # Error handling
 
 MomentPHP converts all PHP errors to exceptions. You can set PHP error reporting level by
-setting `app.error.level` to appropriate value:
+setting `app.error.level` configuration key to appropriate value:
 
 ```php
 'error' => [
@@ -1312,16 +1310,16 @@ setting `app.error.level` to appropriate value:
 ]
 ```
 
-By default framework will display all errors as exceptions using the [Whoops!][Whoops] package if the `app.debug`
+By default framework will display all errors as exceptions using the [Whoops!][Whoops] package if the `app.displayErrorDetails`
 switch is turned on OR hide them and use `ErrorController` to render client-friendly messages if the switch is turned off.
 
-The value of `app.debug` configuration setting is available as a `$app->debug` service.
+The value of `app.displayErrorDetails` configuration setting is available as a `$app->debug` service.
 
-To sum up - setting `debug` to `false` changes the following types of things:
+To sum up - setting `app.displayErrorDetails` to `false` changes the following types of things:
 
 - PHP errors are not displayed
 - uncaught exceptions and fatal errors will render default internal server error page - using `ErrorController::error()`
-- uncaught `momentphp\exceptions\NotFoundException` will render default not found page - using `ErrorController::notFound()`
+- uncaught `\Slim\Exception\NotFoundException` will render default not found page - using `ErrorController::notFound()`
 - templates are not re-compiled when changed
 
 # Command line

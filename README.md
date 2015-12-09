@@ -38,7 +38,7 @@ Here is step-by-step guide on how to setup framework locally using [XAMPP][XAMPP
 - within project folder issue following command (this will install app skeleton along with its dependencies):
 
 ```bash
-composer create-project momentphp/app .
+composer create-project momentphp/app . --stability=dev
 ```
 
 - create domain to serve the application (`momentphp.local` in this example). Do that by adding following

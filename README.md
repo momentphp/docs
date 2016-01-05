@@ -606,7 +606,7 @@ class PostModel extends Model
 ```
 
 Hard-coded options are merged with options passed to constructor function during object initialization.
-For [controllers][CONTROLLER], [models][MODELS], [helpers][TEMPLATES-HELPERS], [service providers][SERVICES-SERVICE-PROVIDERS] and [middlewares][MIDDLEWARES] you can define configuration options passed to constructor by creating
+For [controllers][CONTROLLERS], [models][MODELS], [helpers][TEMPLATES-HELPERS], [service providers][SERVICES-SERVICE-PROVIDERS] and [middlewares][MIDDLEWARES] you can define configuration options passed to constructor by creating
 appropriate configuration file. For `PostModel` above we could create `/config/models.php` file with following content:
 
 ```php

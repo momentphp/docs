@@ -1219,6 +1219,77 @@ By default MomentPHP ships with following middlewares:
     </tr>
 </table>
 
+# Events
+
+Events allows objects to notify other objects and anonymous listeners about changes.
+For example you may define custom `user.create` event for your app which will be
+triggered when a new user signs up:
+
+```php
+class UserModel extends \momentphp\Model
+{
+    public function create($data)
+    {
+        $id = $this->db()->table('users')->insertGetId($data);
+        $this->app->eventsDispatcher()->fire('user.create', [$id]);
+        return $id;
+    }
+}
+```
+
+Later other parts of your code can listen and act upon defined event:
+
+```php
+namespace bundles\mailer;
+
+class Bundle extends \momentphp\Bundle
+{
+    public function boot()
+    {
+        $this->app->eventsDispatcher()->listen('user.create', function ($userId) {
+            // do something (send welcome email, etc.)
+        });
+    }
+}
+```
+
+When you have multiple listeners to an event, sometimes you will want to stop
+the remaining listeners from running. To do that you can return `false` from the current listener.
+
+## Framework events
+
+Some core events are already defined by the framework.
+You can subscribe to them in the same way that you subscribe to your own custom events:
+
+<table>
+    <tr>
+        <th>event</th>
+        <th>parameters</th>
+    </tr>
+    <tr>
+        <td><code>model.initilize</code></td>
+        <td><code>$model</code></td>
+    </tr>
+    <tr>
+        <td><code>controller.initilize</code></td>
+        <td><code>$controller</code></td>
+    </tr>
+    <tr>
+        <td><code>controller.beforeAction</code></td>
+        <td><code>$controller, $action</code></td>
+    </tr>
+    <tr>
+        <td><code>controller.afterAction</code></td>
+        <td><code>$controller, $action</code></td>
+    </tr>
+</table>
+
+Note that Laravel’s components (database and cache) used by MomentPHP are also emitting
+some events. Please refer to Laravel’s documentation for more information:
+
+- [Events][events]
+
+
 # Caching
 
 MomentPHP uses caching component from Laravel framework. Cache manager instance is available
@@ -1252,7 +1323,7 @@ Sometimes you may wish to retrieve an item from the cache, but also store a defa
 requested item doesn't exist. You may do this using the `remember()` method:
 
 ```php
-$value = $app->cache->remember('users', $minutes, function() use ($app) {
+$value = $app->cache->remember('users', $minutes, function () use ($app) {
     return $app->registry->models->User->findAll();
 });
 ```
@@ -1365,9 +1436,10 @@ php index.php background/task
 [intl]: http://php.net/manual/en/book.intl.php
 [pdo]: http://php.net/manual/en/book.pdo.php
 
-[database]: http://laravel.com/docs/5.0/database
-[queries]: http://laravel.com/docs/5.0/queries
-[cache]: http://laravel.com/docs/5.0/cache
+[events]: http://laravel.com/docs/5.1/events#framework-events
+[database]: http://laravel.com/docs/5.1/database
+[queries]: http://laravel.com/docs/5.1/queries
+[cache]: http://laravel.com/docs/5.1/cache
 [router]: http://www.slimframework.com/docs/objects/router.html
 [response]: http://www.slimframework.com/docs/objects/response.html
 [request]: http://www.slimframework.com/docs/objects/request.html

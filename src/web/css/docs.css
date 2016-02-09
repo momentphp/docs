@@ -107,3 +107,18 @@ div[role="flatdoc-content"] code:not([class]) {
   border-radius: 3px;
   white-space: nowrap;
 }
+@media all and (max-width: 767px) {
+  .docs-nav {
+    display: none;
+  }
+  .docs-content {
+    margin-left: 0;
+  }
+  .docs-table {
+    overflow: auto;
+  }
+  div[role="flatdoc-content"] code:not([class]) {
+    white-space: normal;
+    word-break: break-all;
+  }
+}

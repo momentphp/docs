@@ -16,6 +16,8 @@ $(document).on('flatdoc:ready', function() {
         hljs.highlightBlock(block);
     });
 
+    $('table').wrap('<div class="docs-table"></div>');
+
     $('.docs-nav').TrackpadScrollEmulator();
 
     $('.tse-scroll-content').bind('mousewheel DOMMouseScroll', function (e) {

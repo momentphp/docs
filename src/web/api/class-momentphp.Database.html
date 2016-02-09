@@ -74,6 +74,7 @@
 				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
 				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
+				<li><a href="class-momentphp.FlashMessages.html">FlashMessages</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
 				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
@@ -247,7 +248,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_connection">#</a>
-		<code>connection( <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>connection( <span>null|string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Return connection</p>
@@ -313,14 +314,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			ConnectionInterface|false
+			false|Illuminate\Database\ConnectionInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_connectionStatus">#</a>
-		<code>connectionStatus( <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>connectionStatus( <span>null|string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Return connection status</p>
@@ -338,7 +339,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					ConnectionInterface|false
+					false|Illuminate\Database\ConnectionInterface
 				</div>
 
 

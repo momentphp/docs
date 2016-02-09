@@ -1007,6 +1007,36 @@ Cell templates are placed inside `/templates/controllers/cells` subfolder.
 In case no action is specified while invoking cell, `display` action will be invoked, rendering following template:
 `bundles/helloWorld/templates/controllers/cells/ShoppingCart/display.twig`.
 
+## Flash messages
+
+Flash messages are one-time notifications displayed after processing a form or acknowledging data.
+
+```php
+class ContactController extends \momentphp\Controller
+{
+    protected function form()
+    {
+        if ($this->request->isPost()) {
+            if ($formIsOk) {
+                // will be rendered using /templates/partials/flash/success.tpl
+                $this->app->flash->success('Your message has been sent');
+                return $this->response->withRedirect('/');
+            } else {
+                // will be rendered using /templates/partials/flash/error.tpl
+                $this->app->flash->error('Please correct form errors');
+            }
+        }
+    }
+}
+```
+
+Messages are rendered inside template in following manner:
+
+```
+{$this->app->flash->render()} // Smarty
+{{ this.app.flash.render() }} // Twig
+```
+
 # Templates
 
 Out of the box framework supports [Smarty][Smarty] and [Twig][Twig] templating engines.
@@ -1267,19 +1297,19 @@ You can subscribe to them in the same way that you subscribe to your own custom 
         <th>parameters</th>
     </tr>
     <tr>
-        <td><code>model.initilize</code></td>
+        <td><code>model.{name}.initilize</code> (i.e. <code>model.Post.initialize</code>)</td>
         <td><code>$model</code></td>
     </tr>
     <tr>
-        <td><code>controller.initilize</code></td>
+        <td><code>controller.{name}.initilize</code></td>
         <td><code>$controller</code></td>
     </tr>
     <tr>
-        <td><code>controller.beforeAction</code></td>
+        <td><code>controller.{name}.beforeAction</code></td>
         <td><code>$controller, $action</code></td>
     </tr>
     <tr>
-        <td><code>controller.afterAction</code></td>
+        <td><code>controller.{name}.afterAction</code></td>
         <td><code>$controller, $action</code></td>
     </tr>
 </table>

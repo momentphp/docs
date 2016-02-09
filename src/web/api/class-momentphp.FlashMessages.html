@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class momentphp\Middleware | MomentPHP</title>
+	<title>Class momentphp\FlashMessages | MomentPHP</title>
 
 	<link rel="stylesheet" href="resources/style.css?c2f33731c1948fbed7c333554678bfa68d4817da">
 
@@ -74,10 +74,10 @@
 				<li><a href="class-momentphp.DebugInfo.html">DebugInfo</a></li>
 				<li><a href="class-momentphp.Error.html">Error</a></li>
 				<li><a href="class-momentphp.ExceptionHandler.html">ExceptionHandler</a></li>
-				<li><a href="class-momentphp.FlashMessages.html">FlashMessages</a></li>
+				<li class="active"><a href="class-momentphp.FlashMessages.html">FlashMessages</a></li>
 				<li><a href="class-momentphp.Helper.html">Helper</a></li>
 				<li><a href="class-momentphp.Log.html">Log</a></li>
-				<li class="active"><a href="class-momentphp.Middleware.html">Middleware</a></li>
+				<li><a href="class-momentphp.Middleware.html">Middleware</a></li>
 				<li><a href="class-momentphp.Model.html">Model</a></li>
 				<li><a href="class-momentphp.ObjectCache.html">ObjectCache</a></li>
 				<li><a href="class-momentphp.Provider.html">Provider</a></li>
@@ -126,33 +126,24 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Middleware</h1>
+	<h1>Class FlashMessages</h1>
 
 
 	<div class="description">
-	<p>Middleware</p>
+	<p>FlashMessages</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-<b><span>momentphp\Middleware</span></b>			
+<b><span>momentphp\FlashMessages</span></b>			
 			
 			 uses 
-					<a href="class-momentphp.traits.ContainerTrait.html"><span>momentphp\traits\ContainerTrait</span></a>, 
-			
-					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>, 
-			
-					<a href="class-momentphp.traits.ClassTrait.html"><span>momentphp\traits\ClassTrait</span></a>
+					<a href="class-momentphp.traits.OptionsTrait.html"><span>momentphp\traits\OptionsTrait</span></a>
 			
 		</dd>
 	</dl>
 
 
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-momentphp.middlewares.AssetsMiddleware.html">momentphp\middlewares\AssetsMiddleware</a>, 
-			<a href="class-momentphp.middlewares.NegotiationMiddleware.html">momentphp\middlewares\NegotiationMiddleware</a>
-	</div>
 
 
 
@@ -160,12 +151,12 @@
 
 
 	<div class="info">
-		<b>Abstract</b><br>
+		
 		
 		<b>Namespace:</b> <a href="namespace-momentphp.html">momentphp</a><br>
 		
 
-			<b>Located at</b> Middleware.php		<br>
+			<b>Located at</b> FlashMessages.php		<br>
 	</div>
 
 
@@ -184,7 +175,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>Interop\Container\ContainerInterface <var>$container</var></span>, <span>array <var>$options</var> = []</span> )</code>
+		<code>__construct( <span><code><a href="class-momentphp.View.html">momentphp\View</a></code> <var>$view</var></span>, <span>null|array|ArrayAccess <var>&amp; $storage</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -196,7 +187,44 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$container</var></dt>
+					<dt><var>$view</var></dt>
+					<dd></dd>
+					<dt><var>$storage</var></dt>
+					<dd>$storage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="set" id="_set">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_set">#</a>
+		<code>set( <span>string <var>$message</var></span>, <span>array <var>$options</var> = []</span> )</code>
+
+		<div class="description short">
+			<p>Set a flash message</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set a flash message</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
 					<dd></dd>
 					<dt><var>$options</var></dt>
 					<dd></dd>
@@ -209,42 +237,75 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="__invoke" id="___invoke">
+	<tr data-order="render" id="_render">
 
 		<td class="attributes"><code>
-			abstract public 
+			 public 
 
-			Psr\Http\Message\ResponseInterface
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___invoke">#</a>
-		<code>__invoke( <span>Psr\Http\Message\RequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span>, <span>callable <var>$next</var></span> )</code>
+		<a class="anchor" href="#_render">#</a>
+		<code>render( <span>string <var>$key</var> = <span class="php-quote">'flash'</span></span> )</code>
 
 		<div class="description short">
-			<p>Invoke middleware</p>
+			<p>Render flash messages under given key</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Invoke middleware</p>
+			<p>Render flash messages under given key</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$request</var></dt>
-					<dd></dd>
-					<dt><var>$response</var></dt>
-					<dd></dd>
-					<dt><var>$next</var></dt>
+					<dt><var>$key</var></dt>
 					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					Psr\Http\Message\ResponseInterface
+					string
 				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code>__call( <span>string <var>$method</var></span>, <span>array <var>$args</var> = []</span> )</code>
+
+		<div class="description short">
+			<p>Proxy calls to <code>set</code> method</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Proxy calls to <code>set</code> method</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd></dd>
+					<dt><var>$args</var></dt>
+					<dd></dd>
+				</dl></div>
+
 
 
 
@@ -256,14 +317,6 @@
 
 
 	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.ContainerTrait.html#methods">momentphp\traits\ContainerTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.ContainerTrait.html#_container">container()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary used">
 	<caption>Methods used from <a href="class-momentphp.traits.OptionsTrait.html#methods">momentphp\traits\OptionsTrait</a></caption>
 	<tr>
 		<td><code>
@@ -271,41 +324,123 @@
 		</code></td>
 	</tr>
 	</table>
-	<table class="summary used">
-	<caption>Methods used from <a href="class-momentphp.traits.ClassTrait.html#methods">momentphp\traits\ClassTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.ClassTrait.html#_classBasename">classBasename()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classConfigKey">classConfigKey()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classNamespace">classNamespace()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classPart">classPart()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classPath">classPath()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classPrefix">classPrefix()</a>, 
-			<a href="class-momentphp.traits.ClassTrait.html#_classSuffix">classSuffix()</a>
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="view" id="$view">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-momentphp.View.html">momentphp\View</a></code>
 		</code></td>
+
+		<td class="name">
+<var>$view</var>
+			<div class="description short">
+				<p>View</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>View</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$view" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="storage" id="$storage">
+		<td class="attributes"><code>
+			protected  
+			null|array|ArrayAccess
+		</code></td>
+
+		<td class="name">
+<var>$storage</var>
+			<div class="description short">
+				<p>Messages storage</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Messages storage</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$storage" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="storageKey" id="$storageKey">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$storageKey</var>
+			<div class="description short">
+				<p>Messages storage key</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Messages storage key</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$storageKey" class="anchor">#</a>
+				<code><span class="php-quote">'flash'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="defaults" id="$defaults">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$defaults</var>
+			<div class="description short">
+				<p>Default configuration</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Default configuration</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$defaults" class="anchor">#</a>
+				<code>[
+    <span class="php-quote">'key'</span> =&gt; <span class="php-quote">'flash'</span>,
+    <span class="php-quote">'template'</span> =&gt; <span class="php-quote">'default'</span>,
+    <span class="php-quote">'bundle'</span> =&gt; <span class="php-keyword1">null</span>,
+    <span class="php-quote">'params'</span> =&gt; [],
+    <span class="php-quote">'clear'</span> =&gt; <span class="php-keyword1">false</span>,
+]</code>
+			</div>
+		</td>
 	</tr>
 	</table>
 
 
-
-
-
-
-
-
-
-
-
-
-	<table class="summary used">
-	<caption>Properties used from <a href="class-momentphp.traits.ContainerTrait.html#properties">momentphp\traits\ContainerTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-momentphp.traits.ContainerTrait.html#$app"><var>$app</var></a>, 
-			<a href="class-momentphp.traits.ContainerTrait.html#$container"><var>$container</var></a>
-		</code></td>
-	</tr>
-	</table>
 	<table class="summary used">
 	<caption>Properties used from <a href="class-momentphp.traits.OptionsTrait.html#properties">momentphp\traits\OptionsTrait</a></caption>
 	<tr>

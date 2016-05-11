@@ -22,7 +22,7 @@ MomentPHP requires following software stack in order to run:
 
 - a web server such as Apache or Nginx (read more about [web server setup][web-servers] in Slim's documentation)
 - PHP 5.5.9 or above (works with PHP 7 too!)
-- free [ionCube Loader][ionCube Loader] module to be installed and made available to PHP (if you are looking for non-encoded version write an email to: <mailto:contact@momentphp.com>)
+- free [ionCube Loader][ionCube Loader] module to be installed and made available to PHP (if you are looking for non-encoded version write an email - you can find relevant address at the bottom of homepage)
 - [Composer][Composer] dependency manager
 
 It is also recommended (but not required) to enable following PHP modules:
